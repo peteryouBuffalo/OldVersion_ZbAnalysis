@@ -19,7 +19,7 @@ out.root: output data name
 -syst none: do not valuate systematics.
 -firstentry 0 -lastentry 10000: loop from entry 0 to 10000. These setting are for testing purpose. All events are processed by default.
 
-##Code contents 
+## Code contents 
 Main program: Ana.cxx
 
 StdArg.hpp: command line parser
@@ -34,7 +34,7 @@ src: codes
 5. ZbSelection.h ZbSelection.cxx: a selection to select Z+b-jet events
 6. SelectionTemplate.h SelectionTemplate.cxx: templates for creating a selection
 
-##How to
+## Howto
 1. Define a new cut:
   Add it to the Configs/inputParameters.txt.
   In Parameters class: add the name to the constructor of Parameters, add a private variable, define how to get and set it in "Get" and "Set"
