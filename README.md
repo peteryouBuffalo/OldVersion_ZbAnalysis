@@ -6,7 +6,7 @@ The cuts used in selections are defined in Configs/inputParameters. Users can pr
 
 For convenience, the physics objects, leptons and jets for example, are wrapped by objects in src/Obj.cxx. They contain a TLorentzVector together with other variables (for example isolation for lepton and deepCSV for jet). All corrections are implemented in these object classes.
 
-To build the code type "make". Use "make name_of_class.o" to compile a specific class. To clean "make clean".
+To build the code type "make". Use "make name_of_class.o" to compile a specific class. To clean: "make clean". The easiest way to compile the code is to execute the "make" inside CMSSW environment (after eval `scramv1 runtime -csh`).
 
 The workflow starts from executing the command line
  
