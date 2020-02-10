@@ -16,6 +16,8 @@ namespace glob {
       Parameters() {
         parameterNames.push_back("lep_pt") ;
         parameterNames.push_back("lep_eta") ;
+        parameterNames.push_back("jet_pt") ;
+        parameterNames.push_back("jet_eta") ;
       } ;
       
       //passing a constant string https://stackoverflow.com/questions/4475634/c-pass-a-string
@@ -25,6 +27,8 @@ namespace glob {
         if (std::count(parameterNames.begin(),parameterNames.end(),name)) {
           if (name == "lep_pt") return lep_pt ;
           if (name == "lep_eta") return lep_eta ;
+          if (name == "jet_pt") return jet_pt ;
+          if (name == "jet_eta") return jet_eta ;
         }
         else {
           std::cout << "\n There is no parameter " << name << ". Will terminate" << std::endl ;
@@ -37,6 +41,8 @@ namespace glob {
         if (std::count(parameterNames.begin(),parameterNames.end(),name)) {
           if (name == "lep_pt") lep_pt = val;
           if (name == "lep_eta") lep_eta = val;
+          if (name == "jet_pt") jet_pt = val;
+          if (name == "jet_eta") jet_eta = val;
         }
         else std::cout << "\n Can not set value for parameter named: " << name << ". Not exist in list of parameters " << std::endl; 
       } ;
@@ -45,6 +51,8 @@ namespace glob {
     private:
       float lep_pt ;
       float lep_eta ;
+      float jet_pt ;
+      float jet_eta ;
       std::vector<std::string> initializedVars ;
       std::vector<std::string> parameterNames ;
 
