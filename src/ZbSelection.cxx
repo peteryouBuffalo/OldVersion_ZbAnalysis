@@ -14,13 +14,11 @@ ZbSelection::ZbSelection(bool isData) : Selector(isData), h_zee_jet(0), h_zmm_je
 ZbSelection::~ZbSelection() {
   if (h_zee_jet) delete h_zee_jet;
   if (h_zmm_jet) delete h_zmm_jet;
-  if (h_jet) delete h_jet;
 } 
 
 void ZbSelection::SlaveBegin(Reader* r) {
   h_zee_jet = new ZbPlots("Zee_jet") ;
   h_zmm_jet = new ZbPlots("Zmm_jet") ;
-  h_jet = new ZbPlots("jet") ;
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   std::vector<TH1*> tmp = h_zee_jet->returnHisto() ;
@@ -29,8 +27,6 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_zmm_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  std::vector<TH1*> tmp1 = h_jet->returnHisto() ;
-  for(size_t i=0;i<tmp1.size();i++) r->GetOutputList()->Add(tmp1[i]);
 }
 
 void ZbSelection::Process(Reader* r) {
@@ -63,7 +59,8 @@ void ZbSelection::Process(Reader* r) {
   if (eles.size() >= 2) {
     if (jets.size() >= 1) {
       ZObj Z(eles[0],eles[1]) ;
-      h_zee_jet->Fill(Z) ;
+      JetObj J(jets[0]) ;
+      h_zee_jet->Fill(Z, J) ;
     }
 
   }
@@ -72,19 +69,12 @@ void ZbSelection::Process(Reader* r) {
   if (muons.size() >= 2) {
     if (jets.size() >= 1) {
       ZObj Z(muons[0],muons[1]) ;
-      h_zmm_jet->Fill(Z) ;
-    }
-
-  }
-  //jets
-  if (muons.size() >= 2 or eles.size() >= 2) {
-    if (jets.size() >= 1) {
       JetObj J(jets[0]) ;
-      h_jet->Fill(J) ;
-  
+      h_zmm_jet->Fill(Z, J) ;
     }
 
   }
+
 
 } //end Process
 

@@ -23,7 +23,6 @@ private:
   //histograms
   ZbPlots* h_zee_jet ;
   ZbPlots* h_zmm_jet ;
-  ZbPlots* h_jet ;
 } ;
 
 #endif

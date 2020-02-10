@@ -30,20 +30,17 @@ class ZbPlots
       h_eta_jet->Sumw2() ;
     } ;
     
-    void Fill(ZObj& Z, float w=1) {
+    void Fill(ZObj& Z, JetObj& J, float w=1) {
       h_pt_lep0->Fill(Z.m_lep0.m_lvec.Pt(), w) ;
       h_phi_lep0->Fill(Z.m_lep0.m_lvec.Phi(), w) ;
       h_eta_lep0->Fill(Z.m_lep0.m_lvec.Eta(), w) ;
       h_pt_lep1->Fill(Z.m_lep1.m_lvec.Pt(), w) ;
       h_phi_lep1->Fill(Z.m_lep1.m_lvec.Phi(), w) ;
       h_eta_lep1->Fill(Z.m_lep1.m_lvec.Eta(), w) ;
-    } ;
-    void Fill(JetObj& J, float w=1) {
       h_pt_jet->Fill(J.m_lvec.Pt(), w) ;
       h_phi_jet->Fill(J.m_lvec.Phi(), w) ;
       h_eta_jet->Fill(J.m_lvec.Eta(), w) ;
     } ;
-
 
     std::vector<TH1*> returnHisto(){
       std::vector<TH1*> histolist ;
