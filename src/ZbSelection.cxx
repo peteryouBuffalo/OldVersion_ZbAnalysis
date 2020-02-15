@@ -12,6 +12,10 @@
 
 #include <iostream>
 #include "TH1.h"
+
+using namespace std;
+float PI = M_PI;
+
 ZbSelection::ZbSelection(bool isData) : Selector(isData), h_zee_jet(0), h_zmm_jet(0) {}
 
 ZbSelection::~ZbSelection() {
@@ -31,24 +35,6 @@ void ZbSelection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
 }
-//------------ method called  -----------
-float DR(float x, float y){return (sqrt(pow(x,2.0) + pow(y,2.0)));}
-float Deta(float x, float y){return (x-y);}
-float Dphi(float x, float y){return (x-y);}
-const double PI = M_PI;
-float DphiC(float x){
-if (x<=PI && x>=0)
-return x;
-else if (x > PI)
-return DphiC (x-PI);
-else if (x <= -PI)
-return DphiC(x + PI);
-else if (x<0 && x> -PI)
-return DphiC(x = -x);
-return 0;
-}
-//TFile* outFile = new TFile("930.root", "RECREATE");
-//TH1F *h_nmum = new TH1F("nmum","negative muon multiplicity", 11.,-0.5,10.5);
 
 void ZbSelection::Process(Reader* r) {
   //std::cout << "\n Data type: " << m_isData ;
@@ -87,21 +73,10 @@ void ZbSelection::Process(Reader* r) {
     if (jets.size() >= 1) {
       ZObj Z(eles[0],eles[1]) ;
       JetObj J(jets[0]) ;
-	
-      // Delta R for leading electron
-      float deltaphielelep0 = Dphi(Z.m_lep0.m_lvec.Phi(), J.m_lvec.Phi());
-      float deltaetaelelep0 = Deta(Z.m_lep0.m_lvec.Eta() , J.m_lvec.Eta());
-      float deltaphiCelelep0 = DphiC(deltaphielelep0);
-      float deltaRelelep0 = DR (deltaetaelelep0, deltaphiCelelep0);    //calling the function
-      //h_nmum->Fill(deltaetaelelep0);
-	
-      // Delta R for sub-leading electron
-      float deltaphielelep1 = Dphi(Z.m_lep1.m_lvec.Phi(), J.m_lvec.Phi());
-      float deltaetaelelep1 = Deta(Z.m_lep1.m_lvec.Eta() , J.m_lvec.Eta());
-      float deltaphiCelelep1 = DphiC(deltaphielelep1);
-      float deltaRelelep1 = DR (deltaetaelelep1, deltaphiCelelep1);    //calling the function
-
+      
       // isolation
+      // deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
+      // deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
       //if (deltaRelelep0 > 0.4 && deltaRelelep1 > 0.4){
       h_zee_jet->Fill(Z, J) ;
 	//}
@@ -109,32 +84,21 @@ void ZbSelection::Process(Reader* r) {
 
   }
 
+
+
   //Zmm + jets
   if (muons.size() >= 2) {
     if (jets.size() >= 1) {
       ZObj Z(muons[0],muons[1]) ;
       JetObj J(jets[0]) ;
-      // Delta R for leading muon
-      float deltaphimuonlep0 = Dphi(Z.m_lep0.m_lvec.Phi(), J.m_lvec.Phi());
-      float deltaetamuonlep0 = Deta(Z.m_lep0.m_lvec.Eta() , J.m_lvec.Eta());
-      float deltaphiCmuonlep0 = DphiC(deltaphimuonlep0);
-      float deltaRmuonlep0 = DR (deltaetamuonlep0, deltaphiCmuonlep0);    //calling the function
-	
-      // Delta R for sub-leading muon
-      float deltaphimuonlep1 = Dphi(Z.m_lep1.m_lvec.Phi(), J.m_lvec.Phi());
-      float deltaetamuonlep1 = Deta(Z.m_lep1.m_lvec.Eta() , J.m_lvec.Eta());
-      float deltaphiCmuonlep1 = DphiC(deltaphimuonlep1);
-      float deltaRmuonlep1 = DR (deltaetamuonlep1, deltaphiCmuonlep1);    //calling the function
-
+      // deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
+      // deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
       //if (deltaRmuonlep1 > 0.4 && deltaRmuonlep0 > 0.4) {
       h_zmm_jet->Fill(Z, J) ;
 	//}
     }
 
   }
-//h_nmum->Draw();
-//h_nmum->Write();
-//outFile->Close();
 
 
 } //end Process
@@ -157,4 +121,5 @@ void ZbSelection::Terminate(TList* mergedList, std::string outFileName) {
   aList->Write("ZbSelectionCuts",TObject::kSingleKey) ;
 
   f->Close() ;
+
 }
