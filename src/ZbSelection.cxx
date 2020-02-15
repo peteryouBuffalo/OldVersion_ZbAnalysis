@@ -23,12 +23,16 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zee_jet = new ZbPlots("Zee_jet") ;
   h_zmm_jet = new ZbPlots("Zmm_jet") ;
 
+  h_jet_pt = new TH1D("h_jet_pt","",500,0,500) ;
+
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   std::vector<TH1*> tmp = h_zee_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zmm_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  r->GetOutputList()->Add(h_jet_pt) ;
 
 }
 //------------ method called  -----------
@@ -128,6 +132,7 @@ void ZbSelection::Process(Reader* r) {
 
       //if (deltaRmuonlep1 > 0.4 && deltaRmuonlep0 > 0.4) {
       h_zmm_jet->Fill(Z, J) ;
+      h_jet_pt->Fill((r->Jet_pt)[0]) ;
 	//}
     }
 
