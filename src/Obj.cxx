@@ -33,7 +33,16 @@ class JetObj {
     } ;
 
     virtual ~JetObj() {} ;
-    
+
+    bool IsLepton(std::vector<LepObj>& leps) {
+      float minDr = 1000 ;
+      for (std::vector<LepObj>::iterator it = leps.begin() ; it != leps.end() ; ++it) {
+        float dRtmp = m_lvec.DeltaR(it->m_lvec) ;
+        if (dRtmp < minDr) minDr = dRtmp ;
+      }
+      return minDr <= 0.4 ;
+    }
+
     TLorentzVector m_lvec ;
     float m_deepCSV ;
 } ;

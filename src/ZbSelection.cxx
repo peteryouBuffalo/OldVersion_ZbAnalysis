@@ -27,7 +27,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zee_jet = new ZbPlots("Zee_jet") ;
   h_zmm_jet = new ZbPlots("Zmm_jet") ;
 
-  h_jet_pt = new TH1D("h_jet_pt","",500,0,500) ;
+  h_dR_je = new TH1D("h_dR_je","",500,0,5) ;
+  h_dR_jm = new TH1D("h_dR_jm","",500,0,5) ;
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   std::vector<TH1*> tmp = h_zee_jet->returnHisto() ;
@@ -36,7 +37,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_zmm_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  r->GetOutputList()->Add(h_jet_pt) ;
+  r->GetOutputList()->Add(h_dR_je) ;
+  r->GetOutputList()->Add(h_dR_jm) ;
 
 }
 
@@ -46,29 +48,34 @@ void ZbSelection::Process(Reader* r) {
   //if (*(r->nJet)>0) std::cout << "\n First jet: " << (r->Jet_eta)[0] ;
 
   //=============Get objects============= 
+  //electrons
   std::vector<LepObj> eles ;
   for (unsigned int i = 0 ; i < *(r->nElectron) ; ++i) {
     LepObj ele((r->Electron_pt)[i],(r->Electron_eta)[i],(r->Electron_phi)[i],(r->Electron_mass)[i],0) ;
-    //if (r-> Electron_mvaFall17V1Iso_WP90[i] <= 0) continue;
-    //if (ele.m_lvec.Pt() > CUTS.Get<float>("lep_pt") && fabs(ele.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) 
+    if (r-> Electron_mvaFall17V1Iso_WP90[i] <= 0) continue;
+    if (ele.m_lvec.Pt() > CUTS.Get<float>("lep_pt") && fabs(ele.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) 
 	eles.push_back(ele) ;
   }
-
+  
+  //muons
   std::vector<LepObj> muons ;
   for (unsigned int i = 0 ; i < *(r->nMuon) ; ++i) {
     LepObj muon((r->Muon_pt)[i],(r->Muon_eta)[i],(r->Muon_phi)[i],(r->Muon_mass)[i],(r->Muon_pfRelIso03_all)[i]) ;
-    //if (r-> Muon_looseId[i] <= 0) continue;
-    //if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_pt") && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) 
+    if (r-> Muon_looseId[i] <= 0) continue;
+    if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_pt") && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) 
 	muons.push_back(muon) ;
   }
-
+  
+  //jets
   std::vector<JetObj> jets ;
   for (unsigned int i = 0 ; i < *(r->nJet) ; ++i) {
     JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],(r->Jet_btagDeepB)[i]) ;
-    //if (r->Jet_jetId[i] <= 0 ) continue;
+    if (jet.IsLepton(eles)) continue ;
+    if (jet.IsLepton(muons)) continue ;
+    if (r->Jet_jetId[i] <= 0 ) continue ;
     //if (r->Jet_btagCSVV2[i] <= 0.8484) continue;
     //if (r->SV_mass[i] < 0) continue;
-    //if (jet.m_lvec.Pt() > CUTS.Get<float>("jet_pt") && fabs(jet.m_lvec.Eta()) < CUTS.Get<float>("jet_eta")) 
+    if (jet.m_lvec.Pt() > CUTS.Get<float>("jet_pt") && fabs(jet.m_lvec.Eta()) < CUTS.Get<float>("jet_eta")) 
 	jets.push_back(jet) ;
   }
   
@@ -79,10 +86,12 @@ void ZbSelection::Process(Reader* r) {
       JetObj J(jets[0]) ;
       
       // isolation
-      // deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
-      // deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
+      float deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
+      float deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
       //if (deltaRelelep0 > 0.4 && deltaRelelep1 > 0.4){
       h_zee_jet->Fill(Z, J) ;
+      
+      h_dR_je->Fill(std::min(deltaRelelep0,deltaRelelep1)) ;
 	//}
     }
 
@@ -95,11 +104,11 @@ void ZbSelection::Process(Reader* r) {
     if (jets.size() >= 1) {
       ZObj Z(muons[0],muons[1]) ;
       JetObj J(jets[0]) ;
-      // deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
-      // deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
+      float deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(J.m_lvec);
+      float deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(J.m_lvec);
       //if (deltaRmuonlep1 > 0.4 && deltaRmuonlep0 > 0.4) {
       h_zmm_jet->Fill(Z, J) ;
-      h_jet_pt->Fill((r->Jet_pt)[0]) ;
+      h_dR_jm->Fill(std::min(deltaRmuonlep0,deltaRmuonlep1)) ;
 	//}
     }
 
