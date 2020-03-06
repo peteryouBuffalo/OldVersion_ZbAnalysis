@@ -73,6 +73,7 @@ return 0;
       h_phi_jet->Sumw2() ;
       h_eta_jet->Sumw2() ;
 
+
       h_pt_dilepton = new TH1D(name + "_pt_dilepton","",300,0,300) ;
       h_phi_dilepton = new TH1D(name + "_phi_dilepton","",400,-4.0,4.0) ;
       h_eta_dilepton = new TH1D(name + "_eta_dilepton","",300,-3.0,3.0) ;
@@ -107,10 +108,11 @@ return 0;
       h_phi_jet->Fill(J.m_lvec.Phi(), w) ;
       h_eta_jet->Fill(J.m_lvec.Eta(), w) ;
 
-      //if ((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).M() < 111 && (Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).M() > 71){
+      if ((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).M() < 111 && (Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).M() > 71){
       h_pt_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Pt(), w);
       h_phi_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Phi(), w);
-      h_eta_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Eta(), w);//}
+      h_eta_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Eta(), w);
+	}
       
       	
 	
@@ -173,6 +175,7 @@ return 0;
     TH1D* h_pt_dilepton ;
     TH1D* h_phi_dilepton;
     TH1D* h_eta_dilepton ;
+
 } ;
 
 #endif
