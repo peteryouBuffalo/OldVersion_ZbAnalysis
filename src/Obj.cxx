@@ -63,5 +63,21 @@ class ZObj {
 
 } ;
 
+class JetPlot {
+  
+  public:
+    
+    JetPlot(JetObj jetcut1) : jet_cut1(jetcut1) {
+      m_lvec = jet_cut1.m_lvec  ;
+    } ;
+
+    virtual ~JetPlot() {} ;
+
+    TLorentzVector m_lvec ;
+    float m_deepCSV ;
+
+	JetObj jet_cut1 ;
+} ;
+
 
 #endif

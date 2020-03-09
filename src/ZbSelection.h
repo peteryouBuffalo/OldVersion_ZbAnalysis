@@ -26,6 +26,17 @@ private:
 
   TH1D* h_dR_je ;
   TH1D* h_dR_jm ;
+  TH1D* h_nMuon ;
+  TH1D* h_nEle ;
+  TH1D* h_nJet ;
+  TH1D* h_ele_cutflow ;
+  TH1D* h_muon_cutflow ;
+  TH1D* h_Jet_cutflow ;
+  TH1D* h_zee_cutflow ;
+  TH1D* h_zmm_cutflow ;
+  TH1D* h_pt_jet_after_ele_rem ;
+ 
+
 
 } ;
 
