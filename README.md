@@ -6,15 +6,16 @@ The cuts used in selections are defined in Configs/inputParameters. Users can pr
 
 For convenience, the physics objects, leptons and jets for example, are wrapped by objects in src/Obj.cxx. They contain a TLorentzVector together with other variables (for example isolation for lepton and deepCSV for jet). All corrections are implemented in these object classes.
 
-To build the code type "make". Use "make name_of_class.o" to compile a specific class. To clean: "make clean". The easiest way to compile the code is to execute the "make" inside CMSSW environment (after eval `scramv1 runtime -csh`).
+To build the code type "make FORMAT=format_of_sample", "format_of_sample" can be MC_2016, MC_2017, MC_2018, DATA_2016, DATA_2017, DATA_2018. The setting helps to select the right branches and codes to use depending on sample types. Use "make FORMAT=format_of_sample name_of_class.o" to compile a specific class. To clean: "make clean". The easiest way to compile the code is to execute the "make" inside CMSSW environment (after eval `scramv1 runtime -csh`).
 
 The workflow starts from executing the command line
  
-./main -filelist fileList.txt -cfg Configs/inputParameters.txt -data 0 -out out.root -syst none -firstentry 0 -lastentry 10000
+./main -filelist fileList.txt -cfg Configs/inputParameters.txt -data 0 -year 2016 -out out.root -syst none -firstentry 0 -lastentry 10000
 
 fileList.txt: list of data files
 -cfg: file with input parameters (cuts for example)
 -data 0: this is MC (set 1 for data)
+-year 2016: this is the type of sample (2016 = samples for 2016 run)
 out.root: output data name
 -syst none: do not valuate systematics.
 -firstentry 0 -lastentry 10000: loop from entry 0 to 10000. These setting are for testing purpose. All events are processed by default.
@@ -45,5 +46,7 @@ src: codes
   Finally, save them in SlaveTerminate of the Processor class
 3. To save a cut values used in a selection to the output root file:
   Add the value to TParameter and append this TParameter to a list in Terminate of selection class
-  
-
+4. Use LPC batch farm, condor, to run on all samples:
+  Make sure that the lists of NanoAOD files exsit (in FileLists_Nano25Oct2019 folder for example). Otherwise, create these lists by going to the directory "SubmitToCondor" and execute "python createFileLists_v2.py" (create file lists for all samples) or "python createFileLists_v2.py DY_0J_amcatnlo_MC_2016,DY_0J_amcatnlo_MC_2017" (create file lists for DY_0J_amcatnlo_MC_2016 and DY_0J_amcatnlo_MC_2017 samples).
+  Go to SubmitToCondor folder and execute "python launch_v2.py" (submit all samples) or "python launch_v2.py DY_0J_amcatnlo_MC_2016,DY_0J_amcatnlo_MC_2017" (submit DY_0J_amcatnlo_MC_2016 and DY_0J_amcatnlo_MC_2017 samples). NOTE that need to set "runMode = 0" and "submit = True" in launch_v2.py script and define output folders in EOS (outputDir_eos) and local (outputDir_scratch).
+  After jobs finish, execute launch_v2.py again with "runMode = 1" to merge the output files, which are copied to the local directory.
