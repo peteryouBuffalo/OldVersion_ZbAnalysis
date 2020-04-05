@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
   for (int i=0;i<argc;i++) std::cout << argv[i] << " ";
   std::cout << endl;
   std::cout << "======================================================================" << std::endl;
-  arg.keys << "-in" << "-filelist" << "-cfg" << "-out" << "-data" << "-syst" 
+  arg.keys << "-in" << "-filelist" << "-cfg" << "-out" << "-data" << "-year" << "-syst" 
            << "-firstentry" << "-lastentry" ; 
   arg.Process();
 
@@ -129,9 +129,11 @@ int main(int argc, char *argv[]) {
   int intisdata=0;
   int intfirstentry=0;
   long int intlastentry=-1;
-  string syst =  "none";
+  string syst = "none";
+  string year = "";
 
   if (arg.Key("-data")) intisdata = arg.Get<int>("-data");
+  if (arg.Key("-year")) year = arg.Get<string>("-year");
   if (arg.Key("-firstentry")) intfirstentry = arg.Get<int>("-firstentry");
   if (arg.Key("-lastentry")) intlastentry = arg.Get<int>("-lastentry");
   if (arg.Key("-syst")) syst = arg.Get<string>("-syst");
@@ -140,6 +142,7 @@ int main(int argc, char *argv[]) {
   
   std::cout << "\n=================================" << std::endl ;
   std::cout << "\nIs data:              " << isData ;
+  std::cout << "\nYear:                 " << year ;
   std::cout << "\nFirst and last entry: " << intfirstentry << " " << intlastentry ;
   std::cout << "\nSystematic:           " << syst ;
   
@@ -163,16 +166,16 @@ int main(int argc, char *argv[]) {
   
   std::cout << "\n Number of events: " << chain.GetEntries() ;
   if (intlastentry == -1) intlastentry = chain.GetEntries() ;
-
+  
   Processor ana ;
   ana.setOutPutFileName(outputfilename) ;
-  
+  ana.SetDataInfo(isData,year) ;
   
   //collection of all selectors
   std::vector<Selector*> sels;
   
   //Selection for Zb
-  ZbSelection sel(isData) ;
+  ZbSelection sel ;
 
   sels.push_back(&sel) ;
   
@@ -180,6 +183,6 @@ int main(int argc, char *argv[]) {
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
   
   chain.Process(&ana,"",intlastentry,intfirstentry) ;
-
+  
   return 0 ;
 }

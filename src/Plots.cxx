@@ -6,24 +6,23 @@
 #include "TH1.h"
 #include "TH1D.h"
 #include "TMath.h"
+#include "TLorentzVector.h"
 
 
 class ZbPlots 
 {
-float DR(float x, float y){return (sqrt(pow(x,2.0) + pow(y,2.0)));}
-float Deta(float x, float y){return (x-y);}
-float Dphi(float x, float y){return (x-y);}
- Double_t const  kPI        = TMath::Pi();
- Double_t const  kTWOPI     = 2.*kPI;
-double DphiC(double x){
-if ((x<=kPI && x>=0) or (x<0 && x> -kPI))
-return x;
-else if (x >= kPI)
-return DphiC (x-kTWOPI);
-else if (x < -kPI)
-return DphiC(x + kTWOPI);
-return 0;
-}
+  
+  float DR(float x, float y){return (sqrt(pow(x,2.0) + pow(y,2.0)));}
+  float Deta(float x, float y){return (x-y);}
+  float Dphi(float x, float y){return (x-y);}
+  Double_t const  kPI        = TMath::Pi();
+  Double_t const  kTWOPI     = 2.*kPI;
+  double DphiC(double x){
+    if ((x<=kPI && x>=0) or (x<0 && x> -kPI)) return x;
+    else if (x >= kPI) return DphiC (x-kTWOPI);
+    else if (x < -kPI) return DphiC(x + kTWOPI);
+    return 0;
+  }
 
 
   public:
@@ -113,9 +112,7 @@ return 0;
       h_phi_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Phi(), w);
       h_eta_dilepton->Fill((Z.m_lep0.m_lvec + Z.m_lep1.m_lvec).Eta(), w);
 	}
-      
-      	
-	
+
     } ;
 
     std::vector<TH1*> returnHisto(){
@@ -177,5 +174,57 @@ return 0;
     TH1D* h_eta_dilepton ;
 
 } ;
+
+class Z2bPlots : public ZbPlots{
+  
+  public: 
+    Z2bPlots(TString name) : ZbPlots(name) {
+      h_pt_jet1 = new TH1D(name + "_pt_jet1","",300,0,300) ;
+      h_phi_jet1 = new TH1D(name + "_phi_jet1","",400,-4.0,4.0) ;
+      h_eta_jet1 = new TH1D(name + "_eta_jet1","",300,-3.0,3.0) ;
+      h_m_2b = new TH1D(name + "_m_2b","",500,0,500) ;
+      h_dR_2b = new TH1D(name + "_dR_2b","",100,0,10) ;
+      h_dPhi_2b = new TH1D(name + "_dPhi_2b","",60,0,TMath::Pi()) ;
+
+      h_pt_jet1->Sumw2() ;
+      h_phi_jet1->Sumw2() ;
+      h_eta_jet1->Sumw2() ;
+      h_m_2b->Sumw2() ;
+      h_dR_2b->Sumw2() ;
+      h_dPhi_2b->Sumw2() ;
+    } ;
+
+    void Fill(ZObj& Z, JetObj& J, JetObj& J1, float w=1) {
+      ZbPlots::Fill(Z, J, w) ;
+      h_pt_jet1->Fill(J1.m_lvec.Pt(), w) ;
+      h_eta_jet1->Fill(J1.m_lvec.Eta(), w) ;
+      h_phi_jet1->Fill(J1.m_lvec.Phi(), w) ;
+      TLorentzVector lv_2b = J.m_lvec + J1.m_lvec ;
+      h_m_2b->Fill(lv_2b.M(),w) ;
+      h_dR_2b->Fill(J.m_lvec.DeltaR(J1.m_lvec),w) ;
+      h_dPhi_2b->Fill(fabs(J.m_lvec.DeltaPhi(J1.m_lvec)),w) ;
+    } ;
+
+
+    std::vector<TH1*> returnHisto(){
+      std::vector<TH1*> histolist = ZbPlots::returnHisto() ;
+      histolist.push_back(h_pt_jet1) ;
+      histolist.push_back(h_eta_jet1) ;
+      histolist.push_back(h_phi_jet1) ;
+      histolist.push_back(h_m_2b) ;
+      histolist.push_back(h_dR_2b) ;
+      histolist.push_back(h_dPhi_2b) ;
+      return histolist ;
+    }
+
+  protected:
+    TH1D* h_pt_jet1 ;
+    TH1D* h_phi_jet1 ;
+    TH1D* h_eta_jet1 ;
+    TH1D* h_m_2b ;
+    TH1D* h_dR_2b ;
+    TH1D* h_dPhi_2b ;
+} ;
+
 
 #endif

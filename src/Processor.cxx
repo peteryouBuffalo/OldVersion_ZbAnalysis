@@ -2,7 +2,9 @@
 
 #include "Processor.h"
 
-Processor::Processor(TTree * /*tree*/ t) { m_outputfilename="ProcOutput.root"; } ;
+Processor::Processor(TTree * /*tree*/ t) { 
+  m_outputfilename="ProcOutput.root"; 
+} ;
 
 //sequence is Begin, SlaveBegin, Init, Process, SlaveTerminate, Terminate
 void Processor::Begin(TTree *tree) {
@@ -13,11 +15,12 @@ void Processor::SlaveBegin(TTree *tree) {
   Reader::SlaveBegin(tree);
   for (std::vector<Selector*>::iterator it = m_selectors.begin(); it != m_selectors.end(); it++) {
     (*it)->SlaveBegin(this);
+    (*it)->SetDataInfo(m_isData, m_year) ;
   }
 }
 
 void Processor::Init(TTree* tree) {
-  Reader::Init(tree);
+  Reader::Init(tree) ;
 }
 
 

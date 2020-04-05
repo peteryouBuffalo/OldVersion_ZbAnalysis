@@ -29,6 +29,7 @@ public :
    
    void addSelector(Selector* sel) {m_selectors.push_back(sel) ; } ;
    void setOutPutFileName(std::string name) {m_outputfilename=name; } ;
+   void SetDataInfo(bool isData, std::string year) {m_isData = isData; m_year = year ; };
 
    ClassDef(Processor,0);
 
@@ -36,6 +37,8 @@ private:
 
   std::vector<Selector*> m_selectors ;
   std::string m_outputfilename ;
+  bool m_isData ;
+  std::string m_year ;
 
 };
 

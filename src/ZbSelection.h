@@ -12,7 +12,7 @@
 
 class ZbSelection : public Selector {
 public:
-  ZbSelection(bool isData=false) ;
+  ZbSelection() {} ;
   virtual ~ZbSelection() ;
     // These methods are called at the corresponding stage of processing of TSelector
   virtual void SlaveBegin(Reader* r) ;
@@ -23,7 +23,12 @@ private:
   //histograms
   ZbPlots* h_zee_jet ;
   ZbPlots* h_zmm_jet ;
+  ZbPlots* h_zee_bjet ;
+  ZbPlots* h_zmm_bjet ;
+  Z2bPlots* h_zee_2bjet ;
+  Z2bPlots* h_zmm_2bjet ;
 
+  TH1D* h_evt ;
   TH1D* h_dR_je ;
   TH1D* h_dR_jm ;
   TH1D* h_nMuon ;

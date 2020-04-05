@@ -5,7 +5,7 @@ ROOTCFLAGS   	:= $(shell root-config --cflags)
 ROOTLIBS     	:= $(shell root-config --libs)
 ROOTGLIBS    	:= $(shell root-config --glibs)
 
-CXXFLAGS	= -O -Wall -fPIC
+CXXFLAGS	= -O -Wall -fPIC -D $(FORMAT)
 CXXFLAGS	+= $(ROOTCFLAGS)	
 
 SOFLAGS		= -O -shared
@@ -14,7 +14,11 @@ SOFLAGS 	+= $(ROOTGLIBS)
 #main:	Ana.cxx libReader.so libReader_dict.so
 #	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) libReader.so libReader_dict.so $< -o $@
 
-Task: mydict main clean
+#Task: copy mydict main clean
+Task: clean mydict main clean
+
+#copy:
+#	cp -f src/Reader_$(FORMAT).h  src/Reader.h
 
 mydict:
 	@rootcint Reader_dict.cxx -c src/Reader.h
