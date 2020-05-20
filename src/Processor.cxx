@@ -75,3 +75,4 @@ void Processor::Terminate()
     (*it)->Terminate(fOutput,m_outputfilename);
   }
 }
+

@@ -24,8 +24,10 @@ mydict:
 	@rootcint Reader_dict.cxx -c src/Reader.h
 	@rootcint Processor_dict.cxx -c src/Processor.h
 
-main:	Ana.cxx Global.o Reader.o Processor.o Reader_dict.o Processor_dict.o Selector.o ZbSelection.o
+main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o Reader_dict.o Processor_dict.o Selector.o ZbSelection.o
 	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
+#main:	Ana.cxx Global.o Reader.o Processor.o Reader_dict.o Processor_dict.o Selector.o ZbSelection.o
+#	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
 
 #lib%.so: %.o
 #	$(CXX) $(SOFLAGS) -o $@ $^
@@ -37,6 +39,9 @@ main:	Ana.cxx Global.o Reader.o Processor.o Reader_dict.o Processor_dict.o Selec
 #	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 %.o:	src/%.cxx
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
+
+%.o:	src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 %.o:	%.cxx

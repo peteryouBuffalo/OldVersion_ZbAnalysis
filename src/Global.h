@@ -18,6 +18,8 @@ namespace glob {
         parameterNames.push_back("lep_pt1") ;
         parameterNames.push_back("muon_iso") ;
         parameterNames.push_back("lep_eta") ;
+        parameterNames.push_back("ZMassL") ;
+        parameterNames.push_back("ZMassH") ;
         parameterNames.push_back("lep_jetOverlap_pt") ;
         parameterNames.push_back("lep_jetOverlap_eta") ;
         parameterNames.push_back("jet_pt") ;
@@ -25,6 +27,9 @@ namespace glob {
         parameterNames.push_back("jet_deepCSVM_2016") ;
         parameterNames.push_back("jet_deepCSVM_2017") ;
         parameterNames.push_back("jet_deepCSVM_2018") ;
+        parameterNames.push_back("jet_deepJetM_2016") ;
+        parameterNames.push_back("jet_deepJetM_2017") ;
+        parameterNames.push_back("jet_deepJetM_2018") ;
       } ;
       
       //passing a constant string https://stackoverflow.com/questions/4475634/c-pass-a-string
@@ -36,6 +41,8 @@ namespace glob {
           if (name == "lep_pt1") return lep_pt1 ;
           if (name == "muon_iso") return muon_iso ;
           if (name == "lep_eta") return lep_eta ;
+          if (name == "ZMassL") return ZMassL ;
+          if (name == "ZMassH") return ZMassH ;
           if (name == "lep_jetOverlap_pt") return lep_jetOverlap_pt ;
           if (name == "lep_jetOverlap_eta") return lep_jetOverlap_eta ;
           if (name == "lep_eta") return lep_eta ;
@@ -44,6 +51,9 @@ namespace glob {
           if (name == "jet_deepCSVM_2016") return jet_deepCSVM_2016 ;
           if (name == "jet_deepCSVM_2017") return jet_deepCSVM_2017 ;
           if (name == "jet_deepCSVM_2018") return jet_deepCSVM_2018 ;
+          if (name == "jet_deepJetM_2016") return jet_deepJetM_2016 ;
+          if (name == "jet_deepJetM_2017") return jet_deepJetM_2017 ;
+          if (name == "jet_deepJetM_2018") return jet_deepJetM_2018 ;
         }
         else {
           std::cout << "\n There is no parameter " << name << ". Will terminate" << std::endl ;
@@ -58,6 +68,8 @@ namespace glob {
           if (name == "lep_pt1") lep_pt1 = val;
           if (name == "muon_iso") muon_iso = val;
           if (name == "lep_eta") lep_eta = val;
+          if (name == "ZMassL") ZMassL = val;
+          if (name == "ZMassH") ZMassH = val;
           if (name == "lep_jetOverlap_pt") lep_jetOverlap_pt = val;
           if (name == "lep_jetOverlap_eta") lep_jetOverlap_eta = val;
           if (name == "jet_pt") jet_pt = val;
@@ -65,6 +77,9 @@ namespace glob {
           if (name == "jet_deepCSVM_2016") jet_deepCSVM_2016 = val;
           if (name == "jet_deepCSVM_2017") jet_deepCSVM_2017 = val;
           if (name == "jet_deepCSVM_2018") jet_deepCSVM_2018 = val;
+          if (name == "jet_deepJetM_2016") jet_deepJetM_2016 = val;
+          if (name == "jet_deepJetM_2017") jet_deepJetM_2017 = val;
+          if (name == "jet_deepJetM_2018") jet_deepJetM_2018 = val;
         }
         else std::cout << "\n Can not set value for parameter named: " << name << ". Not exist in list of parameters " << std::endl; 
       } ;
@@ -75,6 +90,8 @@ namespace glob {
       float lep_pt1 ;
       float muon_iso ;
       float lep_eta ;
+      float ZMassL ;
+      float ZMassH ;
       float lep_jetOverlap_pt ;
       float lep_jetOverlap_eta ;
       float jet_pt ;
@@ -82,6 +99,9 @@ namespace glob {
       float jet_deepCSVM_2016 ;
       float jet_deepCSVM_2017 ;
       float jet_deepCSVM_2018 ;
+      float jet_deepJetM_2016 ;
+      float jet_deepJetM_2017 ;
+      float jet_deepJetM_2018 ;
       std::vector<std::string> initializedVars ;
       std::vector<std::string> parameterNames ;
 

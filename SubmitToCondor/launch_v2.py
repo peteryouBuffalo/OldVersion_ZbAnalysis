@@ -68,20 +68,20 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 0 #0: submit, 1: check output and hadd output file
+runMode = 1 #0: submit, 1: check output and hadd output file
 submit = False # for testing setup 
-#submit = True # for executing submission 
+submit = True # for executing submission 
 
 debug = False 
 
 dataSet_list = "../datasets_Nano25Oct2019_json.txt"
 
-nFile = 15
+nFile = 8
 
 dir_file_list = '../FileLists_Nano25Oct2019/'
 
-outputDir_eos = '/store/user/duong/noreplica/Output_ZplusB/'
-outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_ZplusB/' 
+outputDir_eos = '/store/user/duong/Output_ZplusB/'
+outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_ZplusB/V2/' 
  
 
 #Print setting
@@ -147,9 +147,10 @@ for line in lines:
     os.system('cp ../StdArg.hpp ' + work_dir)
     os.system('cp -r ../src/ ' + work_dir)
     os.system('cp -r ../Configs/ ' + work_dir)
+    os.system('cp -r ../CalibData/ ' + work_dir)
 
     os.chdir(work_dir)
-    os.system('tar -cf input.tar Makefile *.cxx *.hpp src/ Configs/ sampleList_*.txt')
+    os.system('tar -cf input.tar Makefile *.cxx *.hpp src/ Configs/ CalibData/ sampleList_*.txt')
     
     #submit jobs
     if submit: 

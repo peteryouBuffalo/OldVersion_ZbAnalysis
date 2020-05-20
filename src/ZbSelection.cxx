@@ -13,6 +13,9 @@
 #include <iostream>
 #include "TH1.h"
 
+//#include "BTagCalibrationStandalone.h"
+//#include "BTagCalibrationStandalone.cpp"
+
 using namespace std;
 float PI = M_PI;
 
@@ -28,13 +31,29 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zee_jet = new ZbPlots("Zee_jet") ;
   h_zee_bjet = new ZbPlots("Zee_bjet") ;
   h_zee_2bjet = new Z2bPlots("Zee_2bjet") ;
+  h_zee_bjet_deepJet = new ZbPlots("Zee_bjetDeepJet") ;
+  h_zee_2bjet_deepJet = new Z2bPlots("Zee_2bjetDeepJet") ;
   
   h_zmm_jet = new ZbPlots("Zmm_jet") ;
   h_zmm_bjet = new ZbPlots("Zmm_bjet") ;
   h_zmm_2bjet = new Z2bPlots("Zmm_2bjet") ;
+  h_zmm_bjet_deepJet = new ZbPlots("Zmm_bjetDeepJet") ;
+  h_zmm_2bjet_deepJet = new Z2bPlots("Zmm_2bjetDeepJet") ;
+  
+  unsigned nBins = 9 ;
+  float bins[10] = {20, 30, 50, 70, 100, 140, 200, 300, 600, 1000} ;
+  h_eff_b = new EffPlots("b", nBins, bins) ;
+  h_eff_c = new EffPlots("c", nBins, bins) ;
+  h_eff_l = new EffPlots("l", nBins, bins) ;
+  h_eff_bdj = new EffPlots("bdj", nBins, bins) ;
+  h_eff_cdj = new EffPlots("cdj", nBins, bins) ;
+  h_eff_ldj = new EffPlots("ldj", nBins, bins) ;
 
   h_dR_je = new TH1D("h_dR_je","",500,0,5) ;
   h_dR_jm = new TH1D("h_dR_jm","",500,0,5) ;
+
+  h_Zee_ZmassFull = new TH1D("Zee_ZmassFull","",300,0,300) ;
+  h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
 
   h_nMuon = new TH1D("h_nMuon","",10,-0.5,9.5) ;
   h_nEle = new TH1D("h_nEle","",10,-0.5,9.5) ;
@@ -47,7 +66,10 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zmm_cutflow = new TH1D("zmm_cutflow","",10,-0.5,9.5) ;
 
   h_pt_jet_after_ele_rem = new TH1D("jet_pt_after_ele_rem","",200,0.0,200) ;
-
+  
+  //Sumw2
+  h_Zee_ZmassFull->Sumw2() ;
+  h_Zmm_ZmassFull->Sumw2() ;
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
@@ -69,12 +91,40 @@ void ZbSelection::SlaveBegin(Reader* r) {
   
   tmp = h_zmm_2bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zee_bjet_deepJet->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
+  tmp = h_zmm_bjet_deepJet->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zee_2bjet_deepJet->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_zmm_2bjet_deepJet->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_eff_b->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_c->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_l->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_bdj->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_cdj->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_ldj->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
   //r->GetOutputList()->Add(h_nMuon) ;
   //r->GetOutputList()->Add(h_nEle) ;
   //r->GetOutputList()->Add(h_nJet) ;
+  r->GetOutputList()->Add(h_Zee_ZmassFull) ;
+  r->GetOutputList()->Add(h_Zmm_ZmassFull) ;
   r->GetOutputList()->Add(h_ele_cutflow) ;
   r->GetOutputList()->Add(h_muon_cutflow) ;
   r->GetOutputList()->Add(h_Jet_cutflow) ;
@@ -82,12 +132,12 @@ void ZbSelection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_zmm_cutflow) ;
   r->GetOutputList()->Add(h_pt_jet_after_ele_rem) ;
   
-  const Int_t nx = 3, nx1 = 4, yx= 5, nzee=6, nzmm=6;
+  const Int_t nx = 3, nx1 = 4, yx= 5, nzee=7, nzmm=7;
   const char *ele_cut[nx] = {"all","kine","ID"};
   const char *muon_cut[nx1] = {"all","kine","loose muon ID", "iso"};
   const char *jet_cut[yx] = {"all", "kine", "ele overlap removal","muon overlap removal","loose jet ID"};
-  const char *zee_cut[nzee] = {"all event (not cut)","trigger","pass electron  cuts","pass jet cuts", "pass b-jet", "pass 2 b-jets"};
-  const char *zmm_cut[nzmm] = {"all event (not cut)","trigger","pass muon  cuts","pass jet cuts", "pass b-jet", "pass 2 b-jets"};
+  const char *zee_cut[nzee] = {"all event (not cut)","trigger","pass electron  cuts","pass Z mass cuts`", "pass jet cuts", "pass b-jet", "pass 2 b-jets"};
+  const char *zmm_cut[nzmm] = {"all event (not cut)","trigger","pass muon  cuts", "pass Z mass cuts", "pass jet cuts", "pass b-jet", "pass 2 b-jets"};
   for (int i=1;i<=nx;i++) h_ele_cutflow->GetXaxis()->SetBinLabel(i+1.5,ele_cut[i-1]);
   for (int i=1;i<=nx1;i++) h_muon_cutflow->GetXaxis()->SetBinLabel(i+1.5,muon_cut[i-1]);
   for (int i=1;i<=yx;i++) h_Jet_cutflow->GetXaxis()->SetBinLabel(i+1.5,jet_cut[i-1]);
@@ -172,19 +222,36 @@ void ZbSelection::Process(Reader* r) {
     //h_nMuon->Fill(muons.size()) ;
   }
   
+  //sv
+  std::vector<TLorentzVector> lvec_SVs ;
+  for (unsigned i = 0 ; i < *(r->nSV) ; ++i) {
+    TLorentzVector tmp ;
+    tmp.SetPtEtaPhiM((r->SV_pt)[i], (r->SV_eta)[i], (r->SV_phi)[i], (r->SV_mass)[i]) ;
+    lvec_SVs.push_back(tmp);
+  }
+  
+  /////////////////////////////////
   //jets
+  /////////////////////////////////
   std::vector<JetObj> jets ;
   std::vector<JetObj> jets_ele_removal ;
   std::vector<JetObj> bjets ;
+  std::vector<JetObj> bjets_deepJet ;
   
   float btagM_cut = CUTS.Get<float>("jet_deepCSVM_"+m_year) ;
+  float btagDeepJetM_cut = CUTS.Get<float>("jet_deepJetM_"+m_year) ;
 
   for (unsigned int i = 0 ; i < *(r->nJet) ; ++i) {
     
     h_Jet_cutflow->Fill(1) ;
     
-    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],(r->Jet_btagDeepB)[i]) ;
-    
+    int jetFlav = -1 ;
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+    jetFlav = (r->Jet_hadronFlavour)[i];
+#endif 
+    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],jetFlav,(r->Jet_btagDeepB)[i],(r->Jet_btagDeepFlavB)[i]) ;
+    jet.SetSV(lvec_SVs);
+
     if (jet.m_lvec.Pt() < CUTS.Get<float>("jet_pt") || fabs(jet.m_lvec.Eta()) > CUTS.Get<float>("jet_eta")) continue ;
     h_Jet_cutflow->Fill(2) ;
     
@@ -201,8 +268,22 @@ void ZbSelection::Process(Reader* r) {
     jets.push_back(jet) ;
 
     if (jet.m_deepCSV >= btagM_cut) bjets.push_back(jet) ;
+    if (jet.m_deepJet >= btagDeepJetM_cut) bjets_deepJet.push_back(jet) ;
 
   }
+
+
+  //calculate SF for eletron, muon and btagging
+  float eleSF_w(1.);
+  float muonSF_w(1.);
+  float btag_w(1.);
+  if (!m_isData) {
+    btag_w = CalBtagWeight(jets) ;
+    if (eles.size()>=2) eleSF_w = CalEleSF(eles[0],eles[1]) ;
+    if (muons.size()>=2) muonSF_w = CalMuonSF_id_iso(muons[0],muons[1]);
+  }
+  //if (bjets.size()>=1) std::cout << "\n btagWeight: " << btagWeight ;
+
   
   bool eleTrig(false) ;
   bool muonTrig(false) ;
@@ -221,6 +302,7 @@ void ZbSelection::Process(Reader* r) {
   if (*(r->HLT_Ele32_WPTight_Gsf)) eleTrig = true ;
   if (*(r->HLT_IsoMu24)) muonTrig = true ;
 #endif
+
   //TEMP
   //eleTrig = true ;
   ////////////////////////////////////
@@ -230,39 +312,79 @@ void ZbSelection::Process(Reader* r) {
   if (eleTrig) {
     h_zee_cutflow->Fill(2); //trigger
     if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
+
 	    h_zee_cutflow->Fill(3) ; //pass electron  cuts
       
+      float zee_w = evtW*eleSF_w ;
+      float zeeb_w = zee_w*btag_w;
+      
       ZObj Z(eles[0],eles[1]) ;
-      
-      //at least on jet
-      if (jets.size() >= 1) {
 
-	      h_zee_cutflow->Fill(4) ; //pass jet cuts
+      h_Zee_ZmassFull->Fill(Z.m_lvec.M(), zee_w) ;
 
-        h_zee_jet->Fill(Z, jets[0], evtW) ;
+      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
-        // isolation
-        float deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
-        float deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec); 
-        h_dR_je->Fill(std::min(deltaRelelep0,deltaRelelep1), evtW) ;
-      } //end at least one jet
-      
-      //at least one b-tagged jets
-      if (bjets.size() >=1) {
+        h_zee_cutflow->Fill(4) ; //pass Z mass cuts
+
+        h_zee_jet->FillNjet(jets.size(), zee_w) ;
         
-        h_zee_cutflow->Fill(5) ;
+        //at least on jet
+        if (jets.size() >= 1) {
 
-        h_zee_bjet->Fill(Z, bjets[0], evtW) ;
-      }
+          h_zee_cutflow->Fill(5) ; //pass jet cuts
 
-      //at least two b-tagged jets
-      if (bjets.size() >=2) {
+          h_zee_jet->Fill(Z, jets[0], zee_w) ;
+          h_zee_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zee_w);
         
-        h_zee_cutflow->Fill(6) ;
+          // isolation
+          float deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
+          float deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec); 
+          h_dR_je->Fill(std::min(deltaRelelep0,deltaRelelep1), zee_w) ;
 
-        h_zee_2bjet->Fill(Z, bjets[0], bjets[1], evtW) ;
-      }
+          //tagging efficiency
+          Fill_btagEffi(jets,zee_w) ;
 
+        } //end at least one jet
+        
+        //at least one b-tagged jets
+        h_zee_bjet->FillNjet(bjets.size(),evtW) ; 
+        if (bjets.size() >=1) {
+           
+          h_zee_cutflow->Fill(6) ;
+
+          h_zee_bjet->Fill(Z, bjets[0], zeeb_w) ;
+          h_zee_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
+        }
+
+        //at least two b-tagged jets
+        if (bjets.size() >=2) {
+          
+          h_zee_cutflow->Fill(7) ;
+
+          h_zee_2bjet->Fill(Z, bjets[0], bjets[1], zeeb_w) ;
+          h_zee_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
+        }
+
+        //at least one b-tagged jets using deepJet
+        h_zee_bjet_deepJet->FillNjet(bjets_deepJet.size(),evtW) ; //FIXME 
+        if (bjets_deepJet.size() >=1) {
+          
+          h_zee_cutflow->Fill(8) ;
+
+          h_zee_bjet_deepJet->Fill(Z, bjets_deepJet[0], evtW) ; //FIXME
+          h_zee_bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+        //at least two b-tagged jets using deepJet
+        if (bjets_deepJet.size() >=2) {
+          
+          h_zee_cutflow->Fill(9) ;
+
+          h_zee_2bjet_deepJet->Fill(Z, bjets_deepJet[0], bjets_deepJet[1], evtW) ; //FIXME
+          h_zee_2bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+      }//end Z mass
     } //end two electrons
   } //end ele. trigger
   
@@ -282,37 +404,77 @@ void ZbSelection::Process(Reader* r) {
     h_zmm_cutflow->Fill(2); //trigger
     if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
 	    h_zmm_cutflow->Fill(3) ; //pass muon  cuts
+
+      float zmm_w = evtW*muonSF_w ;
+      float zmmb_w = zmm_w*btag_w;
       
       ZObj Z(muons[0],muons[1]) ;
       
-      if (jets.size() >= 1) {
-
-        h_zmm_cutflow->Fill(4) ; //pass jet cuts
-
-        float deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
-        float deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec);
+      h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
       
-        h_zmm_jet->Fill(Z, jets[0], evtW) ;
-        
-        h_dR_jm->Fill(std::min(deltaRmuonlep0,deltaRmuonlep1), evtW) ;
-
-      } //end at least one jet
+      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
-      //Zmm+bjets
-      if (bjets.size() >= 1) {
+        h_zmm_cutflow->Fill(4) ; //pass Z mass cuts
         
-        h_zmm_cutflow->Fill(5) ;
+        h_zmm_jet->FillNjet(jets.size(), zmm_w) ;
         
-        h_zmm_bjet->Fill(Z, bjets[0], evtW) ; 
-      }
-     
-      //Zmm+2bjets
-      if (bjets.size() >= 2) {
+        if (jets.size() >= 1) {
 
-        h_zmm_cutflow->Fill(6) ;
+          h_zmm_cutflow->Fill(5) ; //pass jet cuts
+
+          float deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
+          float deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec);
         
-        h_zmm_2bjet->Fill(Z, bjets[0], bjets[1], evtW) ; 
-      }
+          h_zmm_jet->Fill(Z, jets[0], zmm_w) ;
+          h_zmm_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmm_w);
+
+          h_dR_jm->Fill(std::min(deltaRmuonlep0,deltaRmuonlep1), zmm_w) ;
+ 
+          //tagging efficiency
+          Fill_btagEffi(jets,zmm_w) ;
+
+        } //end at least one jet
+        
+        //Zmm+bjets
+        h_zmm_bjet->FillNjet(bjets.size(),zmmb_w) ; 
+        if (bjets.size() >= 1) {
+          
+          h_zmm_cutflow->Fill(6) ;
+          
+          h_zmm_bjet->Fill(Z, bjets[0], zmmb_w) ; 
+          h_zmm_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
+        }
+      
+        //Zmm+2bjets
+        if (bjets.size() >= 2) {
+
+          h_zmm_cutflow->Fill(7) ;
+          
+          h_zmm_2bjet->Fill(Z, bjets[0], bjets[1], zmmb_w) ; 
+          h_zmm_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
+        }
+
+        //at least one b-tagged jets using deepJet
+        h_zmm_bjet_deepJet->FillNjet(bjets_deepJet.size(),evtW) ; //FIXME 
+        if (bjets_deepJet.size() >=1) {
+          
+          h_zmm_cutflow->Fill(8) ;
+
+          h_zmm_bjet_deepJet->Fill(Z, bjets_deepJet[0], evtW) ; //FIXME
+          h_zmm_bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+        //at least two b-tagged jets using deepJet
+        if (bjets_deepJet.size() >=2) {
+          
+          h_zmm_cutflow->Fill(9) ;
+
+          h_zmm_2bjet_deepJet->Fill(Z, bjets_deepJet[0], bjets_deepJet[1], evtW) ; //FIXME
+          h_zmm_2bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+
+      } //end Z mass cut
 
     } //end two muons
   } //end trigger
@@ -330,6 +492,10 @@ void ZbSelection::Terminate(TList* mergedList, std::string outFileName) {
   aList->Add(a) ;
   a = new TParameter<double>("lep_pt1",CUTS.Get<float>("lep_pt1")) ;
   aList->Add(a) ;
+  a = new TParameter<double>("ZMassL",CUTS.Get<float>("ZMassL")) ;
+  aList->Add(a) ;
+  a = new TParameter<double>("ZMassH",CUTS.Get<float>("ZMassH")) ;
+  aList->Add(a) ;
   a = new TParameter<double>("muon_iso",CUTS.Get<float>("muon_iso")) ;
   aList->Add(a) ;
   a = new TParameter<double>("lep_jetOverlap_pt",CUTS.Get<float>("lep_jetOverlap_pt")) ;
@@ -343,10 +509,38 @@ void ZbSelection::Terminate(TList* mergedList, std::string outFileName) {
   std::string name = "jet_deepCSVM_" + m_year ;
   a = new TParameter<double>(name.c_str(),CUTS.Get<float>(name)) ;
   aList->Add(a) ;
+  name = "jet_deepJetM_" + m_year ;
+  a = new TParameter<double>(name.c_str(),CUTS.Get<float>(name)) ;
+  aList->Add(a) ;
+
   
   TFile* f = new TFile(outFileName.c_str(), "UPDATE") ;
   aList->Write("ZbSelectionCuts",TObject::kSingleKey) ;
 
   f->Close() ;
 
+}
+
+//////////////////////////////////
+void ZbSelection::Fill_btagEffi(std::vector<JetObj> jets, float w) {
+  for(unsigned iJ = 0 ; iJ < jets.size() ; ++iJ) {
+    if(jets[iJ].m_flav == 5) {
+      h_eff_b->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_b->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+      h_eff_bdj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_bdj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+    }
+    if(jets[iJ].m_flav == 4) {
+      h_eff_c->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_c->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+      h_eff_cdj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_cdj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+    }
+    if(jets[iJ].m_flav == 0) {
+      h_eff_l->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_l->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+      h_eff_ldj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
+      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_ldj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
+    }
+  }
 }

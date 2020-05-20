@@ -43,6 +43,14 @@ public :
    TTreeReaderArray<Float_t> Muon_mass = {fReader, "Muon_mass"};
    TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
    TTreeReaderArray<Bool_t> Muon_looseId = {fReader, "Muon_looseId"};
+
+   //reco SV
+   TTreeReaderValue<UInt_t> nSV = {fReader, "nSV"};
+   TTreeReaderArray<Float_t> SV_eta = {fReader, "SV_eta"};
+   TTreeReaderArray<Float_t> SV_mass = {fReader, "SV_mass"};
+   TTreeReaderArray<Float_t> SV_phi = {fReader, "SV_phi"};
+   TTreeReaderArray<Float_t> SV_pt = {fReader, "SV_pt"};
+
    
    //reco jets
    TTreeReaderValue<UInt_t> nJet = {fReader, "nJet"};
@@ -51,7 +59,12 @@ public :
    TTreeReaderArray<Float_t> Jet_phi = {fReader, "Jet_phi"};
    TTreeReaderArray<Float_t> Jet_mass = {fReader, "Jet_mass"};
    TTreeReaderArray<Float_t> Jet_btagDeepB = {fReader, "Jet_btagDeepB"};
+   TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
    TTreeReaderArray<Int_t> Jet_jetId = {fReader, "Jet_jetId"};
+
+   //MET 
+   TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};
+   TTreeReaderValue<Float_t> PuppiMET_pt = {fReader, "PuppiMET_pt"};
 
    //muon trigger
    TTreeReaderValue<Bool_t> HLT_IsoMu24 = {fReader, "HLT_IsoMu24"};
@@ -71,6 +84,7 @@ public :
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
    TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
+   TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
 #endif
 
    Reader(TTree * /*tree*/ =0) {}

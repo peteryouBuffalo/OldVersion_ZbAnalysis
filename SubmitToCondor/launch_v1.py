@@ -64,8 +64,8 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 #///////////////////////////////////////////////////////////////////
 runMode = 0 #0: submit, 1: check output and hadd output file
-submit = False # for testing setup 
-#submit = True # for testing setup 
+#submit = False # for testing setup 
+submit = True # for testing setup 
 
 debug = True
 

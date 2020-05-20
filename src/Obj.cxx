@@ -27,8 +27,8 @@ class JetObj {
   
   public:
     
-    JetObj(float pt, float eta, float phi, float mass, 
-           float deepCSV) : m_deepCSV(deepCSV) {
+    JetObj(float pt, float eta, float phi, float mass, unsigned flav, 
+           float deepCSV, float deepJet) : m_flav(flav), m_deepCSV(deepCSV), m_deepJet(deepJet) {
               m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ; 
     } ;
 
@@ -43,8 +43,25 @@ class JetObj {
       return minDr <= 0.4 ;
     }
 
+    void SetSV(std::vector<TLorentzVector>& sv) {
+      float maxPt = -1;
+      m_svIdx = -1;
+      m_mSV = -1;
+      for (unsigned isv = 0 ; isv < sv.size() ; ++isv) {
+        float dRtmp = m_lvec.DeltaR(sv[isv]);
+        if (dRtmp <= 0.4 && sv[isv].Pt() > maxPt) {
+          m_svIdx = isv; 
+          m_mSV = sv[isv].M();
+        }
+      }
+    } ;
+
     TLorentzVector m_lvec ;
+    unsigned m_flav ;
     float m_deepCSV ;
+    float m_deepJet ;
+    unsigned m_svIdx ;
+    float m_mSV;
 } ;
 
 class ZObj {

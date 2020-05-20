@@ -177,6 +177,60 @@ int main(int argc, char *argv[]) {
   //Selection for Zb
   ZbSelection sel ;
 
+  std::string fName_btagSF;
+  std::string fName_eleRecSF;
+  std::string fName_eleIDSF;
+  std::vector<std::string> fName_muonTrig ;
+  std::vector<std::string> fName_muonID ;
+  std::vector<std::string> fName_muonIso ;
+  std::vector<float> lw_muonTrig; //weights estimated from luminosity fraction used to calculate the scale factors from different run periods
+  std::vector<float> lw_muonID;
+  std::vector<float> lw_muonIso;
+#ifdef MC_2016
+  fName_btagSF = "CalibData/DeepJet_2016LegacySF_WP_V1.csv" ;
+  fName_eleRecSF = "CalibData/EGM2D_BtoH_GT20GeV_RecoSF_Legacy2016.root" ;
+  fName_eleIDSF = "CalibData/2016LegacyReReco_ElectronLoose_Fall17V2.root" ;
+  fName_muonTrig.push_back("CalibData/EfficienciesAndSF_RunBtoF_trigger_2016_muon.root");
+  fName_muonTrig.push_back("CalibData/EfficienciesAndSF_Period4_trigger_mu2016_muon.root");
+  lw_muonTrig.push_back(0.5);//FIXME
+  lw_muonTrig.push_back(0.5);//FIXME
+  fName_muonID.push_back("CalibData/RunBCDEF_SF_ID_2016_muon.root");
+  fName_muonID.push_back("CalibData/RunGH_SF_ID_2016_muon.root");
+  lw_muonID.push_back(0.5);
+  lw_muonID.push_back(0.5);
+  fName_muonIso.push_back("CalibData/RunBCDEF_SF_ISO_2016_muon.root");
+  fName_muonIso.push_back("CalibData/RunGH_SF_ISO_2016_muon.root");
+  lw_muonIso.push_back(0.5);
+  lw_muonIso.push_back(0.5);
+#endif
+#ifdef MC_2017
+  fName_btagSF = "CalibData/DeepCSV_94XSF_WP_V4_B_F.csv";
+  fName_eleRecSF = "CalibData/egammaEffi.txt_EGM2D_runBCDEF_passingRECO_2017.root";
+  fName_eleIDSF = "CalibData/2017_ElectronLoose.root";
+  fName_muonTrig.push_back("CalibData/EfficienciesAndSF_RunBtoF_Nov17Nov2017_trigger_muon.root");
+  lw_muonTrig.push_back(1.);
+  fName_muonID.push_back("CalibData/RunBCDEF_SF_ID_syst_2017_muon.root");
+  lw_muonID.push_back(1.);
+  fName_muonIso.push_back("CalibData/RunBCDEF_SF_ISO_syst_2017_muon.root");
+  lw_muonIso.push_back(1.);
+#endif
+#ifdef MC_2018
+  fName_btagSF = "CalibData/DeepCSV_102XSF_WP_V1.csv";
+  fName_eleRecSF = "CalibData/egammaEffi.txt_EGM2D_updatedAll_2018.root";
+  fName_eleIDSF = "CalibData/2018_ElectronLoose.root";
+  fName_muonTrig.push_back("CalibData/EfficienciesAndSF_2018Data_BeforeMuonHLTUpdate_trigger_muon.root");
+  fName_muonTrig.push_back("CalibData/EfficienciesAndSF_2018Data_AfterMuonHLTUpdate_trigger_muon.root");
+  lw_muonTrig.push_back(0.5);//FIXME
+  lw_muonTrig.push_back(0.5);//FIXME 
+  fName_muonID.push_back("CalibData/RunABCD_SF_ID_2018_muon.root");
+  lw_muonID.push_back(1.);
+  fName_muonIso.push_back("CalibData/RunABCD_SF_ISO_2018_muon.root");
+  lw_muonIso.push_back(1.);
+#endif
+  sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/eff.root");
+  sel.SetEleEffCorr(fName_eleRecSF,fName_eleIDSF);
+  sel.SetMuonEffCorr(fName_muonTrig,fName_muonID,fName_muonIso,lw_muonTrig,lw_muonID,lw_muonIso);
+
   sels.push_back(&sel) ;
   
   //add all selectors to processors

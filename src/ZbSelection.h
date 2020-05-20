@@ -5,6 +5,7 @@
 #include "Selector.h"
 #include "Plots.cxx"
 
+
 //The Selection does not have Begin, since we do not have anything to do at the begining (overall) at client
 //The histograms, ..., are booked and added to output list at SlaveBegin
 //We need to have terminate since we might want to do overall tasks related to this selection only. At termination, all inforamtion from slaves is added. Example task is cutflow for this selection, which need information from all slaves.
@@ -19,7 +20,10 @@ public:
   virtual void Process(Reader* r) ;
   virtual void SlaveTerminate(Reader* r) {} ;
   virtual void Terminate(TList* mergedList, std::string outFileName) ;
+  virtual void Fill_btagEffi(std::vector<JetObj> jets, float w=1) ;
+
 private:
+
   //histograms
   ZbPlots* h_zee_jet ;
   ZbPlots* h_zmm_jet ;
@@ -27,6 +31,19 @@ private:
   ZbPlots* h_zmm_bjet ;
   Z2bPlots* h_zee_2bjet ;
   Z2bPlots* h_zmm_2bjet ;
+
+  ZbPlots* h_zee_bjet_deepJet ;
+  ZbPlots* h_zmm_bjet_deepJet ;
+  Z2bPlots* h_zee_2bjet_deepJet ;
+  Z2bPlots* h_zmm_2bjet_deepJet ;
+ 
+  EffPlots* h_eff_b ;
+  EffPlots* h_eff_c ;
+  EffPlots* h_eff_l ;
+  EffPlots* h_eff_bdj ;
+  EffPlots* h_eff_cdj ;
+  EffPlots* h_eff_ldj ;
+  
 
   TH1D* h_evt ;
   TH1D* h_dR_je ;
@@ -41,7 +58,8 @@ private:
   TH1D* h_zmm_cutflow ;
   TH1D* h_pt_jet_after_ele_rem ;
  
-
+  TH1D* h_Zee_ZmassFull ;
+  TH1D* h_Zmm_ZmassFull ;
 
 } ;
 
