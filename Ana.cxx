@@ -227,9 +227,11 @@ int main(int argc, char *argv[]) {
   fName_muonIso.push_back("CalibData/RunABCD_SF_ISO_2018_muon.root");
   lw_muonIso.push_back(1.);
 #endif
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/eff.root");
   sel.SetEleEffCorr(fName_eleRecSF,fName_eleIDSF);
   sel.SetMuonEffCorr(fName_muonTrig,fName_muonID,fName_muonIso,lw_muonTrig,lw_muonID,lw_muonIso);
+#endif
 
   sels.push_back(&sel) ;
   
