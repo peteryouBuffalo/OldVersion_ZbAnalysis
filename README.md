@@ -1,4 +1,7 @@
 # Codes for Z+b analysis
+## Note about this Code
+This code was started entirely by Duong Nguyen and modified for my purposes by me. I needed to make a copy of it for my own use, so I have copied it over. There are only small modifications.
+
 ## General descriptions
 The codes are based on ROOT TSelector. They include a reader (Reader class), processor (Processor class derived from Reader), abstracted selector (Selector class) and one or more selections (ZbSelection for example). Analyzers can add a selection to do a specific analysis. All selections are added to the processor to analyze the events. Note that all selections are independent. Therefore, multiple analyses can be performed independently on the same events.
 
