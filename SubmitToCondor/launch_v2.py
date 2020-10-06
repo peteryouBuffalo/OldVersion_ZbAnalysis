@@ -68,19 +68,18 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 1 #0: submit, 1: check output and hadd output file
+runMode = 0 #0: submit, 1: check output and hadd output file
 submit = False # for testing setup 
 submit = True # for executing submission 
 
 debug = False 
 
 dataSet_list = "../datasets_Nano25Oct2019_json.txt"
-
 nFile = 8
 
 dir_file_list = '../FileLists_Nano25Oct2019/'
 
-outputDir_eos = '/store/user/duong/Output_ZplusB/'
+outputDir_eos = '/store/user/peteryou/output/'
 outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_ZplusB/V2/' 
  
 

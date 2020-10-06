@@ -27,8 +27,10 @@ private:
   //histograms
   ZbPlots* h_zee_jet ;
   ZbPlots* h_zmm_jet ;
+  ZbPlots* h_zem_jet ;
   ZbPlots* h_zee_bjet ;
   ZbPlots* h_zmm_bjet ;
+  ZbPlots* h_zem_bjet ;
   Z2bPlots* h_zee_2bjet ;
   Z2bPlots* h_zmm_2bjet ;
 
@@ -43,7 +45,11 @@ private:
   EffPlots* h_eff_bdj ;
   EffPlots* h_eff_cdj ;
   EffPlots* h_eff_ldj ;
-  
+
+  TH1D* h_Zee_sidebar;
+  TH1D* h_Zmm_sidebar;
+  TH1D* h_Zee_sidebar_bjet;
+  TH1D* h_Zmm_sidebar_bjet; 
 
   TH1D* h_evt ;
   TH1D* h_dR_je ;

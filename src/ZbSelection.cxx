@@ -39,7 +39,10 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zmm_2bjet = new Z2bPlots("Zmm_2bjet") ;
   h_zmm_bjet_deepJet = new ZbPlots("Zmm_bjetDeepJet") ;
   h_zmm_2bjet_deepJet = new Z2bPlots("Zmm_2bjetDeepJet") ;
-  
+ 
+  h_zem_jet = new ZbPlots("Zem_jet");
+  h_zem_bjet = new ZbPlots("Zem_bjet");
+
   unsigned nBins = 9 ;
   float bins[10] = {20, 30, 50, 70, 100, 140, 200, 300, 600, 1000} ;
   h_eff_b = new EffPlots("b", nBins, bins) ;
@@ -54,6 +57,12 @@ void ZbSelection::SlaveBegin(Reader* r) {
 
   h_Zee_ZmassFull = new TH1D("Zee_ZmassFull","",300,0,300) ;
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
+
+  h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
+  h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
+
+  h_Zmm_sidebar = new TH1D("Zmm_sidebar", "", 300,0,300);
+  h_Zmm_sidebar_bjet = new TH1D("Zmm_sidebar_bjet", "", 300,0,300);
 
   h_nMuon = new TH1D("h_nMuon","",10,-0.5,9.5) ;
   h_nEle = new TH1D("h_nEle","",10,-0.5,9.5) ;
@@ -79,12 +88,18 @@ void ZbSelection::SlaveBegin(Reader* r) {
 
   tmp = h_zmm_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
+ 
+  tmp = h_zem_jet->returnHisto();
+  for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]); 
+
   tmp = h_zee_bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_zmm_bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zem_bjet->returnHisto() ;
+  for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zee_2bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -117,6 +132,10 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_eff_ldj->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  r->GetOutputList()->Add(h_Zee_sidebar);
+  r->GetOutputList()->Add(h_Zee_sidebar_bjet);
+  r->GetOutputList()->Add(h_Zmm_sidebar);
+  r->GetOutputList()->Add(h_Zmm_sidebar_bjet);
 
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
@@ -311,6 +330,19 @@ void ZbSelection::Process(Reader* r) {
   h_zee_cutflow->Fill(1); //all events (not cut)
   if (eleTrig) {
     h_zee_cutflow->Fill(2); //trigger
+
+    // Fill the sidebar information
+    if (eles.size() >= 2)
+    {
+      ZObj Z(eles[0], eles[1]);
+      float zMass = Z.m_lvec.M();
+      if (zMass < 86 || zMass > 100)
+      {
+        if (jets.size() >= 1) h_Zee_sidebar->Fill(zMass);
+        if (bjets.size() >= 1) h_Zee_sidebar_bjet->Fill(zMass);
+      }
+    }
+
     if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
 
 	    h_zee_cutflow->Fill(3) ; //pass electron  cuts
@@ -402,6 +434,20 @@ void ZbSelection::Process(Reader* r) {
   //trigger cuts
   if (muonTrig) {
     h_zmm_cutflow->Fill(2); //trigger
+    
+    // Fill the sidebar information
+    if (muons.size() >= 2)
+    {
+      ZObj Z(muons[0], muons[1]);
+      float zMass = Z.m_lvec.M();
+      if (zMass < 86 || zMass > 100)
+      {
+        if (jets.size() >= 1) h_Zmm_sidebar->Fill(zMass);
+        if (bjets.size() >= 1) h_Zmm_sidebar_bjet->Fill(zMass);   
+      }
+    }
+    
+
     if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
 	    h_zmm_cutflow->Fill(3) ; //pass muon  cuts
 
@@ -478,6 +524,37 @@ void ZbSelection::Process(Reader* r) {
 
     } //end two muons
   } //end trigger
+
+  ////////////////////////////////////////
+  // Zem + jets
+  ////////////////////////////////////////
+  
+  // We want to be able to have an additional trigger for cases in which there is 
+  // an electron & muon. From analysis notes, we know that this mimics ttbar background.
+  if (eles.size() >= 1 && muons.size() >= 1)
+  {
+    ZObj Z(eles[0], muons[0]);
+    if (Z.m_lvec.M() < 86 || Z.m_lvec.M() > 100)
+    {
+     
+      // load the number of jets
+      h_zem_jet->FillNjet(jets.size(), 1.);
+      
+      if (jets.size() >= 1)
+      {
+        h_zem_jet->Fill(Z, jets[0], 1.);
+        h_zem_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.); 
+      }  
+
+      if (bjets.size() >= 1)
+      {
+        h_zem_bjet->Fill(Z, bjets[0], 1.);
+        h_zem_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+      }
+
+
+    }//end Z mass cut
+  }//end trigger
 
 } //end Process
 
