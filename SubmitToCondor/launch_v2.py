@@ -74,14 +74,14 @@ submit = True # for executing submission
 
 debug = False 
 
-dataSet_list = "../datasets_Nano25Oct2019_json.txt"
+dataSet_list = '../datasets_Nano25Oct2019_SingleEle_json.txt'
 nFile = 8
 
 dir_file_list = '../FileLists_Nano25Oct2019/'
 
-outputDir_eos = '/store/user/peteryou/output/'
-outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_ZplusB/V2/' 
- 
+outputDir_eos = '/store/user/peteryou/Output_ZplusB/'
+outputDir_scratch = '/uscms/home/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output' 
+
 
 #Print setting
 print '============================='

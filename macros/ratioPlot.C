@@ -48,9 +48,9 @@ void ratioPlot(std::string filename, std::string h1Name, std::string h2Name)
 
   std::cout << nBins << " have more data." << std::endl;
 
-  //auto gr = new TGraphAsymmErrors(h2, h1);
-  //std::cout << " ng = " << gr->GetN() << std::endl;
-  //gr->Draw(); 
+  auto gr = new TGraphAsymmErrors(h1, h2, "pois");
+  std::cout << " ng = " << gr->GetN() << std::endl;
+  gr->Draw(); 
 
   //auto rp = new TRatioPlot(h1, h2);
   //c->SetTicks(0, 1);
