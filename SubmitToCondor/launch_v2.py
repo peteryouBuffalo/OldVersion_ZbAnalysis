@@ -68,7 +68,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 0 #0: submit, 1: check output and hadd output file
+runMode = 1 #0: submit, 1: check output and hadd output file
 submit = False # for testing setup 
 submit = True # for executing submission 
 
@@ -79,7 +79,7 @@ nFile = 8
 
 dir_file_list = '../FileLists_Nano25Oct2019/'
 
-outputDir_eos = '/store/user/peteryou/Output_ZplusB/'
+outputDir_eos = '/eos/uscms/store/user/peteryou/Output_ZplusB/'
 outputDir_scratch = '/uscms/home/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output' 
 
 
