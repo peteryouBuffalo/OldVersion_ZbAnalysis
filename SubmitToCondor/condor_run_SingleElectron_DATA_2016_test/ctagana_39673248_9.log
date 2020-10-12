@@ -1,0 +1,47 @@
+000 (39673248.009.000) 10/12 13:22:57 Job submitted from host: <131.225.188.57:9618?addrs=131.225.188.57-9618&noUDP&sock=2441_e6c4_3>
+...
+001 (39673248.009.000) 10/12 13:30:31 Job executing on host: <131.225.206.188:9618?addrs=131.225.206.188-9618&noUDP&sock=1145_f407_3>
+...
+006 (39673248.009.000) 10/12 13:30:40 Image size of job updated: 38
+	38  -  MemoryUsage of job (MB)
+	38940  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 13:31:40 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	111420  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 13:56:53 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	111776  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 13:57:53 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	111780  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 13:58:53 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	111784  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 14:00:55 Image size of job updated: 111
+	111  -  MemoryUsage of job (MB)
+	114040  -  ResidentSetSize of job (KB)
+...
+006 (39673248.009.000) 10/12 14:01:56 Image size of job updated: 114
+	114  -  MemoryUsage of job (MB)
+	116844  -  ResidentSetSize of job (KB)
+...
+005 (39673248.009.000) 10/12 14:02:51 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:21, Sys 0 00:00:16  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:21, Sys 0 00:00:16  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1019645  -  Run Bytes Sent By Job
+	1331513  -  Run Bytes Received By Job
+	1019645  -  Total Bytes Sent By Job
+	1331513  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00        1         1 
+	   Disk (KB)            :  3947        1500    314746 
+	   Memory (MB)          :   114        2048      2048 
+...

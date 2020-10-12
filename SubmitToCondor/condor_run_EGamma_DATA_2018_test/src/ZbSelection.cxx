@@ -57,6 +57,7 @@ void ZbSelection::SlaveBegin(Reader* r) {
 
   h_Zee_ZmassFull = new TH1D("Zee_ZmassFull","",300,0,300) ;
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
+  h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
 
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
@@ -79,6 +80,7 @@ void ZbSelection::SlaveBegin(Reader* r) {
   //Sumw2
   h_Zee_ZmassFull->Sumw2() ;
   h_Zmm_ZmassFull->Sumw2() ;
+  h_Zem_ZmassFull->Sumw2() ;
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
@@ -144,6 +146,7 @@ void ZbSelection::SlaveBegin(Reader* r) {
   //r->GetOutputList()->Add(h_nJet) ;
   r->GetOutputList()->Add(h_Zee_ZmassFull) ;
   r->GetOutputList()->Add(h_Zmm_ZmassFull) ;
+  r->GetOutputList()->Add(h_Zem_ZmassFull) ;
   r->GetOutputList()->Add(h_ele_cutflow) ;
   r->GetOutputList()->Add(h_muon_cutflow) ;
   r->GetOutputList()->Add(h_Jet_cutflow) ;
@@ -534,6 +537,8 @@ void ZbSelection::Process(Reader* r) {
   if (eles.size() >= 1 && muons.size() >= 1)
   {
     ZObj Z(eles[0], muons[0]);
+    h_Zem_ZmassFull->Fill(Z.m_lvec.M());
+   
     if (Z.m_lvec.M() < 86 || Z.m_lvec.M() > 100)
     {
      

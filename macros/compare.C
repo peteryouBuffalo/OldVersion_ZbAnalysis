@@ -6,11 +6,13 @@
 ******************************************************************************/
 
 #include "tdrstyle.C"
+#include <math.h>
 
 void compare(std::string filename, std::string hist1, std::string hist2)
-{
+{  
   //--- Get the file & retrieve the original histograms from it. ------------//
-
+  
+  setTDRStyle();
   TFile *f = new TFile(filename.c_str());
   TH1F* h1 = (TH1F*)f->Get(hist1.c_str());
   TH1F* h2 = (TH1F*)f->Get(hist2.c_str());;
@@ -18,17 +20,18 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   //--- Convert the histograms to the preferred bins. The current pref is ---//
   //--- approximately 4 GeV per bin. ----------------------------------------//
 
-  Float_t bins[] = {0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52,
-                     56, 60, 64, 68, 72, 76, 80, 86, 100, 104, 108, 112,
+  Float_t bins[] = { 50, 54, 58, 62, 66, 70, 74, 78, 82, 86, 100, 104, 108, 112,
                      116, 120, 124, 128, 132, 136, 140, 144, 148, 152, 156,
                      160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200};
   Int_t binnum = sizeof(bins)/sizeof(Float_t) - 1;
 
   TH1F* nHist1 = new TH1F("n1", "", binnum, bins);
   nHist1->SetLineColor(kBlue); nHist1->SetMarkerColor(kBlue);
-  nHist1->GetXaxis()->SetTitle("M_Z");
-  nHist1->GetYaxis()->SetTitle("Events/4 GeV");
-  nHist1->SetTitle("Ttbar Background Estimation");
+  //nHist1->GetXaxis()->SetTitle("M_{#ell #ell}");
+  nHist1->GetXaxis()->SetLabelSize(0.02);
+  //nHist1->GetYaxis()->SetTitle("Events/4 GeV");
+  nHist1->GetYaxis()->SetLabelSize(0.02);
+  //nHist1->SetTitle("Ttbar Background Estimation");
   TH1F* nHist2 = new TH1F("n2", "", binnum, bins);
   nHist2->SetLineColor(kBlack); nHist2->SetMarkerColor(kBlack);
   
@@ -59,38 +62,90 @@ void compare(std::string filename, std::string hist1, std::string hist2)
     { nHist2->Fill(val); }
   }//end-for
 
+  //--- Let's get the bin ratio between each & average it. ------------------//
+  int n = nHist2->GetNbinsX();
+  float binRats[n];
+  float sum = 0.f;
+
+  for (int i = 0; i < n; ++i)
+  {
+    if (bins[i] == 100) continue; 
+
+    // Get the size of i'th bin from hist #1
+    int size1 = nHist1->GetBinContent(i);
+    // Get the size of i'th bin from hist #2
+    int size2 = nHist2->GetBinContent(i);
+ 
+    // Now calculate the ratio at i'th bin
+    float val = size1/(size2*1.0f);
+    binRats[i] = val;
+    sum += val;
+  }
+
+  // Now calculate the average, std dev, & error
+  float avg = sum/n;
+  float temp = 0.f;
+
+  for (int i = 0; i < n; ++i)
+  { 
+    if (bins[i] == 100) continue;
+    temp += (binRats[i]-avg)*(binRats[i]-avg);
+  }
+  float stdev = sqrt(temp/(n-2)); // -2 b/c empty bin in middle ignored
+  float err = stdev/sqrt(n-1);    // -1 b/c --"-- 
+  
+  nHist2->Scale(avg);
+  std::cout << "c_t +/- err = " << avg << " +/- " << err << std::endl; 
+
   //--- Now, create the ratio plot with the new style. ----------------------//
   
-  auto c1 = new TCanvas("c1", "");
+  int W = 800; int H = 600;
+  float T = 0.08*H; 	float B = 0.12*H;
+  float L = 0.12*W;	float R = 0.04*W;
   
-  setTDRStyle();
-  auto rat = new TRatioPlot(nHist1, nHist2, "pois");  
+  TString canvName = "TTbarBackgroundEstimation_";
+  canvName += W; canvName += "-";
+  canvName += H; 
+  canvName += "-out";
+ 
+  TCanvas* canv = new TCanvas(canvName, canvName, 50, 50, W, H);
+  canv->SetFillColor(0);
+  canv->SetBorderMode(0);
+  canv->SetFrameFillStyle(0);
+  canv->SetFrameBorderMode(0);
+  canv->SetLeftMargin( L/W );
+  canv->SetRightMargin( R/W );
+  canv->SetTopMargin( T/H );
+  canv->SetBottomMargin( B/H );
+  canv->SetTickx(0);
+  canv->SetTicky(0);
+
+  TRatioPlot *rat = new TRatioPlot(nHist1, nHist2, "pois");  
   rat->Draw();
+  rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
+  rat->GetLowerRefXaxis()->SetTitle("M_Z");
+
   gPad->Modified(); gPad->Update();
   TPad *pad = rat->GetUpperPad();
+ 
   TLegend *l = pad->BuildLegend();
-  
-  // Add our own custom labels to the legend
+  l->SetLineColor(kWhite);
+  l->SetBorderSize(0);
   TList *p = l->GetListOfPrimitives();
+
   TIter next(p); TObject *obj;
   TLegendEntry *le; int i = 0;
 
-  std::string lbl[] = { "Z_{ee} + b-jet", "Z_{e#mu} + b-jet"};
-  while ((obj = next())) {
-    le = (TLegendEntry*)obj; i++;
+  std::string lbl[] = { "Z(#rightarrow e^{+}e^{-}) + b-jets",
+                        "Z(#rightarrow e#mu ) + b-jets"};
+
+  while ((obj=next()))
+  {
+    le = (TLegendEntry*)obj;
+    i++;
     le->SetLabel(lbl[i-1].c_str());
   }
 
-  float x1_l = 0.92, y1_l = 0.60;
-  float dx_l = 0.30, dy_l = 0.18;
-  float x0_l = x1_l-dx_l;
-  float y0_l = y1_l-dy_l;
- 
-  gPad->Update(); pad->Update();
-  l->SetX1NDC(x0_l); l->SetX2NDC(x1_l);
-  l->SetY1NDC(y0_l); l->SetY2NDC(y1_l);
-  gPad->Modified(); pad->Modified();
-
-  //pad->Modified(); pad->Update();
-  c1->Update();
+  pad->Modified(); pad->Update();
+  canv->Update();
 }

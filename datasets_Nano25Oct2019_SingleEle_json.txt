@@ -13,7 +13,9 @@
       "/SingleElectron/Run2017C-Nano25Oct2019-v1/NANOAOD",
       "/SingleElectron/Run2017D-Nano25Oct2019-v1/NANOAOD",
       "/SingleElectron/Run2017E-Nano25Oct2019-v1/NANOAOD",
-      "/SingleElectron/Run2017F-Nano25Oct2019-v1/NANOAOD"
+      "/SingleElectron/Run2017F-Nano25Oct2019-v1/NANOAOD",
+      "/SingleElectron/Run2017G-Nano25Oct2019-v1/NANOAOD",
+      "/SingleElectron/Run2017H-Nano25Oct2019-v1/NANOAOD"
    ],
   "EGamma_DATA_2018":[
       "/EGamma/Run2018A-Nano25Oct2019-v1/NANOAOD",

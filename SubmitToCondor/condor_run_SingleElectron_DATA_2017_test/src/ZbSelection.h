@@ -66,7 +66,7 @@ private:
  
   TH1D* h_Zee_ZmassFull ;
   TH1D* h_Zmm_ZmassFull ;
-
+  TH1D* h_Zem_ZmassFull ;
 } ;
 
 #endif

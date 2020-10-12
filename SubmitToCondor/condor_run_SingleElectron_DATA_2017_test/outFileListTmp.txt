@@ -14,8 +14,6 @@ root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//Single
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_20.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_21.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_22.root
-root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_23.root
-root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_24.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_25.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_26.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//SingleElectron_DATA_2017/output_27.root

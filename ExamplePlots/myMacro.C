@@ -28,8 +28,8 @@ void myMacro()
   //   iPos = 10*(alignement 1/2/3) + position (1/2/3 = left/center/right)
 
   example_plot( iPeriod, 0 );   // out of frame (in exceptional cases)
-  //  example_plot( iPeriod, 11 );  // left-aligned
-  //  example_plot( iPeriod, 33 );  // right-aligned
+  // example_plot( iPeriod, 11 );  // left-aligned
+  //example_plot( iPeriod, 33 );  // right-aligned
 
   //  writeExtraText = false;       // remove Preliminary
   

@@ -1,0 +1,47 @@
+000 (39673248.011.000) 10/12 13:22:57 Job submitted from host: <131.225.188.57:9618?addrs=131.225.188.57-9618&noUDP&sock=2441_e6c4_3>
+...
+001 (39673248.011.000) 10/12 13:30:31 Job executing on host: <131.225.206.161:9618?addrs=131.225.206.161-9618&noUDP&sock=1164_fc54_3>
+...
+006 (39673248.011.000) 10/12 13:30:40 Image size of job updated: 4
+	4  -  MemoryUsage of job (MB)
+	4212  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 13:31:41 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	112552  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 13:47:49 Image size of job updated: 115
+	115  -  MemoryUsage of job (MB)
+	118164  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 14:07:59 Image size of job updated: 116
+	116  -  MemoryUsage of job (MB)
+	118908  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 14:08:59 Image size of job updated: 116
+	116  -  MemoryUsage of job (MB)
+	119508  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 14:12:00 Image size of job updated: 118
+	118  -  MemoryUsage of job (MB)
+	120884  -  ResidentSetSize of job (KB)
+...
+006 (39673248.011.000) 10/12 14:15:03 Image size of job updated: 118
+	118  -  MemoryUsage of job (MB)
+	121052  -  ResidentSetSize of job (KB)
+...
+005 (39673248.011.000) 10/12 14:15:38 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:11:52, Sys 0 00:00:40  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:11:52, Sys 0 00:00:40  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1019732  -  Run Bytes Sent By Job
+	1331513  -  Run Bytes Received By Job
+	1019732  -  Total Bytes Sent By Job
+	1331513  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     3948     1500    324675 
+	   Memory (MB)          :      118     2048      2048 
+...

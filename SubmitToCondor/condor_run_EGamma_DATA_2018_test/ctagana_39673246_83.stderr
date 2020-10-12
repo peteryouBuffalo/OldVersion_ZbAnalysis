@@ -1,0 +1,4 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3006] Unable to open /store/data/Run2018D/EGamma/NANOAOD/Nano25Oct2019-v1/70000/4370D514-5656-8846-A258-D2CE5A32684C.root; file exists
+
+[702kB/702kB][100%][==================================================][702kB/s]  [702kB/702kB][100%][==================================================][702kB/s]  
