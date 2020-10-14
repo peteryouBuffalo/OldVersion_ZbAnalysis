@@ -1,12 +1,19 @@
 /******************************************************************************
 *                                                                             *
 *  The following program takes two histograms and creates a ratio plot.       *
-*  	Created: October, 2020	Peter Young                                   *
-*  	                                                                      *
+*  	Created: October, 2020	Peter Young                                       *
+*  	                                                                          *
 ******************************************************************************/
 
 #include "tdrstyle.C"
 #include <math.h>
+
+std::string round(float val, int n)
+{
+  std::string num_text = std::to_string(val);
+  std::string rounded = num_text.substr(0, num_text.find(".") + n+1);
+  return rounded;
+}
 
 void compare(std::string filename, std::string hist1, std::string hist2)
 {  
@@ -95,7 +102,11 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   float err = stdev/sqrt(n-1);    // -1 b/c --"-- 
   
   nHist2->Scale(avg);
-  std::cout << "c_t +/- err = " << avg << " +/- " << err << std::endl; 
+  std::string avgStr = round(avg, 3);
+  std::string errStr = round(err, 3);
+  std::cout << "c_t +/- err = " << avgStr << " +/- " << errStr << std::endl; 
+  
+  std::string ct = "c_{t} = " + avgStr + " #pm " + errStr; 
 
   //--- Now, create the ratio plot with the new style. ----------------------//
   
@@ -120,13 +131,18 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   canv->SetTickx(0);
   canv->SetTicky(0);
 
+  nHist2->GetYaxis()->SetTitle("Events/4 GeV");
+  nHist2->GetXaxis()->SetTitle("M_{Z}");
+
   TRatioPlot *rat = new TRatioPlot(nHist1, nHist2, "pois");  
   rat->Draw();
-  rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
-  rat->GetLowerRefXaxis()->SetTitle("M_Z");
 
   gPad->Modified(); gPad->Update();
   TPad *pad = rat->GetUpperPad();
+  rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
+  rat->GetLowerRefXaxis()->SetTitle("M_Z");
+  rat->GetUpperRefYaxis()->SetLabelSize(0.03);
+  rat->GetLowerRefXaxis()->SetLabelSize(0.03);
  
   TLegend *l = pad->BuildLegend();
   l->SetLineColor(kWhite);
@@ -145,6 +161,7 @@ void compare(std::string filename, std::string hist1, std::string hist2)
     i++;
     le->SetLabel(lbl[i-1].c_str());
   }
+  l->AddEntry((TObject*)0, ct.c_str(), "");
 
   pad->Modified(); pad->Update();
   canv->Update();
