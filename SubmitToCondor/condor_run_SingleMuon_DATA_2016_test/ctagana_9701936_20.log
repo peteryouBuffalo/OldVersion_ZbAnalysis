@@ -1,0 +1,52 @@
+000 (9701936.020.000) 10/14 12:25:06 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=2196_da10_3>
+...
+001 (9701936.020.000) 10/14 12:45:58 Job executing on host: <131.225.206.55:9618?addrs=131.225.206.55-9618&noUDP&sock=1318_9de9_3>
+...
+006 (9701936.020.000) 10/14 12:46:07 Image size of job updated: 14
+	14  -  MemoryUsage of job (MB)
+	14980  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:47:08 Image size of job updated: 86
+	86  -  MemoryUsage of job (MB)
+	88452  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:48:10 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107364  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:50:10 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107368  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:51:10 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107400  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:52:11 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107420  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:53:12 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107460  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 12:57:14 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	109040  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 13:00:14 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	109068  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 13:02:14 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	109104  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 13:03:15 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	109116  -  ResidentSetSize of job (KB)
+...
+006 (9701936.020.000) 10/14 13:10:20 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	111652  -  ResidentSetSize of job (KB)
+...

@@ -545,13 +545,13 @@ void ZbSelection::Process(Reader* r) {
       // load the number of jets
       h_zem_jet->FillNjet(jets.size(), 1.);
       
-      if (jets.size() >= 1)
+      if (jets.size() >= 2)
       {
         h_zem_jet->Fill(Z, jets[0], 1.);
         h_zem_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.); 
       }  
 
-      if (bjets.size() >= 1)
+      if (bjets.size() >= 2)
       {
         h_zem_bjet->Fill(Z, bjets[0], 1.);
         h_zem_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);

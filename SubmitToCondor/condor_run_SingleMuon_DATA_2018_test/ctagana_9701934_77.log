@@ -1,0 +1,24 @@
+000 (9701934.077.000) 10/14 12:25:04 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=2196_da10_3>
+...
+001 (9701934.077.000) 10/14 12:36:23 Job executing on host: <131.225.191.79:9618?addrs=131.225.191.79-9618&noUDP&sock=1446_6a09_3>
+...
+006 (9701934.077.000) 10/14 12:36:32 Image size of job updated: 4
+	4  -  MemoryUsage of job (MB)
+	4788  -  ResidentSetSize of job (KB)
+...
+006 (9701934.077.000) 10/14 12:37:34 Image size of job updated: 26
+	26  -  MemoryUsage of job (MB)
+	27276  -  ResidentSetSize of job (KB)
+...
+006 (9701934.077.000) 10/14 12:38:34 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	114936  -  ResidentSetSize of job (KB)
+...
+006 (9701934.077.000) 10/14 12:51:39 Image size of job updated: 114
+	114  -  MemoryUsage of job (MB)
+	117336  -  ResidentSetSize of job (KB)
+...
+006 (9701934.077.000) 10/14 13:04:48 Image size of job updated: 115
+	115  -  MemoryUsage of job (MB)
+	118684  -  ResidentSetSize of job (KB)
+...

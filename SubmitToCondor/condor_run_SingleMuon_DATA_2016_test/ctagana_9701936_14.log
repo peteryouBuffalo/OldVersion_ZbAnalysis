@@ -1,0 +1,48 @@
+000 (9701936.014.000) 10/14 12:25:06 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=2196_da10_3>
+...
+001 (9701936.014.000) 10/14 12:45:05 Job executing on host: <131.225.188.34:9618?addrs=131.225.188.34-9618&noUDP&sock=1910_adfa_3>
+...
+006 (9701936.014.000) 10/14 12:45:14 Image size of job updated: 18
+	18  -  MemoryUsage of job (MB)
+	19224  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:46:15 Image size of job updated: 25
+	25  -  MemoryUsage of job (MB)
+	25608  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:47:15 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107104  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:48:15 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107128  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:49:16 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107164  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:52:19 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107212  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:56:22 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107216  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 12:57:23 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107396  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 13:03:25 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107432  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 13:06:28 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107464  -  ResidentSetSize of job (KB)
+...
+006 (9701936.014.000) 10/14 13:08:30 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107484  -  ResidentSetSize of job (KB)
+...

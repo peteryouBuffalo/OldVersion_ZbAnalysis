@@ -1,0 +1,52 @@
+000 (9701938.001.000) 10/14 12:25:08 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=2196_da10_3>
+...
+001 (9701938.001.000) 10/14 12:51:59 Job executing on host: <131.225.184.14:9618?addrs=131.225.184.14-9618&noUDP&sock=1280_8d50_3>
+...
+006 (9701938.001.000) 10/14 12:52:08 Image size of job updated: 14
+	14  -  MemoryUsage of job (MB)
+	14976  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 12:53:09 Image size of job updated: 101
+	101  -  MemoryUsage of job (MB)
+	104212  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 12:54:10 Image size of job updated: 101
+	101  -  MemoryUsage of job (MB)
+	104356  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 12:55:11 Image size of job updated: 101
+	101  -  MemoryUsage of job (MB)
+	104364  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 12:56:11 Image size of job updated: 101
+	101  -  MemoryUsage of job (MB)
+	104372  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 12:59:12 Image size of job updated: 101
+	101  -  MemoryUsage of job (MB)
+	104388  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:00:13 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106776  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:01:14 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106868  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:05:16 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106876  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:07:18 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106880  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:08:19 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106904  -  ResidentSetSize of job (KB)
+...
+006 (9701938.001.000) 10/14 13:10:21 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107228  -  ResidentSetSize of job (KB)
+...

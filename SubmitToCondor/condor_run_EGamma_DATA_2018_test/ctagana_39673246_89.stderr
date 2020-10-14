@@ -1,8 +1,0 @@
-WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
-Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3006] Unable to open /store/data/Run2018D/EGamma/NANOAOD/Nano25Oct2019-v1/270000/18EEC844-9E52-3048-B2B0-B41E89A8BECB.root; file exists
-
-Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3006] Unable to open /store/data/Run2018D/EGamma/NANOAOD/Nano25Oct2019-v1/270000/2136960B-D452-6F4F-8F9D-D2C3F0FBE7D4.root; file exists
-
-Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3006] Unable to open /store/data/Run2018D/EGamma/NANOAOD/Nano25Oct2019-v1/270000/6BC44B1C-CC81-614D-B546-2A183F97838B.root; file exists
-
-[679.6kB/679.6kB][100%][==================================================][679.6kB/s]  [679.6kB/679.6kB][100%][==================================================][679.6kB/s]  
