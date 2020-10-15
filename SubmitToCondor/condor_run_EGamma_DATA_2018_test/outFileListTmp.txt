@@ -64,7 +64,6 @@ root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_64.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_65.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_66.root
-root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_67.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_68.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_69.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB//EGamma_DATA_2018/output_7.root

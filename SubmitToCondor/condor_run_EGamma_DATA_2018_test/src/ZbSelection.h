@@ -51,6 +51,11 @@ private:
   TH1D* h_Zee_sidebar_bjet;
   TH1D* h_Zmm_sidebar_bjet; 
 
+  TH1D* h_Zee_ZMass_bjet;
+  TH1D* h_Zee_ZMass_2bjet;
+  TH1D* h_Zmm_ZMass_bjet;
+  TH1D* h_Zmm_ZMass_2bjet;
+
   TH1D* h_evt ;
   TH1D* h_dR_je ;
   TH1D* h_dR_jm ;

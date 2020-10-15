@@ -59,6 +59,11 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
   h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
 
+  h_Zee_ZMass_bjet = new TH1D("Zee_bjet_ZMass", "", 300, 0, 300);
+  h_Zee_ZMass_2bjet = new TH1D("Zee_2bjet_ZMass", "", 300, 0, 300);
+  h_Zmm_ZMass_bjet = new TH1D("Zmm_bjet_ZMass", "", 300, 0, 300);
+  h_Zmm_ZMass_2bjet = new TH1D("Zmm_2bjet_ZMass", "", 300, 0, 300);
+
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
 
@@ -138,6 +143,11 @@ void ZbSelection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Zee_sidebar_bjet);
   r->GetOutputList()->Add(h_Zmm_sidebar);
   r->GetOutputList()->Add(h_Zmm_sidebar_bjet);
+
+  r->GetOutputList()->Add(h_Zee_ZMass_bjet);
+  r->GetOutputList()->Add(h_Zee_ZMass_2bjet);
+  r->GetOutputList()->Add(h_Zmm_ZMass_bjet);
+  r->GetOutputList()->Add(h_Zmm_ZMass_2bjet);
 
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
@@ -354,8 +364,13 @@ void ZbSelection::Process(Reader* r) {
       float zeeb_w = zee_w*btag_w;
       
       ZObj Z(eles[0],eles[1]) ;
-
+    
       h_Zee_ZmassFull->Fill(Z.m_lvec.M(), zee_w) ;
+      
+      if (bjets.size() >= 1)
+      { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
+      if (bjets.size() >= 2)
+      { h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w); } 
 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
@@ -460,7 +475,13 @@ void ZbSelection::Process(Reader* r) {
       ZObj Z(muons[0],muons[1]) ;
       
       h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
-      
+      if (bjets.size() >= 1)
+      { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
+      if (bjets.size() >= 2)
+      { h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w); }
+     
+
+ 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
         h_zmm_cutflow->Fill(4) ; //pass Z mass cuts

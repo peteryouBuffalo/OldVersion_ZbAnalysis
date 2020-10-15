@@ -1,0 +1,10 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+Warning in <TROOT::Append>: Replacing existing TH1: Zee_bjet_ZMass (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: Zee_2bjet_ZMass (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: Zmm_bjet_ZMass (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: Zmm_2bjet_ZMass (Potential memory leak).
+Error in <TSelectorList::CheckDuplicateName>: an object with the same name: Zee_bjet_ZMass is already in the list
+Error in <TSelectorList::CheckDuplicateName>: an object with the same name: Zee_2bjet_ZMass is already in the list
+Error in <TSelectorList::CheckDuplicateName>: an object with the same name: Zmm_bjet_ZMass is already in the list
+Error in <TSelectorList::CheckDuplicateName>: an object with the same name: Zmm_2bjet_ZMass is already in the list
+[722kB/722kB][100%][==================================================][722kB/s]  [722kB/722kB][100%][==================================================][722kB/s]  
