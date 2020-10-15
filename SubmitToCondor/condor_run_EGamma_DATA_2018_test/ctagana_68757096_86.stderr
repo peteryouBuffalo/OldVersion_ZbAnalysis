@@ -1,0 +1,4 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+Error in <TNetXNGFile::Open>: [ERROR] Operation expired
+Error in <TNetXNGFile::Open>: [ERROR] Operation expired
+[620.4kB/620.4kB][100%][==================================================][620.4kB/s]  [620.4kB/620.4kB][100%][==================================================][620.4kB/s]  

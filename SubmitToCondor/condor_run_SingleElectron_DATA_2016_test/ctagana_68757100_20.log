@@ -1,0 +1,59 @@
+000 (68757100.020.000) 10/15 10:09:05 Job submitted from host: <131.225.188.235:9618?addrs=131.225.188.235-9618&noUDP&sock=2706_ab5d_3>
+...
+001 (68757100.020.000) 10/15 10:36:26 Job executing on host: <131.225.205.200:9618?addrs=131.225.205.200-9618&noUDP&sock=1476_fde0_3>
+...
+006 (68757100.020.000) 10/15 10:36:35 Image size of job updated: 10
+	10  -  MemoryUsage of job (MB)
+	10312  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:37:36 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	107996  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:38:37 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108088  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:39:38 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108168  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:41:40 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	110104  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:43:42 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	111652  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:47:46 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	112012  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:51:48 Image size of job updated: 109
+	109  -  MemoryUsage of job (MB)
+	112016  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 10:59:51 Image size of job updated: 110
+	110  -  MemoryUsage of job (MB)
+	112928  -  ResidentSetSize of job (KB)
+...
+006 (68757100.020.000) 10/15 11:00:51 Image size of job updated: 113
+	113  -  MemoryUsage of job (MB)
+	115796  -  ResidentSetSize of job (KB)
+...
+005 (68757100.020.000) 10/15 11:01:48 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:10:10, Sys 0 00:00:25  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:10:10, Sys 0 00:00:25  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1025953  -  Run Bytes Sent By Job
+	1331505  -  Run Bytes Received By Job
+	1025953  -  Total Bytes Sent By Job
+	1331505  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     3959     1500   1688410 
+	   Memory (MB)          :      113     2048      2048 
+...

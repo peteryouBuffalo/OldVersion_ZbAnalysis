@@ -59,10 +59,10 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
   h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
 
-  h_Zee_ZMass_bjet = new TH1D("Zee_bjet_ZMass", "", 300, 0, 300);
-  h_Zee_ZMass_2bjet = new TH1D("Zee_2bjet_ZMass", "", 300, 0, 300);
-  h_Zmm_ZMass_bjet = new TH1D("Zmm_bjet_ZMass", "", 300, 0, 300);
-  h_Zmm_ZMass_2bjet = new TH1D("Zmm_2bjet_ZMass", "", 300, 0, 300);
+  h_Zee_ZMass_bjet = new TH1D("Zee_Zfull_bjet", "", 300, 0, 300);
+  h_Zee_ZMass_2bjet = new TH1D("Zee_Zfull_2bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_bjet = new TH1D("Zmm_Zfull_bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_2bjet = new TH1D("Zmm_Zfull_2bjet", "", 300, 0, 300);
 
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);

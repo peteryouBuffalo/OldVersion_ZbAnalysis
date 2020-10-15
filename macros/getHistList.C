@@ -13,8 +13,12 @@ void getHistList(std::string filename)
   while (key=(TKey*)next())
   {
     nhist++;
-    std::cout << "Key " << nhist << std::endl;
-    std::cout << "Classname " << key->GetClassName() << std::endl; 
-    std::cout << "Name " << key->GetName() << std::endl;
+    std::string name = key->GetName();
+    if (name.find("Zem") != string::npos)
+    {
+      std::cout << "Key " << nhist << std::endl;
+      std::cout << "Classname " << key->GetClassName() << std::endl; 
+      std::cout << "Name " << key->GetName() << std::endl;
+    }
   }
 }
