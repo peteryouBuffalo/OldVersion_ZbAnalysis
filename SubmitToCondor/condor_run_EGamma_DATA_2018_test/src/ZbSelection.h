@@ -55,6 +55,8 @@ private:
   TH1D* h_Zee_ZMass_2bjet;
   TH1D* h_Zmm_ZMass_bjet;
   TH1D* h_Zmm_ZMass_2bjet;
+  TH1D* h_Zem_ZMass_bjet;
+  TH1D* h_Zem_ZMass_2bjet;
 
   TH1D* h_evt ;
   TH1D* h_dR_je ;

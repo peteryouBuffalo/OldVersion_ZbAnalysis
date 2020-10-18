@@ -1,0 +1,49 @@
+001 (39764774.065.000) 10/17 19:47:14 Job executing on host: <131.225.191.138:9618?addrs=131.225.191.138-9618&noUDP&sock=1157_2f2a_3>
+...
+006 (39764774.065.000) 10/17 19:47:23 Image size of job updated: 21
+	21  -  MemoryUsage of job (MB)
+	21584  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 19:48:23 Image size of job updated: 43
+	43  -  MemoryUsage of job (MB)
+	44880  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 19:49:23 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	108632  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 19:52:25 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	108640  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 19:53:26 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	108688  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 19:57:27 Image size of job updated: 106
+	106  -  MemoryUsage of job (MB)
+	108864  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 20:06:30 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	115544  -  ResidentSetSize of job (KB)
+...
+006 (39764774.065.000) 10/17 20:22:37 Image size of job updated: 113
+	113  -  MemoryUsage of job (MB)
+	116084  -  ResidentSetSize of job (KB)
+...
+005 (39764774.065.000) 10/17 20:32:48 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:08:27, Sys 0 00:00:18  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:08:27, Sys 0 00:00:18  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1045140  -  Run Bytes Sent By Job
+	1372461  -  Run Bytes Received By Job
+	1045140  -  Total Bytes Sent By Job
+	1372461  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     4018     1500    318031 
+	   Memory (MB)          :      109     2048      2048 
+...

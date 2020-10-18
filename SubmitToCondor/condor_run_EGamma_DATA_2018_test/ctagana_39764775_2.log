@@ -1,0 +1,49 @@
+001 (39764775.002.000) 10/17 19:49:02 Job executing on host: <131.225.204.95:9618?addrs=131.225.204.95-9618&noUDP&sock=1146_a39f_3>
+...
+006 (39764775.002.000) 10/17 19:49:11 Image size of job updated: 14
+	14  -  MemoryUsage of job (MB)
+	14988  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 19:50:12 Image size of job updated: 43
+	43  -  MemoryUsage of job (MB)
+	44336  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 19:51:13 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	109840  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 20:00:17 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	109844  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 20:04:20 Image size of job updated: 110
+	110  -  MemoryUsage of job (MB)
+	113616  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 20:15:25 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	115168  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 20:27:30 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	115172  -  ResidentSetSize of job (KB)
+...
+006 (39764775.002.000) 10/17 20:41:22 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	115176  -  ResidentSetSize of job (KB)
+...
+005 (39764775.002.000) 10/17 20:41:24 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:40, Sys 0 00:00:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:40, Sys 0 00:00:13  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1066948  -  Run Bytes Sent By Job
+	1423653  -  Run Bytes Received By Job
+	1066948  -  Total Bytes Sent By Job
+	1423653  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00        1         1 
+	   Disk (KB)            :  4089        1500    316740 
+	   Memory (MB)          :   112        2048      2048 
+...

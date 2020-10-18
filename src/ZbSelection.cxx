@@ -63,6 +63,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zee_ZMass_2bjet = new TH1D("Zee_Zfull_2bjet", "", 300, 0, 300);
   h_Zmm_ZMass_bjet = new TH1D("Zmm_Zfull_bjet", "", 300, 0, 300);
   h_Zmm_ZMass_2bjet = new TH1D("Zmm_Zfull_2bjet", "", 300, 0, 300);
+  h_Zem_ZMass_bjet = new TH1D("Zem_Zfull_bjet", "", 300, 0, 300);
+  h_Zem_ZMass_2bjet = new TH1D("Zem_Zfull_2bjet", "", 300, 0, 300);
 
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
@@ -557,8 +559,17 @@ void ZbSelection::Process(Reader* r) {
   // an electron & muon. From analysis notes, we know that this mimics ttbar background.
   if (eles.size() >= 1 && muons.size() >= 1)
   {
+    if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") &&
+        muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) 
+    {
+
     ZObj Z(eles[0], muons[0]);
     h_Zem_ZmassFull->Fill(Z.m_lvec.M());
+
+    if (bjets.size() >= 1)
+    { h_Zem_ZMass_bjet->Fill(Z.m_lvec.M()); }
+    if (bjets.size() >= 2)
+    { h_Zem_ZMass_2bjet->Fill(Z.m_lvec.M()); }
    
     if (Z.m_lvec.M() < 86 || Z.m_lvec.M() > 100)
     {
@@ -580,6 +591,7 @@ void ZbSelection::Process(Reader* r) {
 
 
     }//end Z mass cut
+  }
   }//end trigger
 
 } //end Process

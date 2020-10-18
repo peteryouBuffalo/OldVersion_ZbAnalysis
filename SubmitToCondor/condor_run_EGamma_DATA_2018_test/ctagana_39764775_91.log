@@ -1,0 +1,61 @@
+001 (39764775.091.000) 10/17 20:20:21 Job executing on host: <131.225.204.81:9618?addrs=131.225.204.81-9618&noUDP&sock=1147_5337_3>
+...
+006 (39764775.091.000) 10/17 20:20:29 Image size of job updated: 3
+	3  -  MemoryUsage of job (MB)
+	3452  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:21:30 Image size of job updated: 7
+	7  -  MemoryUsage of job (MB)
+	8068  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:22:30 Image size of job updated: 22
+	22  -  MemoryUsage of job (MB)
+	22716  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:23:30 Image size of job updated: 121
+	121  -  MemoryUsage of job (MB)
+	124392  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:25:32 Image size of job updated: 121
+	121  -  MemoryUsage of job (MB)
+	124404  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:34:36 Image size of job updated: 121
+	121  -  MemoryUsage of job (MB)
+	124412  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:35:36 Image size of job updated: 121
+	121  -  MemoryUsage of job (MB)
+	124416  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:36:37 Image size of job updated: 122
+	122  -  MemoryUsage of job (MB)
+	125168  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:37:38 Image size of job updated: 122
+	122  -  MemoryUsage of job (MB)
+	125172  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:38:39 Image size of job updated: 122
+	122  -  MemoryUsage of job (MB)
+	125176  -  ResidentSetSize of job (KB)
+...
+006 (39764775.091.000) 10/17 20:39:40 Image size of job updated: 122
+	122  -  MemoryUsage of job (MB)
+	125180  -  ResidentSetSize of job (KB)
+...
+005 (39764775.091.000) 10/17 20:40:39 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:10:40, Sys 0 00:00:24  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:10:40, Sys 0 00:00:24  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1067112  -  Run Bytes Sent By Job
+	1423653  -  Run Bytes Received By Job
+	1067112  -  Total Bytes Sent By Job
+	1423653  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     4089     1500    310890 
+	   Memory (MB)          :      122     2048      2048 
+...
