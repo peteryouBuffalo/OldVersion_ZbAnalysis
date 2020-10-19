@@ -150,6 +150,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Zee_ZMass_2bjet);
   r->GetOutputList()->Add(h_Zmm_ZMass_bjet);
   r->GetOutputList()->Add(h_Zmm_ZMass_2bjet);
+  r->GetOutputList()->Add(h_Zem_ZMass_bjet);
+  r->GetOutputList()->Add(h_Zem_ZMass_2bjet);
 
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
