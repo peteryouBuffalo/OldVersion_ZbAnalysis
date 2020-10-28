@@ -1,0 +1,67 @@
+000 (9861143.005.000) 10/27 18:52:07 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=2083_57dd_3>
+...
+001 (9861143.005.000) 10/27 19:15:04 Job executing on host: <131.225.206.221:9618?addrs=131.225.206.221-9618&noUDP&sock=1142_e53e_3>
+...
+006 (9861143.005.000) 10/27 19:15:12 Image size of job updated: 56
+	56  -  MemoryUsage of job (MB)
+	58096  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:16:12 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107476  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:17:12 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107504  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:18:13 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	107512  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:20:15 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	107520  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:25:17 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	107524  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:32:22 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108216  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:33:22 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108232  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:34:22 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108288  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:41:27 Image size of job updated: 105
+	105  -  MemoryUsage of job (MB)
+	108292  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:43:27 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	109888  -  ResidentSetSize of job (KB)
+...
+006 (9861143.005.000) 10/27 19:45:28 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	110000  -  ResidentSetSize of job (KB)
+...
+005 (9861143.005.000) 10/27 19:46:42 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:05:57, Sys 0 00:00:14  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:05:57, Sys 0 00:00:14  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1015962  -  Run Bytes Sent By Job
+	1331485  -  Run Bytes Received By Job
+	1015962  -  Total Bytes Sent By Job
+	1331485  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     3944     1500    313465 
+	   Memory (MB)          :      107     2048      2048 
+...

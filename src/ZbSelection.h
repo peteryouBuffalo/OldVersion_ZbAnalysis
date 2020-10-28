@@ -30,7 +30,7 @@ private:
   ZbPlots* h_zem_jet ;
   ZbPlots* h_zee_bjet ;
   ZbPlots* h_zmm_bjet ;
-  ZbPlots* h_zem_bjet ;
+  Z2bPlots* h_zem_2bjet ;
   Z2bPlots* h_zee_2bjet ;
   Z2bPlots* h_zmm_2bjet ;
 

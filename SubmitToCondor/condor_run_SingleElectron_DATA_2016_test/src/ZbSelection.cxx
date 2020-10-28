@@ -41,7 +41,7 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zmm_2bjet_deepJet = new Z2bPlots("Zmm_2bjetDeepJet") ;
  
   h_zem_jet = new ZbPlots("Zem_jet");
-  h_zem_bjet = new ZbPlots("Zem_bjet");
+  h_zem_2bjet = new Z2bPlots("Zem_2bjet");
 
   unsigned nBins = 9 ;
   float bins[10] = {20, 30, 50, 70, 100, 140, 200, 300, 600, 1000} ;
@@ -59,12 +59,12 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
   h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
 
-  h_Zee_ZMass_bjet = new TH1D("Zee_Zfull_bjet", "", 300, 0, 300);
-  h_Zee_ZMass_2bjet = new TH1D("Zee_Zfull_2bjet", "", 300, 0, 300);
-  h_Zmm_ZMass_bjet = new TH1D("Zmm_Zfull_bjet", "", 300, 0, 300);
-  h_Zmm_ZMass_2bjet = new TH1D("Zmm_Zfull_2bjet", "", 300, 0, 300);
-  h_Zem_ZMass_bjet = new TH1D("Zem_Zfull_bjet", "", 300, 0, 300);
-  h_Zem_ZMass_2bjet = new TH1D("Zem_Zfull_2bjet", "", 300, 0, 300);
+  h_Zee_ZMass_bjet = new TH1D("Zee_ZmassFull_bjet", "", 300, 0, 300);
+  h_Zee_ZMass_2bjet = new TH1D("Zee_ZmassFull_2bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_bjet = new TH1D("Zmm_ZmassFull_bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_2bjet = new TH1D("Zmm_ZmassFull_2bjet", "", 300, 0, 300);
+  h_Zem_ZMass_bjet = new TH1D("Zem_ZmassFull_bjet", "", 300, 0, 300);
+  h_Zem_ZMass_2bjet = new TH1D("Zem_ZmassFull_2bjet", "", 300, 0, 300);
 
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
@@ -107,7 +107,7 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_zmm_bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  tmp = h_zem_bjet->returnHisto() ;
+  tmp = h_zem_2bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zee_2bjet->returnHisto() ;
@@ -565,35 +565,27 @@ void ZbSelection::Process(Reader* r) {
         muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) 
     {
 
-    ZObj Z(eles[0], muons[0]);
-    h_Zem_ZmassFull->Fill(Z.m_lvec.M());
+      ZObj Z(eles[0], muons[0]);
+      //h_Zem_ZmassFull->Fill(Z.m_lvec.M());
 
-    if (bjets.size() >= 1)
-    { h_Zem_ZMass_bjet->Fill(Z.m_lvec.M()); }
-    if (bjets.size() >= 2)
-    { h_Zem_ZMass_2bjet->Fill(Z.m_lvec.M()); }
+      //if (bjets.size() >= 1){ h_Zem_ZMass_bjet->Fill(Z.m_lvec.M()); }
+      //if (bjets.size() >= 2){ h_Zem_ZMass_2bjet->Fill(Z.m_lvec.M()); }
    
-    if (Z.m_lvec.M() < 86 || Z.m_lvec.M() > 100)
-    {
-     
-      // load the number of jets
-      h_zem_jet->FillNjet(jets.size(), 1.);
+        // load the number of jets
+        h_zem_jet->FillNjet(jets.size(), 1.);
       
-      if (jets.size() >= 2)
-      {
-        h_zem_jet->Fill(Z, jets[0], 1.);
-        h_zem_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.); 
-      }  
+        if (jets.size() >= 2)
+        {
+          h_zem_jet->Fill(Z, jets[0], 1.);
+          h_zem_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.); 
+        }  
 
-      if (bjets.size() >= 2)
-      {
-        h_zem_bjet->Fill(Z, bjets[0], 1.);
-        h_zem_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
-      }
-
-
-    }//end Z mass cut
-  }
+        if (bjets.size() >= 2)
+        {
+          h_zem_2bjet->Fill(Z, bjets[0], bjets[1], 1.);
+          h_zem_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+        }
+    }
   }//end trigger
 
 } //end Process
@@ -638,26 +630,6 @@ void ZbSelection::Terminate(TList* mergedList, std::string outFileName) {
 
 }
 
-//////////////////////////////////
 void ZbSelection::Fill_btagEffi(std::vector<JetObj> jets, float w) {
-  for(unsigned iJ = 0 ; iJ < jets.size() ; ++iJ) {
-    if(jets[iJ].m_flav == 5) {
-      h_eff_b->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_b->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-      h_eff_bdj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_bdj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-    }
-    if(jets[iJ].m_flav == 4) {
-      h_eff_c->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_c->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-      h_eff_cdj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_cdj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-    }
-    if(jets[iJ].m_flav == 0) {
-      h_eff_l->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepCSV > CUTS.Get<float>("jet_deepCSVM_" + m_year)) h_eff_l->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-      h_eff_ldj->Fill(jets[iJ].m_lvec.Pt(),"deno",w) ;
-      if (jets[iJ].m_deepJet > CUTS.Get<float>("jet_deepJetM_" + m_year)) h_eff_ldj->Fill(jets[iJ].m_lvec.Pt(),"num",w) ; 
-    }
-  }
-}
+
+}     
