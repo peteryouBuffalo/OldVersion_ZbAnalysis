@@ -41,7 +41,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zmm_2bjet_deepJet = new Z2bPlots("Zmm_2bjetDeepJet") ;
  
   h_zem_jet = new ZbPlots("Zem_jet");
-  h_zem_2bjet = new Z2bPlots("Zem_2bjet");
+  h_zem_2bjet_elec = new Z2bPlots("Zem_2bjet_elecTrig");
+  h_zem_2bjet_muon = new Z2bPlots("Zem_2bjet_muonTrig");
 
   unsigned nBins = 9 ;
   float bins[10] = {20, 30, 50, 70, 100, 140, 200, 300, 600, 1000} ;
@@ -64,7 +65,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zmm_ZMass_bjet = new TH1D("Zmm_ZmassFull_bjet", "", 300, 0, 300);
   h_Zmm_ZMass_2bjet = new TH1D("Zmm_ZmassFull_2bjet", "", 300, 0, 300);
   h_Zem_ZMass_bjet = new TH1D("Zem_ZmassFull_bjet", "", 300, 0, 300);
-  h_Zem_ZMass_2bjet = new TH1D("Zem_ZmassFull_2bjet", "", 300, 0, 300);
+  //h_Zem_ZMass_2bjet_elec = new TH1D("Zem_ZmassFull_2bjet_elecTrig", "", 300, 0, 300);
+  //h_Zem_ZMass_2bjet_muon = new TH1D("Zem_ZmassFull_2bjet_muonTrig", "", 300, 0, 300);
 
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
@@ -107,8 +109,11 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_zmm_bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  tmp = h_zem_2bjet->returnHisto() ;
+  tmp = h_zem_2bjet_elec->returnHisto() ;
   for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zem_2bjet_muon->returnHisto() ;
+  for(size_t i=0; i<tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zee_2bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -151,7 +156,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Zmm_ZMass_bjet);
   r->GetOutputList()->Add(h_Zmm_ZMass_2bjet);
   r->GetOutputList()->Add(h_Zem_ZMass_bjet);
-  r->GetOutputList()->Add(h_Zem_ZMass_2bjet);
+  //r->GetOutputList()->Add(h_Zem_ZMass_2bjet_elec);
+  //r->GetOutputList()->Add(h_Zem_ZMass_2bjet_muon);
 
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
@@ -554,39 +560,60 @@ void ZbSelection::Process(Reader* r) {
   } //end trigger
 
   ////////////////////////////////////////
-  // Zem + jets
+  // Zem + 2b-jets (electron trigger)
   ////////////////////////////////////////
   
-  // We want to be able to have an additional trigger for cases in which there is 
-  // an electron & muon. From analysis notes, we know that this mimics ttbar background.
-  if (eles.size() >= 1 && muons.size() >= 1)
+  // We want to be able to have the background estimation for the Z->ee
+  // case and we need to use the electron trigger.
+  if (eleTrig)
   {
-    if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") &&
-        muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) 
+    // make sure we have at least one of each lepton
+    if (eles.size() >= 1 && muons.size() >= 1)
     {
-
-      ZObj Z(eles[0], muons[0]);
-      //h_Zem_ZmassFull->Fill(Z.m_lvec.M());
-
-      //if (bjets.size() >= 1){ h_Zem_ZMass_bjet->Fill(Z.m_lvec.M()); }
-      //if (bjets.size() >= 2){ h_Zem_ZMass_2bjet->Fill(Z.m_lvec.M()); }
-   
-        // load the number of jets
-        h_zem_jet->FillNjet(jets.size(), 1.);
-      
-        if (jets.size() >= 2)
-        {
-          h_zem_jet->Fill(Z, jets[0], 1.);
-          h_zem_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.); 
-        }  
-
+      // make sure the masses meet our cuts
+      if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") &&
+          muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1"))
+      {
+        // get the Z mass and store it appropriately
+        ZObj Z(eles[0], muons[0]);
         if (bjets.size() >= 2)
         {
-          h_zem_2bjet->Fill(Z, bjets[0], bjets[1], 1.);
-          h_zem_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+          h_zem_2bjet_elec->Fill(Z, bjets[0], bjets[1], 1.);
+          h_zem_2bjet_elec->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
         }
-    }
-  }//end trigger
+        
+      }//end-pt-cut
+
+    }//end-size
+  }//end-trig
+  
+  //////////////////////////////////////////////
+  // Zem + 2-bjets (muon trigger)
+  //////////////////////////////////////////////
+
+  // We want to be able to have the background estimation for the Z->mm
+  // case and we need to use the muon trigger.
+  if (muonTrig)
+  {
+    // make sure we have at least one of each lepton
+    if (eles.size() >= 1 && muons.size() >= 1)
+    {
+      // make sure the masses meet our cuts
+      if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1") &&
+          muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0"))
+      {
+        // get the Z mass and store it appropriately
+        ZObj Z(eles[0], muons[0]);
+        if (bjets.size() >= 2)
+        {
+          h_zem_2bjet_muon->Fill(Z, bjets[0], bjets[1], 1.0);
+          h_zem_2bjet_muon->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+        }
+
+      }//end-pt-cut
+
+    }//end-size
+  }//end-trig
 
 } //end Process
 
