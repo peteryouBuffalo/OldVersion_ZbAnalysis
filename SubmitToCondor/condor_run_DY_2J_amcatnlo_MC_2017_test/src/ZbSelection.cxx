@@ -366,7 +366,8 @@ void ZbSelection::Process(Reader* r) {
       }
     }
 
-    if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
+    if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")
+        && eles[1].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) {
 
 	    h_zee_cutflow->Fill(3) ; //pass electron  cuts
       
@@ -375,8 +376,6 @@ void ZbSelection::Process(Reader* r) {
       
       ZObj Z(eles[0],eles[1]) ;
     
-      h_Zee_ZmassFull->Fill(Z.m_lvec.M(), zee_w) ;
-      
       if (bjets.size() >= 1)
       { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
       if (bjets.size() >= 2)
@@ -476,7 +475,8 @@ void ZbSelection::Process(Reader* r) {
     }
     
 
-    if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
+    if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") 
+        && muons[1].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) {
 	    h_zmm_cutflow->Fill(3) ; //pass muon  cuts
 
       float zmm_w = evtW*muonSF_w ;
@@ -484,14 +484,12 @@ void ZbSelection::Process(Reader* r) {
       
       ZObj Z(muons[0],muons[1]) ;
       
-      h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
+      //h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
       if (bjets.size() >= 1)
       { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
       if (bjets.size() >= 2)
       { h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w); }
      
-
- 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
         h_zmm_cutflow->Fill(4) ; //pass Z mass cuts

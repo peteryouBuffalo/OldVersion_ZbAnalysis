@@ -41,6 +41,9 @@ void fithist(std::string file, std::string hist1, std::string hist2)
 
   //--- Now, let's take the data from the old histogram and fill the new. ---//
 
+  long N_ll_low = 0L; long N_ll_high = 0L;
+  long N_emu_low = 0L; long N_emu_high = 0L;
+
   // Fill the first histogram
   int n1 = h1->GetNbinsX();
   for (int i = 0; i < n1; ++i)
@@ -49,10 +52,15 @@ void fithist(std::string file, std::string hist1, std::string hist2)
     int size = h1->GetBinContent(i);
     int val = h1->GetBinCenter(i);
     if (val >= binL && val <= binH) continue;
-   
+    //if (val <= binL) continue; 
+ 
     // use the value to properly fill the new one
     for (int j = 0; j < size; ++j)
-    { nHist1->Fill(val); }		
+    {
+      nHist1->Fill(val); 
+      if (val < binL) N_ll_low++;
+      if (val > binH) N_ll_high++;
+    }		
   }//end-for
 
   // Fill the second histogram
@@ -63,11 +71,23 @@ void fithist(std::string file, std::string hist1, std::string hist2)
     int size = h2->GetBinContent(i);
     int val = h2->GetBinCenter(i);
     if (val >= binL && val <= binH) continue;
+    //if (val <= binL) continue;
 
     // use the value to properly fill the new one
     for (int j = 0; j < size; ++j)
-    { nHist2->Fill(val); }
+    { 
+      nHist2->Fill(val);
+      if (val < binL) N_emu_low++;
+      if (val > binH) N_emu_high++;
+    }
   }//end-for
+
+  std::cout << "\n\nN_ll_low = " << N_ll_low << "\n";
+  std::cout << "N_ll_high = " << N_ll_high << "\n";
+  std::cout << "N_ll_side = " << (N_ll_low+N_ll_high) << "\n\n";
+  std::cout << "N_emu_low = " << N_emu_low << "\n";
+  std::cout << "N_emu_high = " << N_emu_high << "\n";
+  std::cout << "N_emu_side = " << (N_emu_low+N_emu_high) << "\n";
 
   background = nHist2;
 

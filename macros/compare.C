@@ -27,10 +27,17 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   //--- Convert the histograms to the preferred bins. The current pref is ---//
   //--- approximately 4 GeV per bin. ----------------------------------------//
 
-  Float_t bins[] = { 50, 54, 58, 62, 66, 70, 72, 110,
-                     116, 120, 124, 128, 132, 136, 140, 144, 148, 152, 156,
-                     160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200};
+  //Float_t bins[] = { 50, 54, 58, 62, 66, 70, 72, 110,
+  //                   116, 120, 124, 128, 132, 136, 140, 144, 148, 152, 156,
+  //                   160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200};
+  Float_t bins[] = { 40, 42, 44, 46, 48, 50, 52, 54, 56,
+                     126, 128, 130, 132, 134, 136, 138, 140,
+                     142, 144, 146, 148, 150, 152, 154, 156, 
+                     158, 160, 162, 164, 166, 168, 170, 172,
+                     174, 176, 178, 180, 182, 184, 186, 188,
+                     190, 192, 194, 196, 198, 200 };
   Int_t binnum = sizeof(bins)/sizeof(Float_t) - 1;
+  Int_t binL = 56; Int_t binH = 126;
 
   TH1F* nHist1 = new TH1F("n1", "", binnum, bins);
   nHist1->SetLineColor(kBlue); nHist1->SetMarkerColor(kBlue);
@@ -51,7 +58,7 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   {
     int size = h1->GetBinContent(i);
     int val = h1->GetBinCenter(i);
-    if (val > 70 && val < 110) continue;
+    if (val > binL && val < binH) continue;
 
     for (int j = 0; j < size; ++j)
     { nHist1->Fill(val); }
@@ -63,7 +70,7 @@ void compare(std::string filename, std::string hist1, std::string hist2)
   {
     int size = h2->GetBinContent(i);
     int val = h2->GetBinCenter(i);
-    if (val > 70 && val < 110) continue;
+    if (val > binL && val < binH) continue;
     
     for (int j = 0; j < size; ++j)
     { nHist2->Fill(val); }
@@ -76,7 +83,7 @@ void compare(std::string filename, std::string hist1, std::string hist2)
 
   for (int i = 0; i < n; ++i)
   {
-    if (bins[i] == 110) continue; 
+    if (bins[i] == binH) continue; 
 
     // Get the size of i'th bin from hist #1
     int size1 = nHist1->GetBinContent(i);
@@ -95,7 +102,7 @@ void compare(std::string filename, std::string hist1, std::string hist2)
 
   for (int i = 0; i < n; ++i)
   { 
-    if (bins[i] == 110) continue;
+    if (bins[i] == binH) continue;
     temp += (binRats[i]-avg)*(binRats[i]-avg);
   }
   float stdev = sqrt(temp/(n-2)); // -2 b/c empty bin in middle ignored

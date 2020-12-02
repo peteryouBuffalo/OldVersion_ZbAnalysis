@@ -1,5 +1,5 @@
 lep_eta 2.4 float
-lep_pt0  37  float
+lep_pt0  25  float
 lep_pt1  25  float
 ZMassL   71  float
 ZMassH   111 float
