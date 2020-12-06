@@ -1,0 +1,8 @@
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/250000/FB2506B3-B7F2-3F45-995D-6D43FEA2F3A7.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/250000/1C777304-3433-8C45-BAAD-922FD548B8E8.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/BD852E86-B470-E44E-834B-B6290250E90F.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/940EBE87-EC33-0E42-AA48-BAEB9B65FC0A.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/D3CC60F7-60FD-6C43-AEDF-714B930358A3.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/C39E48DF-BC88-204B-AB29-60B70F94BFAF.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/C4CBECB7-ED24-E643-AA0F-0F86D3D5BA6B.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv6/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/Nano25Oct2019_102X_upgrade2018_realistic_v20_ext3-v1/260000/EFA723AA-404D-E846-9D5C-ACB432C1C949.root

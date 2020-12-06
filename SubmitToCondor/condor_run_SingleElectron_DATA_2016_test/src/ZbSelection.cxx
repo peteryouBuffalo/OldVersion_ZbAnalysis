@@ -68,6 +68,26 @@ void ZbSelection::SlaveBegin(Reader* r) {
   //h_Zem_ZMass_2bjet_elec = new TH1D("Zem_ZmassFull_2bjet_elecTrig", "", 300, 0, 300);
   //h_Zem_ZMass_2bjet_muon = new TH1D("Zem_ZmassFull_2bjet_muonTrig", "", 300, 0, 300);
 
+  h_Zee_MET_2bjet = new TH1D("Zee_MET_2bjet", "", 300, 0, 300);
+  h_Zmm_MET_2bjet = new TH1D("Zmm_MET_2bjet", "", 300, 0, 300);
+  h_Zem_MET_2bjet_elec = new TH1D("Zem_MET_2bjet_elec", "", 300, 0, 300);
+  h_Zem_MET_2bjet_muon = new TH1D("Zem_MET_2bjet_muon", "", 300, 0, 300);
+
+  h_Zee_METsig_2bjet = new TH1D("Zee_METsig_2bjet", "", 300, 0, 300);
+  h_Zmm_METsig_2bjet = new TH1D("Zmm_METsig_2bjet", "", 300, 0, 300);
+  h_Zem_METsig_2bjet_elec = new TH1D("Zem_METsig_2bjet_elec", "", 300, 0, 300);
+  h_Zem_METsig_2bjet_muon = new TH1D("Zem_METsig_2bjet_muon", "", 300, 0, 300); 
+
+  h_Zee_fullMET_2bjet = new TH1D("Zee_fullMET_2bjet", "", 300, 0, 300);
+  h_Zmm_fullMET_2bjet = new TH1D("Zmm_fullMET_2bjet", "", 300, 0, 300);
+  h_Zem_fullMET_2bjet_elec = new TH1D("Zem_fullMET_2bjet_elec", "", 300, 0, 300);
+  h_Zem_fullMET_2bjet_muon = new TH1D("Zem_fullMET_2bjet_muon", "", 300, 0, 300);
+
+  h_Zee_fullMETsig_2bjet = new TH1D("Zee_fullMETsig_2bjet", "", 300, 0, 300);
+  h_Zmm_fullMETsig_2bjet = new TH1D("Zmm_fullMETsig_2bjet", "", 300, 0, 300);
+  h_Zem_fullMETsig_2bjet_elec = new TH1D("Zem_fullMETsig_2bjet_elec", "", 300, 0, 300);
+  h_Zem_fullMETsig_2bjet_muon = new TH1D("Zem_fullMETsig_2bjet_muon", "", 300, 0, 300);
+
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
 
@@ -145,6 +165,24 @@ void ZbSelection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_eff_ldj->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  r->GetOutputList()->Add(h_Zee_MET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_MET_2bjet);
+  r->GetOutputList()->Add(h_Zem_MET_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_MET_2bjet_muon);
+  r->GetOutputList()->Add(h_Zee_METsig_2bjet);
+  r->GetOutputList()->Add(h_Zmm_METsig_2bjet);
+  r->GetOutputList()->Add(h_Zem_METsig_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_METsig_2bjet_muon);
+
+  r->GetOutputList()->Add(h_Zee_fullMET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullMET_2bjet);
+  r->GetOutputList()->Add(h_Zem_fullMET_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_fullMET_2bjet_muon);
+  r->GetOutputList()->Add(h_Zee_fullMETsig_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullMETsig_2bjet);
+  r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_muon);
 
   r->GetOutputList()->Add(h_Zee_sidebar);
   r->GetOutputList()->Add(h_Zee_sidebar_bjet);
@@ -354,18 +392,6 @@ void ZbSelection::Process(Reader* r) {
   if (eleTrig) {
     h_zee_cutflow->Fill(2); //trigger
 
-    // Fill the sidebar information
-    if (eles.size() >= 2)
-    {
-      ZObj Z(eles[0], eles[1]);
-      float zMass = Z.m_lvec.M();
-      if (zMass < 86 || zMass > 100)
-      {
-        if (jets.size() >= 1) h_Zee_sidebar->Fill(zMass);
-        if (bjets.size() >= 1) h_Zee_sidebar_bjet->Fill(zMass);
-      }
-    }
-
     if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")
         && eles[1].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) {
 
@@ -378,8 +404,16 @@ void ZbSelection::Process(Reader* r) {
     
       if (bjets.size() >= 1)
       { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
-      if (bjets.size() >= 2 && *(r->MET_pt) > 80.0)
-      { h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w); } 
+      if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+      { 
+        if (*(r->MET_pt) > 80.0) {
+          h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w);
+          h_Zee_MET_2bjet->Fill(*(r->MET_pt), zee_w);
+          h_Zee_METsig_2bjet->Fill(*(r->MET_significance), zee_w);
+        }
+        h_Zee_fullMET_2bjet->Fill(*(r->MET_pt), zee_w);
+        h_Zee_fullMETsig_2bjet->Fill(*(r->MET_significance), zee_w);
+      } 
 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
@@ -487,8 +521,16 @@ void ZbSelection::Process(Reader* r) {
       //h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
       if (bjets.size() >= 1)
       { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
-      if (bjets.size() >= 2 && *(r->MET_pt) > 80.0)
-      { h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w); }
+      if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+      {
+        if (*(r->MET_pt) > 80.0) {
+          h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w);
+          h_Zmm_MET_2bjet->Fill(*(r->MET_pt), zmm_w);
+          h_Zmm_METsig_2bjet->Fill(*(r->MET_significance), zmm_w);
+        }
+        h_Zmm_fullMET_2bjet->Fill(*(r->MET_pt), zmm_w);
+        h_Zmm_fullMETsig_2bjet->Fill(*(r->MET_significance), zmm_w);
+      }
      
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
@@ -574,10 +616,15 @@ void ZbSelection::Process(Reader* r) {
       {
         // get the Z mass and store it appropriately
         ZObj Z(eles[0], muons[0]);
-        if (bjets.size() >= 2 && *(r->MET_pt) > 80.0)
+        if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
         {
+          if (*(r->MET_pt) > 80.0) {
           h_zem_2bjet_elec->Fill(Z, bjets[0], bjets[1], 1.);
-          h_zem_2bjet_elec->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+          h_Zem_MET_2bjet_elec->Fill(*(r->MET_pt), 1.);
+          h_Zem_METsig_2bjet_elec->Fill(*(r->MET_significance), 1.);
+          }
+          h_Zem_fullMET_2bjet_elec->Fill(*(r->MET_pt), 1.);
+          h_Zem_fullMETsig_2bjet_elec->Fill(*(r->MET_significance), 1.);
         }
         
       }//end-pt-cut
@@ -602,10 +649,15 @@ void ZbSelection::Process(Reader* r) {
       {
         // get the Z mass and store it appropriately
         ZObj Z(eles[0], muons[0]);
-        if (bjets.size() >= 2 && *(r->MET_pt) > 80.0)
+        if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
         {
+          if (*(r->MET_pt) > 80.0) {
           h_zem_2bjet_muon->Fill(Z, bjets[0], bjets[1], 1.0);
-          h_zem_2bjet_muon->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), 1.);
+          h_Zem_MET_2bjet_muon->Fill(*(r->MET_pt), 1.);
+          h_Zem_METsig_2bjet_muon->Fill(*(r->MET_significance), 1.);
+          }
+          h_Zem_fullMET_2bjet_muon->Fill(*(r->MET_pt), 1.);
+          h_Zem_fullMETsig_2bjet_muon->Fill(*(r->MET_significance), 1.);
         }
 
       }//end-pt-cut

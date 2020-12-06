@@ -1,0 +1,47 @@
+000 (10416710.003.000) 12/04 10:55:37 Job submitted from host: <131.225.188.55:9618?addrs=131.225.188.55-9618&noUDP&sock=1973_e472_3>
+...
+001 (10416710.003.000) 12/04 10:58:16 Job executing on host: <131.225.204.55:9618?addrs=131.225.204.55-9618&noUDP&sock=1156_7f92_3>
+...
+006 (10416710.003.000) 12/04 10:58:25 Image size of job updated: 12
+	12  -  MemoryUsage of job (MB)
+	12400  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 10:59:26 Image size of job updated: 107
+	107  -  MemoryUsage of job (MB)
+	110472  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 11:00:27 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	110636  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 11:01:28 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	110684  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 11:02:28 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	110740  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 11:06:28 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	110860  -  ResidentSetSize of job (KB)
+...
+006 (10416710.003.000) 12/04 11:11:33 Image size of job updated: 115
+	115  -  MemoryUsage of job (MB)
+	118120  -  ResidentSetSize of job (KB)
+...
+005 (10416710.003.000) 12/04 11:50:08 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:11:36, Sys 0 00:00:20  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:11:36, Sys 0 00:00:20  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1024838  -  Run Bytes Sent By Job
+	1331501  -  Run Bytes Received By Job
+	1024838  -  Total Bytes Sent By Job
+	1331501  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00        1         1 
+	   Disk (KB)            :  3957        1500    322445 
+	   Memory (MB)          :   110        2048      2048 
+...

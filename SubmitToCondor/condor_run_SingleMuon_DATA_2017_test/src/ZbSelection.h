@@ -60,6 +60,15 @@ private:
   TH1D* h_Zem_ZMass_bjet;
   TH1D* h_Zem_ZMass_2bjet;
 
+  TH1D* h_Zee_MET_2bjet;          TH1D* h_Zee_fullMET_2bjet;
+  TH1D* h_Zmm_MET_2bjet;          TH1D* h_Zmm_fullMET_2bjet;
+  TH1D* h_Zem_MET_2bjet_elec;     TH1D* h_Zem_fullMET_2bjet_elec;
+  TH1D* h_Zem_MET_2bjet_muon;     TH1D* h_Zem_fullMET_2bjet_muon;
+  TH1D* h_Zee_METsig_2bjet;       TH1D* h_Zee_fullMETsig_2bjet;
+  TH1D* h_Zmm_METsig_2bjet;       TH1D* h_Zmm_fullMETsig_2bjet;
+  TH1D* h_Zem_METsig_2bjet_elec;  TH1D* h_Zem_fullMETsig_2bjet_elec;
+  TH1D* h_Zem_METsig_2bjet_muon;  TH1D* h_Zem_fullMETsig_2bjet_muon;
+
   TH1D* h_evt ;
   TH1D* h_dR_je ;
   TH1D* h_dR_jm ;

@@ -1,6 +1,6 @@
 lep_eta 2.4 float
-lep_pt0  25  float
-lep_pt1  25  float
+lep_pt0  35  float
+lep_pt1  35  float
 ZMassL   71  float
 ZMassH   111 float
 //cuts for leptons used in overlap removal
