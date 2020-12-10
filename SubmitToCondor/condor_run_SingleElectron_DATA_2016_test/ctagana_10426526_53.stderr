@@ -1,0 +1,5 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+Error in <TNetXNGFile::ReadBuffer>: error reading all requested bytes, got 0 of 300
+Error in <TNetXNGFile::Init>: root:://cmsxrootd.fnal.gov//store/data/Run2016H/SingleElectron/NANOAOD/Nano25Oct2019-v1/30000/6A6BDBA2-67A7-2643-8534-7D86616B0884.root failed to read the file type data.
+Error in <TNetXNGFile::TNetXNGFile>: Object is in 'zombie' state
+[531kB/531kB][100%][==================================================][531kB/s]  [531kB/531kB][100%][==================================================][531kB/s]  

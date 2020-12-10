@@ -68,6 +68,9 @@ private:
   TH1D* h_Zmm_METsig_2bjet;       TH1D* h_Zmm_fullMETsig_2bjet;
   TH1D* h_Zem_METsig_2bjet_elec;  TH1D* h_Zem_fullMETsig_2bjet_elec;
   TH1D* h_Zem_METsig_2bjet_muon;  TH1D* h_Zem_fullMETsig_2bjet_muon;
+ 
+  TH1D* h_Zee_fullPuppiMET_2bjet;
+  TH1D* h_Zmm_fullPuppiMET_2bjet;
 
   TH1D* h_evt ;
   TH1D* h_dR_je ;

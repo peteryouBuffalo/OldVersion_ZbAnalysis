@@ -1,0 +1,73 @@
+000 (30217589.026.000) 12/07 09:38:23 Job submitted from host: <131.225.188.57:9618?addrs=131.225.188.57-9618&noUDP&sock=2564_44eb_3>
+...
+001 (30217589.026.000) 12/07 09:53:43 Job executing on host: <131.225.205.177:9618?addrs=131.225.205.177-9618&noUDP&sock=1487_896b_3>
+...
+006 (30217589.026.000) 12/07 09:53:52 Image size of job updated: 16
+	16  -  MemoryUsage of job (MB)
+	16400  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 09:54:53 Image size of job updated: 49
+	49  -  MemoryUsage of job (MB)
+	50844  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 09:55:53 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106716  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 09:56:53 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106836  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 09:57:54 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106840  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 09:59:54 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106844  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 10:01:56 Image size of job updated: 104
+	104  -  MemoryUsage of job (MB)
+	106884  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 10:04:56 Image size of job updated: 108
+	108  -  MemoryUsage of job (MB)
+	111028  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 10:17:03 Image size of job updated: 110
+	110  -  MemoryUsage of job (MB)
+	112672  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 10:31:05 Image size of job updated: 114
+	114  -  MemoryUsage of job (MB)
+	117140  -  ResidentSetSize of job (KB)
+...
+006 (30217589.026.000) 12/07 10:36:09 Image size of job updated: 114
+	114  -  MemoryUsage of job (MB)
+	117644  -  ResidentSetSize of job (KB)
+...
+022 (30217589.026.000) 12/07 10:45:10 Job disconnected, attempting to reconnect
+    Socket between submit and execute hosts closed unexpectedly
+    Trying to reconnect to slot1_24@cmswn1951.fnal.gov <131.225.205.177:9618?addrs=131.225.205.177-9618&noUDP&sock=1487_896b_3>
+...
+024 (30217589.026.000) 12/07 11:25:30 Job reconnection failed
+    Job disconnected too long: JobLeaseDuration (2400 seconds) expired
+    Can not reconnect to slot1_24@cmswn1951.fnal.gov, rescheduling job
+...
+001 (30217589.026.000) 12/07 11:26:00 Job executing on host: <131.225.204.120:9618?addrs=131.225.204.120-9618&noUDP&sock=1145_f407_3>
+...
+005 (30217589.026.000) 12/07 12:19:51 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:08:58, Sys 0 00:00:16  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:08:58, Sys 0 00:00:16  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1023592  -  Run Bytes Sent By Job
+	1321237  -  Run Bytes Received By Job
+	1023592  -  Total Bytes Sent By Job
+	2642474  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00        1         1 
+	   Disk (KB)            :  3947        4000    306433 
+	   Memory (MB)          :   110        2048      2048 
+...

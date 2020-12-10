@@ -11,25 +11,27 @@
 void ROCcurve()
 {
   //-- set the appropriate style --------------------------------------------//
-  setTDRStyle(); 
+  //setTDRStyle(); 
 
   //-- get the file & the appropriate histograms ----------------------------//
   TFile *f = new TFile("../output_MC/DY_2J_amcatnlo_MC_2016.root");
   TH1F* signals[] = 
   {
     (TH1F*)f->Get("Zee_fullMET_2bjet"),
-    //(TH1F*)f->Get("Zee_fullPuppiMET_2bjet"),
+    (TH1F*)f->Get("Zee_fullPuppiMET_2bjet"),
     (TH1F*)f->Get("Zee_fullMETsig_2bjet"),
     (TH1F*)f->Get("Zmm_fullMET_2bjet"),
-    //(TH1F*)f->Get("Zmm_fullPuppiMET_2bjet"),
+    (TH1F*)f->Get("Zmm_fullPuppiMET_2bjet"),
     (TH1F*)f->Get("Zmm_fullMETsig_2bjet"),
   };
 
   std::string names[] = 
   {
     "Z(#rightarrow e^{+}e^{-})+2b (MET)",
+    "Z(#rightarrow e^{+}e^{-})+2b (PuppiMET)",
     "Z(#rightarrow e^{+}e^{-})+2b (MET Sig)",
     "Z(#rightarrow #mu^{+}#mu^{-})+2b (MET)",
+    "Z(#rightarrow #mu^{+}#mu^{-})+2b (PuppiMET)",
     "Z(#rightarrow #mu^{+}#mu^{-})+2b (MET Sig)"
   };
 
@@ -37,10 +39,14 @@ void ROCcurve()
   TH1F* backgrounds[] =
   {
     (TH1F*)f2->Get("Zee_fullMET_2bjet"),
+    (TH1F*)f2->Get("Zee_fullPuppiMET_2bjet"),
     (TH1F*)f2->Get("Zee_fullMETsig_2bjet"),
     (TH1F*)f2->Get("Zmm_fullMET_2bjet"),
+    (TH1F*)f2->Get("Zmm_fullPuppiMET_2bjet"),
     (TH1F*)f2->Get("Zmm_fullMETsig_2bjet")
   };
+
+  int numSignals = sizeof(names)/sizeof(std::string);
 
   //-- calculate the values -------------------------------------------------//
   Int_t N = 50;
@@ -58,9 +64,9 @@ void ROCcurve()
     std::vector<Double_t> bgEffAtCutI;
 
     // calculate the background efficiency
-    for (Int_t j = 0; j < 4; ++j)
+    for (Int_t j = 0; j < numSignals; ++j)
     {
-      Int_t bgTotal = backgrounds[j]->GetEntries();
+      Int_t bgTotal = backgrounds[j]->Integral();
       Int_t nBg = 0;
       for (Int_t k = 0; k < backgrounds[j]->GetNbinsX(); ++k)
       {
@@ -78,9 +84,9 @@ void ROCcurve()
     std::vector<Int_t> nAtCutI;
     
     // generate the efficiencies for each signal
-    for (Int_t j = 0; j < 4; ++j)
+    for (Int_t j = 0; j < numSignals; ++j)
     { 
-      Int_t nSize = signals[j]->GetEntries();
+      Int_t nSize = signals[j]->Integral();
       Int_t nSig = 0;
       for (Int_t k = 0; k < signals[j]->GetNbinsX(); ++k)
       {
@@ -90,10 +96,8 @@ void ROCcurve()
       }
 
       Double_t sigEff = nSig/(nSize*1.0);
-      if (j == 0)
-      {
-        std::cout << "cut #" << i << ": eff = " << sigEff << "\n";
-      }
+      //if (j == 0)
+      //{ std::cout << "cut #" << i << ": eff = " << sigEff << "\n"; }
       effAtCutI.push_back(sigEff);
       nAtCutI.push_back(nSig);
     }
@@ -108,9 +112,9 @@ void ROCcurve()
   mg->GetXaxis()->SetTitle("Background Selection Eff.");
   mg->GetYaxis()->SetTitle("Z+2b Selection Eff.");
 
-  TLegend *l = new TLegend(0.68, 0.72, 0.98, 0.92);
+  TLegend *l = new TLegend(0.68, 0.72,  0.98, 0.92);
 
-  for (Int_t i = 0; i < 4; ++i)
+  for (Int_t i = 0; i < numSignals; ++i)
   {
     // properly format the data for use
     Double_t data[N];
@@ -127,7 +131,9 @@ void ROCcurve()
     else if (i == 1) { gr->SetLineColor(kOrange); }
     else if (i == 2) { gr->SetLineColor(kGreen); }
     else if (i == 3) { gr->SetLineColor(kBlue); }
-    else if (i == 4) { gr->SetLineColor(kBlack); }
+    else if (i == 4) { gr->SetLineColor(kMagenta+2); }
+    else if (i == 5) { gr->SetLineColor(kOrange-6); }
+    else { gr->SetLineColor(kBlack+3); }
 
     // add the cut values to the graph
     /*if (i == 0)
@@ -149,7 +155,8 @@ void ROCcurve()
   }//end-for-i
 
   TCanvas *cs = new TCanvas("ROC", "", 10, 10, 700, 900);
-  mg->Draw("ac*"); l->Draw();
+  cs->SetGrid();
+  mg->Draw("ac"); l->Draw();
   gPad->Update(); gPad->Modified();
 }
 

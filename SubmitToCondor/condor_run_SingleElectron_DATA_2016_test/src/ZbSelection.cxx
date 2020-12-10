@@ -88,6 +88,9 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zem_fullMETsig_2bjet_elec = new TH1D("Zem_fullMETsig_2bjet_elec", "", 300, 0, 300);
   h_Zem_fullMETsig_2bjet_muon = new TH1D("Zem_fullMETsig_2bjet_muon", "", 300, 0, 300);
 
+  h_Zee_fullPuppiMET_2bjet = new TH1D("Zee_fullPuppiMET_2bjet", "", 300, 0, 300);
+  h_Zmm_fullPuppiMET_2bjet = new TH1D("Zmm_fullPuppiMET_2bjet", "", 300, 0, 300);
+
   h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
   h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
 
@@ -183,6 +186,9 @@ void ZbSelection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Zmm_fullMETsig_2bjet);
   r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_elec);
   r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_muon);
+
+  r->GetOutputList()->Add(h_Zee_fullPuppiMET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullPuppiMET_2bjet);
 
   r->GetOutputList()->Add(h_Zee_sidebar);
   r->GetOutputList()->Add(h_Zee_sidebar_bjet);
@@ -412,6 +418,7 @@ void ZbSelection::Process(Reader* r) {
           h_Zee_METsig_2bjet->Fill(*(r->MET_significance), zee_w);
         }
         h_Zee_fullMET_2bjet->Fill(*(r->MET_pt), zee_w);
+        h_Zee_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zee_w);
         h_Zee_fullMETsig_2bjet->Fill(*(r->MET_significance), zee_w);
       } 
 
@@ -529,6 +536,7 @@ void ZbSelection::Process(Reader* r) {
           h_Zmm_METsig_2bjet->Fill(*(r->MET_significance), zmm_w);
         }
         h_Zmm_fullMET_2bjet->Fill(*(r->MET_pt), zmm_w);
+        h_Zmm_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zmm_w);
         h_Zmm_fullMETsig_2bjet->Fill(*(r->MET_significance), zmm_w);
       }
      

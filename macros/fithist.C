@@ -37,7 +37,7 @@ void fithist()
 {
   //-- Get the files & retrieve the original histograms. --------------------//
   gStyle->SetOptStat(0);
-  TFile *f = new TFile("../output_withTrig/TT_powheg_MC_2016.root");
+  TFile *f = new TFile("../output/TT_dilep_powheg_MC_2017.root");
   TH1F* h1 = (TH1F*)f->Get("Zee_ZmassFull_2bjet");
   TH1F* h2 = (TH1F*)f->Get("Zem_2bjet_elecTrig_ZMass");
   
