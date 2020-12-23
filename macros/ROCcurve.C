@@ -14,7 +14,7 @@ void ROCcurve()
   //setTDRStyle(); 
 
   //-- get the file & the appropriate histograms ----------------------------//
-  TFile *f = new TFile("../output_MC/DY_2J_amcatnlo_MC_2016.root");
+  TFile *f = new TFile("../output_MC_2020/DY_2J_amcatnlo_MC_2016.root");
   TH1F* signals[] = 
   {
     (TH1F*)f->Get("Zee_fullMET_2bjet"),
@@ -35,7 +35,7 @@ void ROCcurve()
     "Z(#rightarrow #mu^{+}#mu^{-})+2b (MET Sig)"
   };
 
-  TFile *f2 = new TFile("../output_MC/TT_powheg_MC_2016.root");
+  TFile *f2 = new TFile("../output_MC_2020/TT_powheg_MC_2016.root");
   TH1F* backgrounds[] =
   {
     (TH1F*)f2->Get("Zee_fullMET_2bjet"),

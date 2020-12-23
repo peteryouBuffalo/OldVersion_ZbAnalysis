@@ -1,0 +1,4 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+[0B/0B][100%][==================================================][0B/s]  
+Run: [ERROR] Server responded with an error: [3021] Unable to get quota space - quota not defined or exhausted /eos/uscms/store/user/peteryou/Output_ZplusB/MC_2020/DY_amcatnlo_MC_2018/output_0.root; Disk quota exceeded
+

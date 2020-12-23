@@ -10,4 +10,4 @@ Log = ctagana_$(Cluster)_$(Process).log
 notify_user = ${LOGNAME}@FNAL.GOV 
 +LENGTH="SHORT" 
 x509userproxy = $ENV(X509_USER_PROXY) 
-Queue 8
+Queue 51

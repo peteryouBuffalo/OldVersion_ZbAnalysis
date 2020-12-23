@@ -37,12 +37,12 @@ void fithist()
 {
   //-- Get the files & retrieve the original histograms. --------------------//
   gStyle->SetOptStat(0);
-  TFile *f = new TFile("../output/TT_dilep_powheg_MC_2017.root");
-  TH1F* h1 = (TH1F*)f->Get("Zee_ZmassFull_2bjet");
-  TH1F* h2 = (TH1F*)f->Get("Zem_2bjet_elecTrig_ZMass");
+  TFile *f = new TFile("../output_withTrig/SingleMuon_DATA_2018.root");
+  TH1F* h1 = (TH1F*)f->Get("Zmm_fullMET_2bjet");
+  TH1F* h2 = (TH1F*)f->Get("Zem_fullMET_2bjet_muon");
   
-  int eeORmm = 0;   // 0 = ee, 1 = mm 
-  int type = 0;     // 0 = mass, 1 = MET, 2 = METsig
+  int eeORmm = 0;   // 0 = ee, 1 = mm (this one is purely aesthetic)
+  int type = 1;     // 0 = mass, 1 = MET, 2 = METsig (this one isn't)
  
   //-- Convert the histograms to the preferred bins. The current preference -//
   //-- is 2 GeV per bin. ----------------------------------------------------//
@@ -63,6 +63,12 @@ void fithist()
     154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178,
     180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200 };
 
+  Float_t sigBins[] = { 10, 12, 14, 16, 18,
+    20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
+    42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
+    74, 76, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
+    102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126};
+
   Float_t *bins;
   Float_t binL = 56, binH = 126;
   Int_t binnum = 0;
@@ -76,8 +82,8 @@ void fithist()
       bins = metBins;  binL = 0; binH = 80;
       binnum = sizeof(metBins)/sizeof(Float_t)-1; break;
     case 2: // met sig
-      bins = metBins;  binL = 0; binH = 80;
-      binnum = sizeof(metBins)/sizeof(Float_t)-1; break;
+      bins = sigBins;  binL = 0; binH = 10;
+      binnum = sizeof(sigBins)/sizeof(Float_t)-1; break;
   }
   
   TH1F* nHist1 = new TH1F("n1", "", binnum, bins);
@@ -158,8 +164,12 @@ void fithist()
   ct1 = ftot->GetParameter(0);
   err1 = ftot->GetParError(0);
 
+  float chi2 = ftot->GetChisquare();
+  float ndf = ftot->GetNDF();
+ 
   std::cout << "\n(method #1) fit function: c_t = " << ct1 << " +/- " << err1 << "\n";  
-
+  std::cout << "\t chi2/ndf = " << chi2 << "/" << ndf << " = " << 
+               (chi2/ndf) << "\n";
   //-- fit method #2 - compare the total events -----------------------------//
 
   float ct2 = N_ll_side / (1.0 * N_emu_side);
@@ -214,6 +224,14 @@ void fithist()
     case 4: nHist2->Scale(ct4); break;
   }
 
+  std::string ctStr = round(ct1, 3);
+  std::string errStr = round(err1, 3);
+  std::string ctOut = "c_{t} = " + ctStr + " #pm " + errStr;
+
+  float chi = chi2/ndf;
+  std::string chiStr = round(chi, 3);
+  std::string chiOut = "#chi^{2}/ndf = " + chiStr;
+
   int W = 800; int H = 600;
   float T = 0.08*H;    float B = 0.12*H;
   float L = 0.12*W;    float R = 0.04*W;
@@ -239,10 +257,12 @@ void fithist()
 
   gPad->Modified(); gPad->Update();
   TPad *pad = rat->GetUpperPad();
-  rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
+  rat->GetUpperRefYaxis()->SetTitle("Events/2 GeV");
   rat->GetLowerRefXaxis()->SetTitle("M_Z");
+  rat->GetLowerRefYaxis()->SetTitle("ratio");
   rat->GetUpperRefYaxis()->SetLabelSize(0.03);
   rat->GetLowerRefXaxis()->SetLabelSize(0.03);
+  rat->GetLowerRefYaxis()->SetRangeUser(0.,2.);
 
   TLegend *l = pad->BuildLegend();
   l->SetLineColor(kWhite);
@@ -255,10 +275,10 @@ void fithist()
   std::string lbl1 = "";
   switch(eeORmm)
   {
-    case 0: lbl1 = "Z(#rightarrow e^{+}e^{-}) + 2>=b-jets"; break;
-    case 1: lbl1 = "Z(#rightarrow #mu^{+}#mu^{-}) + 2>=b-jets"; break;
+    case 0: lbl1 = "Z(#rightarrow e^{+}e^{-}) + #geq 2 b-jets"; break;
+    case 1: lbl1 = "Z(#rightarrow #mu^{+}#mu^{-}) + #geq 2 b-jets"; break;
   }
-  std::string lbl[] = { lbl1.c_str(), "Z(#rightarrow e#mu) + 2>=b-jets" };
+  std::string lbl[] = { lbl1.c_str(), "Z(#rightarrow e#mu) + #geq 2 b-jets" };
  
   while ((obj=next()))
   {
@@ -266,6 +286,9 @@ void fithist()
     le->SetLabel(lbl[i-1].c_str());
   }
   //l->AddEntry((TObject*)0, ct.c_str(), "");
+  //l->AddEntry((TObject*)0, chiOut.c_str(), "");
+  l->AddEntry((TObject*)0, ctOut.c_str(), "");
+  l->AddEntry((TObject*)0, chiOut.c_str(), "");
   pad->Modified(); pad->Update();
   canv->Update();
 }
