@@ -79,8 +79,8 @@ nFile = 1
 
 dir_file_list = '../FileLists_Nano02Apr2020/'
 
-outputDir_eos = '/eos/uscms/store/user/peteryou/Output_ZplusB/MC_2020'
-outputDir_scratch = '/uscms/home/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output_MC_2020' 
+outputDir_eos = '/eos/uscms/store/user/peteryou/Output_ZplusB/MC_2020_v2'
+outputDir_scratch = '/uscms/home/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output_MC2020_v2' 
 
 
 #Print setting

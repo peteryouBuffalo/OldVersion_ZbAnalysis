@@ -60,6 +60,21 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
   h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
 
+  h_lJet_MET = new TH1D("lJet_MET", "", 300, 0, 300);
+  h_lJet_PuppiMET = new TH1D("lJet_PuppiMET", "", 300, 0, 300);
+  h_2lJet_MET = new TH1D("2lJet_MET", "", 300, 0, 300);
+  h_2lJet_PuppiMET = new TH1D("2lJet_PuppiMET", "", 300, 0, 300);
+
+  h_bJet_MET = new TH1D("bJet_MET", "", 300, 0, 300);
+  h_bJet_PuppiMET = new TH1D("bJet_PuppiMET", "", 300, 0, 300);
+  h_2bJet_MET = new TH1D("2bJet_MET", "", 300, 0, 300);
+  h_2bJet_PuppiMET = new TH1D("2bJet_PuppiMET", "", 300, 0, 300);
+
+  h_cJet_MET = new TH1D("cJet_MET", "", 300, 0, 300);
+  h_cJet_PuppiMET = new TH1D("cJet_PuppiMET", "", 300, 0, 300);
+  h_2cJet_MET = new TH1D("2cJet_MET", "", 300, 0, 300);
+  h_2cJet_PuppiMET = new TH1D("2cJet_PuppiMET", "", 300, 0, 300);
+
   h_Zee_ZMass_bjet = new TH1D("Zee_ZmassFull_bjet", "", 300, 0, 300);
   h_Zee_ZMass_2bjet = new TH1D("Zee_ZmassFull_2bjet", "", 300, 0, 300);
   h_Zmm_ZMass_bjet = new TH1D("Zmm_ZmassFull_bjet", "", 300, 0, 300);
@@ -168,6 +183,19 @@ void ZbSelection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_eff_ldj->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  r->GetOutputList()->Add(h_lJet_MET);
+  r->GetOutputList()->Add(h_lJet_PuppiMET);
+  r->GetOutputList()->Add(h_2lJet_MET);
+  r->GetOutputList()->Add(h_2lJet_PuppiMET);
+  r->GetOutputList()->Add(h_bJet_MET);
+  r->GetOutputList()->Add(h_bJet_PuppiMET);
+  r->GetOutputList()->Add(h_2bJet_MET);
+  r->GetOutputList()->Add(h_2bJet_PuppiMET);
+  r->GetOutputList()->Add(h_cJet_MET);
+  r->GetOutputList()->Add(h_cJet_PuppiMET);
+  r->GetOutputList()->Add(h_2cJet_MET);
+  r->GetOutputList()->Add(h_2cJet_PuppiMET);
 
   r->GetOutputList()->Add(h_Zee_MET_2bjet);
   r->GetOutputList()->Add(h_Zmm_MET_2bjet);
@@ -389,6 +417,51 @@ void ZbSelection::Process(Reader* r) {
   if (*(r->HLT_IsoMu24)) muonTrig = true ;
 #endif
 
+  /////////////////////////////////////
+  // MET Analysis
+  ////////////////////////////////////
+  std::vector<JetObj> light, bquark, cquark;
+  for (int i = 0; i < jets.size(); ++i)
+  {
+    if (jets.at(i).m_flav == 5) bquark.push_back(jets.at(i));
+    if (jets.at(i).m_flav == 4) cquark.push_back(jets.at(i));
+    if (jets.at(i).m_flav < 4) light.push_back(jets.at(i)); 
+  }
+
+  if (light.size() >= 1) 
+  {
+    h_lJet_MET->Fill(*(r->MET_pt));
+    h_lJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    if (light.size() >= 2) 
+    {
+      h_2lJet_MET->Fill(*(r->MET_pt));
+      h_2lJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    } 
+  }
+
+  if (bquark.size() >= 1)
+  {
+    h_bJet_MET->Fill(*(r->MET_pt));
+    h_bJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    if (light.size() >= 2)
+    {
+      h_2bJet_MET->Fill(*(r->MET_pt));
+      h_2bJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    }
+  }
+
+  if (cquark.size() >= 1)
+  {
+    h_cJet_MET->Fill(*(r->MET_pt));
+    h_cJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    if (light.size() >= 2)
+    {
+      h_2cJet_MET->Fill(*(r->MET_pt));
+      h_2cJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    }
+  }
+
+
   //TEMP
   //eleTrig = true ;
   ////////////////////////////////////
@@ -421,6 +494,8 @@ void ZbSelection::Process(Reader* r) {
         h_Zee_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zee_w);
         h_Zee_fullMETsig_2bjet->Fill(*(r->MET_significance), zee_w);
       } 
+
+      
 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       

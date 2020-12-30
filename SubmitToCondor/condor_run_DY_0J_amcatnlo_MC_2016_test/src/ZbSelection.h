@@ -30,6 +30,7 @@ private:
   ZbPlots* h_zem_jet ;
   ZbPlots* h_zee_bjet ;
   ZbPlots* h_zmm_bjet ;
+
   Z2bPlots* h_zem_2bjet_elec ;
   Z2bPlots* h_zem_2bjet_muon ;
 
@@ -71,6 +72,14 @@ private:
  
   TH1D* h_Zee_fullPuppiMET_2bjet;
   TH1D* h_Zmm_fullPuppiMET_2bjet;
+
+  TH1D* h_lJet_MET;  TH1D* h_lJet_PuppiMET;
+  TH1D* h_cJet_MET;  TH1D* h_cJet_PuppiMET;
+  TH1D* h_bJet_MET;  TH1D* h_bJet_PuppiMET;
+
+  TH1D* h_2lJet_MET; TH1D* h_2lJet_PuppiMET;
+  TH1D* h_2cJet_MET; TH1D* h_2cJet_PuppiMET;
+  TH1D* h_2bJet_MET; TH1D* h_2bJet_PuppiMET;
 
   TH1D* h_evt ;
   TH1D* h_dR_je ;

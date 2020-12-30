@@ -37,7 +37,7 @@ void fithist()
 {
   //-- Get the files & retrieve the original histograms. --------------------//
   gStyle->SetOptStat(0);
-  TFile *f = new TFile("../output_withTrig/SingleMuon_DATA_2018.root");
+  TFile *f = new TFile("../output_withTrig/SingleElectron_DATA_2018.root");
   TH1F* h1 = (TH1F*)f->Get("Zmm_fullMET_2bjet");
   TH1F* h2 = (TH1F*)f->Get("Zem_fullMET_2bjet_muon");
   
@@ -49,40 +49,47 @@ void fithist()
 
   // zMass bins
   Float_t massBins[] = {
-    40, 42, 44, 46, 48, 50, 52, 54, 56, 126, 128, 
-    130, 132, 134, 136, 138, 140, 142, 144, 146, 148,
-    150, 152, 154, 156, 158, 160, 162, 164, 166, 168,
-    170, 172, 174, 176, 178, 180, 182, 184, 186, 188,
-    190, 192, 194, 196, 198, 200
+    40, 44, 48, 52, 56, 126, 130, //40, 42, 44, 46, 48, 50, 52, 54, 56, 126, 128, 
+    134, 136, 138, 142, 146, 150, //130, 132, 134, 136, 138, 140, 142, 144, 146, 148,
+    154, 158, 162, 166, 170, 174, //150, 152, 154, 156, 158, 160, 162, 164, 166, 168,
+    178, 182, 186, 190, 194, 198, //170, 172, 174, 176, 178, 180, 182, 184, 186, 188,
+    202 //190, 192, 194, 196, 198, 200
   };
 
   // MET/METsig bins
-  Float_t metBins[] = { 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
+  Float_t metBins[] = { 
+    80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140,
+    144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200
+    /*80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
     102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126,
     128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152,
     154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178,
-    180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200 };
+    180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200*/
+  };
 
-  Float_t sigBins[] = { 10, 12, 14, 16, 18,
-    20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
+  Float_t sigBins[] = {
+    8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
+    72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124
+    /*10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
     42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
     74, 76, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
-    102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126};
+    102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126*/
+  };
 
   Float_t *bins;
-  Float_t binL = 56, binH = 126;
+  Float_t binL = 56, binH = 126, endPt = 0, startPt = 0;
   Int_t binnum = 0;
 
   switch(type)
   {
     case 0: // mass
-      bins = massBins; binL = 56; binH = 126;
+      bins = massBins; binL = 56; binH = 126; endPt = 204; startPt = 38;
       binnum = sizeof(massBins)/sizeof(Float_t)-1; break;
     case 1: // met
-      bins = metBins;  binL = 0; binH = 80;
+      bins = metBins;  binL = 0; binH = 80; endPt = 204; startPt = 78;
       binnum = sizeof(metBins)/sizeof(Float_t)-1; break;
     case 2: // met sig
-      bins = sigBins;  binL = 0; binH = 10;
+      bins = sigBins;  binL = 0; binH = 10; endPt = 126; startPt = 6;
       binnum = sizeof(sigBins)/sizeof(Float_t)-1; break;
   }
   
@@ -120,7 +127,8 @@ void fithist()
     int size = h1->GetBinContent(i);
     int val = h1->GetBinCenter(i);
     if (val >= binL && val <= binH) continue;
-
+    if (val > endPt || val < startPt) continue;   
+ 
     // use the value to properly fill the new one
     for (int j = 0; j < size; ++j)
     {
@@ -138,6 +146,7 @@ void fithist()
     int size = h2->GetBinContent(i);
     int val = h2->GetBinCenter(i);
     if (val >= binL && val <= binH) continue;
+    if (val > endPt || val < startPt) continue;
 
     // use the value to properly fill the new one
     for (int j = 0; j < size; ++j)
@@ -162,7 +171,7 @@ void fithist()
   TF1 *ftot = new TF1("ftot", ftotal, 40, 200, 1);
   nHist1->Fit("ftot", "0q");
   ct1 = ftot->GetParameter(0);
-  err1 = ftot->GetParError(0);
+  edrr1 = ftot->GetParError(0);
 
   float chi2 = ftot->GetChisquare();
   float ndf = ftot->GetNDF();
