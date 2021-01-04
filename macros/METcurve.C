@@ -8,42 +8,42 @@
 #include "tdrstyle.C"
 
 // main method for macro //////////////////////////////////////////////////////
-void ROCcurve()
+void METcurve()
 {
   //-- set the appropriate style --------------------------------------------//
   //setTDRStyle(); 
 
   //-- get the file & the appropriate histograms ----------------------------//
-  TFile *f = new TFile("../output_MC2020/DY_0J_amcatnlo_MC_2017.root");
+  TFile *f = new TFile("../output_MC2020_v2/DY_0J_amcatnlo_MC_2016.root");
   TH1F* signals[] = 
   {
-    (TH1F*)f->Get("Zee_fullMET_2bjet"),
-    (TH1F*)f->Get("Zee_fullPuppiMET_2bjet"),
-    (TH1F*)f->Get("Zee_fullMETsig_2bjet"),
-    (TH1F*)f->Get("Zmm_fullMET_2bjet"),
-    (TH1F*)f->Get("Zmm_fullPuppiMET_2bjet"),
-    (TH1F*)f->Get("Zmm_fullMETsig_2bjet"),
+    (TH1F*)f->Get("lJet_MET"),
+    (TH1F*)f->Get("bJet_MET"),
+    (TH1F*)f->Get("cJet_MET"),
+    (TH1F*)f->Get("lJet_PuppiMET"),
+    (TH1F*)f->Get("bJet_PuppiMET"),
+    (TH1F*)f->Get("cJet_PuppiMET"),
   };
 
   std::string names[] = 
   {
-    "Z(#rightarrow ee)+2b (MET)",
-    "Z(#rightarrow ee)+2b (PuppiMET)",
-    "Z(#rightarrow ee)+2b (MET Sig)",
-    "Z(#rightarrow #mu#mu)+2b (MET)",
-    "Z(#rightarrow #mu#mu)+2b (PuppiMET)",
-    "Z(#rightarrow #mu#mu)+2b (MET Sig)"
+    "Z+l Eff vs ttbar Eff (MET)",
+    "Z+b Eff vs ttbar Eff (MET)",
+    "Z+c Eff vs ttbar Eff (MET)",
+    "Z+l Eff vs ttbar Eff (PuppiMET)",
+    "Z+b Eff vs ttbar Eff (PuppiMET)",
+    "Z+c Eff vs ttbar Eff (PuppiMET)",
   };
 
-  TFile *f2 = new TFile("../output_MC_2020/TT_dilep_powheg_MC_2017.root");
+  TFile *f2 = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
   TH1F* backgrounds[] =
   {
-    (TH1F*)f2->Get("Zee_fullMET_2bjet"),
-    (TH1F*)f2->Get("Zee_fullPuppiMET_2bjet"),
-    (TH1F*)f2->Get("Zee_fullMETsig_2bjet"),
-    (TH1F*)f2->Get("Zmm_fullMET_2bjet"),
-    (TH1F*)f2->Get("Zmm_fullPuppiMET_2bjet"),
-    (TH1F*)f2->Get("Zmm_fullMETsig_2bjet")
+    (TH1F*)f2->Get("lJet_MET"),
+    (TH1F*)f2->Get("bJet_MET"),
+    (TH1F*)f2->Get("cJet_MET"),
+    (TH1F*)f2->Get("lJet_PuppiMET"),
+    (TH1F*)f2->Get("bJet_PuppiMET"),
+    (TH1F*)f2->Get("cJet_PuppiMET"),
   };
 
   int numSignals = sizeof(names)/sizeof(std::string);
@@ -76,7 +76,7 @@ void ROCcurve()
       }
 
       Double_t bgEff = nBg/(bgTotal*1.0);
-      //if (j == 0) std::cout << "cut #" << i << " : eff = " << bgEff << std::endl;
+     // if (j == 0) std::cout << "cut #" << i << " : eff = " << bgEff << std::endl;
       bgEffAtCutI.push_back(bgEff); 
     } 
     
@@ -106,21 +106,11 @@ void ROCcurve()
     dataEff.push_back(effAtCutI);
     bgEff.push_back(bgEffAtCutI);
   }
-  
-
-  std::cout << "cut\tdata Eff\tbg Eff\n";
-  std::cout << "---\t--------\t------\n";
-  for (int j = 0; j < dataEff.size(); ++j)
-  {
-    std::cout << cuts[j] << "\t" << dataEff.at(j).at(0) << "\t" <<
-    			bgEff.at(j).at(0) << "\n";
-  }
-  
 
   //-- now that we have the results, let's plot the details -----------------//
-  TMultiGraph *mg = new TMultiGraph("mg", "Z+2b Selection Eff. vs Background Selection Eff.");
+  TMultiGraph *mg = new TMultiGraph("mg", "");
   mg->GetXaxis()->SetTitle("Background Selection Eff.");
-  mg->GetYaxis()->SetTitle("Z+2b Selection Eff.");
+  mg->GetYaxis()->SetTitle("Z+j Selection Eff.");
 
   TLegend *l = new TLegend(0.68, 0.72,  0.98, 0.92);
   l->SetLineColor(kWhite);
@@ -139,15 +129,15 @@ void ROCcurve()
 
     // create the TGraph
     TGraph* gr = new TGraph(N, bg, data);
-    if (i < 3) { gr->SetLineColor(kGreen+1); }
-    else { gr->SetLineColor(kBlue+1); }
+    if (i == 0 || i == 3) { gr->SetLineColor(kGreen+3); }
+    else if (i == 1 || i == 4) { gr->SetLineColor(kRed+1); }
+    else if (i == 2 || i == 5) { gr->SetLineColor(kBlue+2); }
+    else { gr->SetLineColor(kBlack+3); }
     
-    if (i == 1 || i == 4) gr->SetLineStyle(2);
-    else if (i == 2 || i == 5) gr->SetLineStyle(3);
+    if (i < 3) gr->SetLineStyle(2);
     gr->SetLineWidth(2);
     
-    //if (i == 5)
-     gr->SetMarkerStyle(20);
+    if (i == 5) gr->SetMarkerStyle(20);
 
     // add the cut values to the graph
     if (i == 0)
@@ -155,10 +145,10 @@ void ROCcurve()
       for (Int_t j = 0; j < N; ++j)
       {
         if (j > 20) continue;
-        Double_t y = gr->GetY()[j]+0.1;
+        Double_t y = gr->GetY()[j]+0.2;
         if (cuts[j] > 40) y = gr->GetY()[j]-0.1;
         TLatex *lt = new TLatex(gr->GetX()[j], y, Form("%.1f", cuts[j]));
-        lt->SetTextSize(0.03);
+        lt->SetTextSize(0.029);
         gr->GetListOfFunctions()->Add(lt);
       }
     }

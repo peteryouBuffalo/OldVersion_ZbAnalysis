@@ -14,6 +14,49 @@
 // global variables ///////////////////////////////////////////////////////////
 
 TH1F* background;
+Float_t binL, binH, startPt, endPt;
+
+Float_t massBins[] = 
+{
+  40, 42, 44, 46, 48, 50, 52, 54, 56, 126, 128, 
+  130, 132, 134, 136, 138, 140, 142, 144, 146, 148,
+  150, 152, 154, 156, 158, 160, 162, 164, 166, 168,
+  170, 172, 174, 176, 178, 180, 182, 184, 186, 188,
+  190, 192, 194, 196, 198, 200
+}; Float_t sizeMass = sizeof(massBins)/sizeof(Float_t)-1;
+Float_t massBins4[] = 
+{
+  40, 44, 48, 52, 56, 126, 130, 134, 138, 142, 146, 150,
+  154, 158, 162, 166, 170, 174, 178, 182, 186, 190, 194,
+  198, 202
+}; Float_t sizeMass4 = sizeof(massBins4)/sizeof(Float_t)-1;
+
+Float_t metBins[] = 
+{
+  80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
+  102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126,
+  128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152,
+  154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178,
+  180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200
+}; Float_t sizeMET = sizeof(metBins)/sizeof(Float_t)-1;
+Float_t metBins4[] =
+{
+  80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140,
+  144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200
+}; Float_t sizeMET4 = sizeof(metBins4)/sizeof(Float_t)-1;
+
+Float_t sigBins[] = 
+{
+  10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
+  42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
+  74, 76, 80 /*, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
+  102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124*/
+}; Float_t sizeSig = sizeof(sigBins)/sizeof(Float_t)-1;
+Float_t sigBins4[] = 
+{
+  8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
+  72, 76, 80 /*, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124*/
+}; Float_t sizeSig4 = sizeof(sigBins4)/sizeof(Float_t)-1;
 
 // Round method ///////////////////////////////////////////////////////////////
 std::string round(float val, int n)
@@ -21,6 +64,40 @@ std::string round(float val, int n)
   std::string num_text = std::to_string(val);
   std::string rounded = num_text.substr(0, num_text.find(".") + n+1);
   return rounded;
+}
+
+// toSci method ///////////////////////////////////////////////////////////////
+std::string toSci(float val, int n)
+{
+  int exp = (int)floor(log10(val));
+  float value = val * pow(10,-1*exp);
+  std::string num_text = std::to_string(value);
+  std::string rounded = num_text.substr(0, num_text.find(".") + n+1);
+  std::string finalStr = rounded + "e" + std::to_string(exp);
+  return finalStr;
+}
+
+// FixBins method /////////////////////////////////////////////////////////////
+void FixBins(TH1F* hist, TH1F* orig, int an)
+{
+	int n1 = orig->GetNbinsX();
+	for (Int_t i = 0; i < n1; ++i)
+	{
+		int size = orig->GetBinContent(i);
+		int center = orig->GetBinCenter(i);
+		if (center >= binL && center <= binH) continue;
+		if (center < startPt || center > endPt) continue;
+		
+		for (Int_t j = 0; j < size; ++j)
+			hist->Fill(center);
+	}
+	
+	std::string xLbl;
+	if (an == 0) xLbl = "M_{Z}"; 
+	else if (an == 1) xLbl = "MET"; 
+	else xLbl = "MET Significance";
+	
+	hist->GetXaxis()->SetTitle(xLbl.c_str());
 }
 
 // ftotal method //////////////////////////////////////////////////////////////
@@ -35,269 +112,137 @@ Double_t ftotal(Double_t *x, Double_t *par)
 // fithist method /////////////////////////////////////////////////////////////
 void fithist()
 {
-  //-- Get the files & retrieve the original histograms. --------------------//
   gStyle->SetOptStat(0);
-  TFile *f = new TFile("../output_withTrig/SingleElectron_DATA_2018.root");
-  TH1F* h1 = (TH1F*)f->Get("Zmm_fullMET_2bjet");
-  TH1F* h2 = (TH1F*)f->Get("Zem_fullMET_2bjet_muon");
   
-  int eeORmm = 0;   // 0 = ee, 1 = mm (this one is purely aesthetic)
-  int type = 1;     // 0 = mass, 1 = MET, 2 = METsig (this one isn't)
- 
-  //-- Convert the histograms to the preferred bins. The current preference -//
-  //-- is 2 GeV per bin. ----------------------------------------------------//
-
-  // zMass bins
-  Float_t massBins[] = {
-    40, 44, 48, 52, 56, 126, 130, //40, 42, 44, 46, 48, 50, 52, 54, 56, 126, 128, 
-    134, 136, 138, 142, 146, 150, //130, 132, 134, 136, 138, 140, 142, 144, 146, 148,
-    154, 158, 162, 166, 170, 174, //150, 152, 154, 156, 158, 160, 162, 164, 166, 168,
-    178, 182, 186, 190, 194, 198, //170, 172, 174, 176, 178, 180, 182, 184, 186, 188,
-    202 //190, 192, 194, 196, 198, 200
-  };
-
-  // MET/METsig bins
-  Float_t metBins[] = { 
-    80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140,
-    144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200
-    /*80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
-    102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126,
-    128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152,
-    154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178,
-    180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200*/
-  };
-
-  Float_t sigBins[] = {
-    8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
-    72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124
-    /*10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
-    42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
-    74, 76, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
-    102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126*/
-  };
-
-  Float_t *bins;
-  Float_t binL = 56, binH = 126, endPt = 0, startPt = 0;
-  Int_t binnum = 0;
-
-  switch(type)
+  //--- Options to Set ------------------------------------------------------//
+  
+  int channel = 1;		// 0 = electron, 1 = muon (completely aesthetic)
+  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
+  int binSize = 0;		// 0 = 2 GeV, 1 = 4 GeV
+	
+  //--- Get the appropriate files & histograms ------------------------------//
+  TFile *f = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
+  TH1F* h1 = (TH1F*)f->Get("Zmm_fullMETsig_2bjet");
+  TH1F* h2 = (TH1F*)f->Get("Zem_fullMETsig_2bjet_muon");
+  
+  TFile *f2 = new TFile("../output_MC2020_v2/TT_semi_powheg_MC_2017.root");
+  TH1F* h3 = (TH1F*)f->Get("Zmm_ZmassFull_2bjet");
+  
+  //--- Get the necessary information to resize the histograms as necessary--//
+  Float_t *bins; Int_t binnum = 0;
+  
+  switch(analysis)
   {
-    case 0: // mass
-      bins = massBins; binL = 56; binH = 126; endPt = 204; startPt = 38;
-      binnum = sizeof(massBins)/sizeof(Float_t)-1; break;
-    case 1: // met
-      bins = metBins;  binL = 0; binH = 80; endPt = 204; startPt = 78;
-      binnum = sizeof(metBins)/sizeof(Float_t)-1; break;
-    case 2: // met sig
-      bins = sigBins;  binL = 0; binH = 10; endPt = 126; startPt = 6;
-      binnum = sizeof(sigBins)/sizeof(Float_t)-1; break;
+    case 0:	//Z mass
+      bins = (binSize == 0) ? massBins : massBins4;
+      binnum = (binSize == 0) ? sizeMass : sizeMass4;
+      binL = 56; binH = 126; startPt = 38; endPt = 204; break;
+    
+    case 1: // MET
+      bins = (binSize == 0) ? metBins : metBins4;
+      binnum = (binSize == 0) ? sizeMET : sizeMET4;
+      binL = 0; binH = 78; startPt = 78; endPt = 204; break;
+     
+    case 2: // MET Sig
+      bins = (binSize == 0) ? sigBins : sigBins4;
+      binnum = (binSize == 0) ? sizeSig : sizeSig4; 
+      binL = 0; binH = (binSize == 0) ? 10 : 8;
+      startPt = (binSize == 0) ? 8 : 6; endPt = 126; break;
   }
   
-  TH1F* nHist1 = new TH1F("n1", "", binnum, bins);
-  nHist1->SetLineColor(kBlue); nHist1->SetMarkerColor(kBlue);
-  nHist1->GetYaxis()->SetTitle("Events/2 GeV");
-  //nHist1->GetXaxis()->SetTitle("M_{Z}");
-
+  //--- Now that we have the information, modify the histograms -------------//
+  
+  for (int i = 0; i < binnum; ++i)
+  { bins[i] = bins[i] - 0.5; }
+  
+  TH1F* nHist1 = new TH1F("n1", "", binnum, bins); 
+  nHist1->SetLineColor(kBlack); nHist1->SetMarkerColor(kBlack);
+  nHist1->SetMarkerStyle(20); FixBins(nHist1, h1, analysis);
+  
   TH1F* nHist2 = new TH1F("n2", "", binnum, bins);
-  nHist2->SetLineColor(kBlack); nHist2->SetMarkerColor(kBlack);
-  nHist2->GetYaxis()->SetTitle("Events/2 GeV");
-  //nHist2->GetXaxis()->SetTitle("M_{Z}");
-
-  std::string xLbl = "";
-  switch(type)
-  {
-    case 0: xLbl = "M_{Z}"; break;
-    case 1: xLbl = "MET"; break;
-    case 2: xLbl = "MET Significance"; break;
-  }
-
-  nHist1->GetXaxis()->SetTitle(xLbl.c_str());
-  nHist2->GetXaxis()->SetTitle(xLbl.c_str());
+  nHist2->SetLineColor(kAzure); nHist2->SetMarkerColor(kAzure);
+  FixBins(nHist2, h2, analysis);
   
-  //-- Now, let's take the data from the old histogram and fill the new. ----//
-
-  long N_ll_low = 0L;  long N_ll_high = 0L;
-  long N_emu_low = 0L; long N_emu_high = 0L;
-
-  // Fill the first histogram
-  int n1 = h1->GetNbinsX();
-  for (int i = 0; i < n1; ++i)
-  {
-    // get the size and center of the i'th bin
-    int size = h1->GetBinContent(i);
-    int val = h1->GetBinCenter(i);
-    if (val >= binL && val <= binH) continue;
-    if (val > endPt || val < startPt) continue;   
- 
-    // use the value to properly fill the new one
-    for (int j = 0; j < size; ++j)
-    {
-      nHist1->Fill(val);
-      if (val < binL) N_ll_low++;
-      if (val > binH) N_ll_high++;
-    }
-  }//end-for
-
-  // Fill the second histogram
-  int n2 = h2->GetNbinsX();
-  for (int i = 0; i < n2; ++i)
-  {
-    // get the size of center of the i'th bin
-    int size = h2->GetBinContent(i);
-    int val = h2->GetBinCenter(i);
-    if (val >= binL && val <= binH) continue;
-    if (val > endPt || val < startPt) continue;
-
-    // use the value to properly fill the new one
-    for (int j = 0; j < size; ++j)
-    {
-      nHist2->Fill(val);
-      if (val < binL) N_emu_low++;
-      if (val > binH) N_emu_high++;
-    }
-  }//end-for
-
+  TH1F* nHist3 = new TH1F("n3", "", binnum, bins);
+  nHist3->SetLineColor(kRed); nHist3->SetMarkerColor(kRed);
+  FixBins(nHist3, h3, analysis);
+  
   background = nHist2;
-  long N_ll_side = N_ll_low + N_ll_high;
-  long N_emu_side = N_emu_low + N_emu_high;
-
-  std::cout << "\n\tlow \thigh \tside (total)\n";
-  std::cout << "-----\t----\t-----\t------------\n";
-  std::cout << "N_ll\t" << N_ll_low << "\t" << N_ll_high << "\t" << N_ll_side << "\n";
-  std::cout << "N_emu\t" << N_emu_low << "\t" << N_emu_high << "\t" << N_emu_side << "\n";
-
-  //-- fit method #1 - the fit function -------------------------------------//
-  float ct1 = 0.0; float err1 = 0.0;
-  TF1 *ftot = new TF1("ftot", ftotal, 40, 200, 1);
+  
+  //--- Now, use the fit function to get values -----------------------------//
+  TF1* ftot = new TF1("ftot", ftotal, 40, 200, 1);
   nHist1->Fit("ftot", "0q");
-  ct1 = ftot->GetParameter(0);
-  edrr1 = ftot->GetParError(0);
-
+  float ct = ftot->GetParameter(0);
+  float err = ftot->GetParError(0);
   float chi2 = ftot->GetChisquare();
   float ndf = ftot->GetNDF();
- 
-  std::cout << "\n(method #1) fit function: c_t = " << ct1 << " +/- " << err1 << "\n";  
-  std::cout << "\t chi2/ndf = " << chi2 << "/" << ndf << " = " << 
-               (chi2/ndf) << "\n";
-  //-- fit method #2 - compare the total events -----------------------------//
-
-  float ct2 = N_ll_side / (1.0 * N_emu_side);
-  std::cout << "(method #2) comparing total events: c_t = " << ct2 << "\n";
-
-  //-- fit method #3 - compare the number of events in each region ----------//
-
-  float ct_low = N_ll_low / (1.0 * N_emu_low);
-  float ct_high = N_ll_high / (1.0 * N_emu_high);
-  std::cout << "\ncomparing total low side: c_t = " << ct_low << "\n";
-  std::cout << "comparing total high side: c_t = " << ct_high << "\n";
+  float pval = ftot->GetProb();
   
-  float ct3 = (ct_low + ct_high)/2;
-  float err3 = abs(ct_low - ct_high)/sqrt(2);
-  std::cout << "(method #3) average of these: c_t = " << ct3 << " +/- " << err3 << "\n";
+  //--- Modify values for output --------------------------------------------//
+  nHist2->Scale(ct);
+  nHist3->Scale(1./nHist1->Integral());
 
-  //-- fit method #4 - average per bin --------------------------------------//
-  int n = nHist2->GetNbinsX();
-  float binRats[n];
-  float sum = 0.f;
-
-  for (int i = 0; i < n; ++i)
-  {
-    if (bins[i] == binH) continue;
-    int size1 = nHist1->GetBinContent(i);
-    int size2 = nHist2->GetBinContent(i);
-    float val = size1/(size2*1.0);
-    binRats[i] = val;
-    sum += val;
-  }
-
-  float avg = sum/n; float temp = 0.f;
-  for (int i = 0; i < n; ++i)
-  {
-    if (bins[i] == binH) continue;
-    temp += (binRats[i]-avg)*(binRats[i]-avg);
-  }
-  float stdev = sqrt(temp/(n-2)); // -2 b/c empty bin in the middle ignored
-  float err = stdev/sqrt(n-1);    // -1 b/c --"--
-
-  float ct4 = avg;
-  std::cout << "(method #4) averaged per bin: c_t = " << ct4 << " +/- " << err << "\n\n";
-
-  //-- Now, let's properly scale the second histogram & draw. ---------------//
-
-  int method = 4;
-  switch(method)
-  {
-    case 1: nHist2->Scale(ct1); break;
-    case 2: nHist2->Scale(ct2); break;
-    case 3: nHist2->Scale(ct3); break;
-    case 4: nHist2->Scale(ct4); break;
-  }
-
-  std::string ctStr = round(ct1, 3);
-  std::string errStr = round(err1, 3);
-  std::string ctOut = "c_{t} = " + ctStr + " #pm " + errStr;
-
+  std::string ctOut = "c_{t} = " + round(ct, 3) + 
+                      " #pm " + round(err, 3);
   float chi = chi2/ndf;
-  std::string chiStr = round(chi, 3);
-  std::string chiOut = "#chi^{2}/ndf = " + chiStr;
+  std::string chiOut = "#chi^{2}/ndf = " + round(chi,3);
+  std::string pvalOut = "p-val = " + toSci(pval, 2);
 
+  // Create the canvas
   int W = 800; int H = 600;
   float T = 0.08*H;    float B = 0.12*H;
   float L = 0.12*W;    float R = 0.04*W;
-
-  TString canvName = "TTbarBackgroundEstimation_";
-  canvName += W; canvName += "-";
-  canvName += H; canvName += "-out";
-
-  TCanvas* canv = new TCanvas(canvName, canvName, 50, 50, W, H);
-  canv->SetFillColor(0);
-  canv->SetBorderMode(0);
-  canv->SetFrameFillStyle(0);
-  canv->SetFrameBorderMode(0);
-  canv->SetLeftMargin( L/W );
-  canv->SetRightMargin( R/W );
-  canv->SetTopMargin( T/H );
-  canv->SetBottomMargin( B/H );
-  canv->SetTickx(0);
+  TCanvas *canv = new TCanvas("canv", "canv", 50, 50, W, H);
+  canv->SetFillColor(kWhite); canv->SetBorderMode(0);
+  canv->SetFrameFillStyle(0); canv->SetLeftMargin(L/W);
+  canv->SetRightMargin(R/W); canv->SetTopMargin(T/H);
+  canv->SetBottomMargin(B/H); canv->SetTickx(0);
   canv->SetTicky(0);
 
+  // Create the ratio plot
   TRatioPlot *rat = new TRatioPlot(nHist1, nHist2, "pois");
-  rat->Draw();
+  rat->SetH1DrawOpt("E"); rat->SetH2DrawOpt("H");
+  rat->Draw(); rat->GetUpperPad()->cd(); nHist3->Draw("same");
 
   gPad->Modified(); gPad->Update();
   TPad *pad = rat->GetUpperPad();
-  rat->GetUpperRefYaxis()->SetTitle("Events/2 GeV");
-  rat->GetLowerRefXaxis()->SetTitle("M_Z");
+  if (binSize == 0) rat->GetUpperRefYaxis()->SetTitle("Events/2 GeV");
+  else rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
   rat->GetLowerRefYaxis()->SetTitle("ratio");
   rat->GetUpperRefYaxis()->SetLabelSize(0.03);
   rat->GetLowerRefXaxis()->SetLabelSize(0.03);
   rat->GetLowerRefYaxis()->SetRangeUser(0.,2.);
-
+  
+  // create the legend
   TLegend *l = pad->BuildLegend();
-  l->SetLineColor(kWhite);
-  l->SetBorderSize(0);
+  l->SetLineColor(kWhite); l->SetBorderSize(0);
   TList *p = l->GetListOfPrimitives();
 
   TIter next(p); TObject *obj;
   TLegendEntry *le; int i = 0;
-  
-  std::string lbl1 = "";
-  switch(eeORmm)
+
+  std::string lbl = "";
+  switch(channel)
   {
-    case 0: lbl1 = "Z(#rightarrow e^{+}e^{-}) + #geq 2 b-jets"; break;
-    case 1: lbl1 = "Z(#rightarrow #mu^{+}#mu^{-}) + #geq 2 b-jets"; break;
+	  case 0: lbl = "Z(#rightarrow ee) + #geq 2 b-jets"; break;
+	  case 1: lbl = "Z(#rightarrow #mu#mu) + #geq 2 b-jets"; break;
   }
-  std::string lbl[] = { lbl1.c_str(), "Z(#rightarrow e#mu) + #geq 2 b-jets" };
- 
+  std::string labels[] = 
+  { lbl.c_str(), "Z(#rightarrow e#mu) + #geq 2 b-jets", 
+	"t#bar{t}" };
+	  
   while ((obj=next()))
-  {
-    le = (TLegendEntry*)obj; i++;
-    le->SetLabel(lbl[i-1].c_str());
-  }
-  //l->AddEntry((TObject*)0, ct.c_str(), "");
-  //l->AddEntry((TObject*)0, chiOut.c_str(), "");
-  l->AddEntry((TObject*)0, ctOut.c_str(), "");
-  l->AddEntry((TObject*)0, chiOut.c_str(), "");
+  { le = (TLegendEntry*)obj; i++;
+    le->SetLabel(labels[i-1].c_str()); }
   pad->Modified(); pad->Update();
+
+  TLegend *l2 = new TLegend(0.1, 0.7, 0.35, 0.9);
+  l2->SetLineColor(kWhite);
+  l2->SetBorderSize(0);
+  l2->AddEntry((TObject*)0, ctOut.c_str(), "");
+  l2->AddEntry((TObject*)0, chiOut.c_str(), "");
+  l2->AddEntry((TObject*)0, pvalOut.c_str(), "");
+  l2->Draw("same"); gPad->Modified(); gPad->Update();
   canv->Update();
 }
+// END OF FILE ////////////////////////////////////////////////////////////////
