@@ -73,9 +73,9 @@ private:
   TH1D* h_Zee_fullPuppiMET_2bjet;
   TH1D* h_Zmm_fullPuppiMET_2bjet;
 
-  TH1D* h_lJet_MET;  TH1D* h_lJet_PuppiMET;
-  TH1D* h_cJet_MET;  TH1D* h_cJet_PuppiMET;
-  TH1D* h_bJet_MET;  TH1D* h_bJet_PuppiMET;
+  TH1D* h_lJet_MET;  TH1D* h_lJet_PuppiMET; TH1D* h_lJet_METsig;
+  TH1D* h_cJet_MET;  TH1D* h_cJet_PuppiMET; TH1D* h_cJet_METsig;
+  TH1D* h_bJet_MET;  TH1D* h_bJet_PuppiMET; TH1D* h_bJet_METsig;
 
   TH1D* h_2lJet_MET; TH1D* h_2lJet_PuppiMET;
   TH1D* h_2cJet_MET; TH1D* h_2cJet_PuppiMET;

@@ -23,6 +23,9 @@ void METcurve()
     (TH1F*)f->Get("lJet_PuppiMET"),
     (TH1F*)f->Get("bJet_PuppiMET"),
     (TH1F*)f->Get("cJet_PuppiMET"),
+    (TH1F*)f->Get("lJet_METsig"),
+    (TH1F*)f->Get("bJet_METsig"),
+    (TH1F*)f->Get("cJet_METsig")
   };
 
   std::string names[] = 
@@ -33,6 +36,9 @@ void METcurve()
     "Z+l Eff vs ttbar Eff (PuppiMET)",
     "Z+b Eff vs ttbar Eff (PuppiMET)",
     "Z+c Eff vs ttbar Eff (PuppiMET)",
+    "Z+l Eff vs ttbar Eff (MET Sig)", 
+    "Z+b Eff vs ttbar Eff (MET Sig)",
+    "Z+c Eff vs ttbar Eff (MET Sig)"
   };
 
   TFile *f2 = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
@@ -44,6 +50,9 @@ void METcurve()
     (TH1F*)f2->Get("lJet_PuppiMET"),
     (TH1F*)f2->Get("bJet_PuppiMET"),
     (TH1F*)f2->Get("cJet_PuppiMET"),
+    (TH1F*)f2->Get("lJet_METsig"),
+    (TH1F*)f2->Get("bJet_METsig"),
+    (TH1F*)f2->Get("cJet_METsig")
   };
 
   int numSignals = sizeof(names)/sizeof(std::string);
@@ -129,15 +138,16 @@ void METcurve()
 
     // create the TGraph
     TGraph* gr = new TGraph(N, bg, data);
-    if (i == 0 || i == 3) { gr->SetLineColor(kGreen+3); }
-    else if (i == 1 || i == 4) { gr->SetLineColor(kRed+1); }
-    else if (i == 2 || i == 5) { gr->SetLineColor(kBlue+2); }
+    if (i % 3 == 0) { gr->SetLineColor(kGreen+3); }
+    else if (i % 3 == 1) { gr->SetLineColor(kRed+1); }
+    else if (i % 3 == 2) { gr->SetLineColor(kBlue+2); }
     else { gr->SetLineColor(kBlack+3); }
     
     if (i < 3) gr->SetLineStyle(2);
+    else if (i > 5) gr->SetLineStyle(4);
     gr->SetLineWidth(2);
     
-    if (i == 5) gr->SetMarkerStyle(20);
+    if (i == 4) gr->SetMarkerStyle(20);
 
     // add the cut values to the graph
     if (i == 0)

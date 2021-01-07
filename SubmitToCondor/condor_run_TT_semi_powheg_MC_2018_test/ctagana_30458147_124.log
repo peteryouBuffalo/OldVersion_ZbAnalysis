@@ -1,0 +1,37 @@
+000 (30458147.124.000) 01/04 11:48:02 Job submitted from host: <131.225.188.57:9618?addrs=131.225.188.57-9618&noUDP&sock=2564_44eb_3>
+...
+001 (30458147.124.000) 01/04 12:00:15 Job executing on host: <131.225.205.177:9618?addrs=131.225.205.177-9618&noUDP&sock=1486_d9d3_3>
+...
+006 (30458147.124.000) 01/04 12:00:24 Image size of job updated: 12
+	12  -  MemoryUsage of job (MB)
+	12944  -  ResidentSetSize of job (KB)
+...
+022 (30458147.124.000) 01/04 12:06:24 Job disconnected, attempting to reconnect
+    Socket between submit and execute hosts closed unexpectedly
+    Trying to reconnect to slot1_13@cmswn1951.fnal.gov <131.225.205.177:9618?addrs=131.225.205.177-9618&noUDP&sock=1486_d9d3_3>
+...
+024 (30458147.124.000) 01/04 12:46:24 Job reconnection failed
+    Job disconnected too long: JobLeaseDuration (2400 seconds) expired
+    Can not reconnect to slot1_13@cmswn1951.fnal.gov, rescheduling job
+...
+001 (30458147.124.000) 01/04 12:46:51 Job executing on host: <131.225.206.236:9618?addrs=131.225.206.236-9618&noUDP&sock=1138_26dd_3>
+...
+006 (30458147.124.000) 01/04 12:48:01 Image size of job updated: 141
+	141  -  MemoryUsage of job (MB)
+	145040  -  ResidentSetSize of job (KB)
+...
+005 (30458147.124.000) 01/04 12:53:17 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:01:54, Sys 0 00:00:06  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:01:54, Sys 0 00:00:06  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	1053125  -  Run Bytes Sent By Job
+	1464647  -  Run Bytes Received By Job
+	1053125  -  Total Bytes Sent By Job
+	2929294  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     4119     3250    318087 
+	   Memory (MB)          :        3     2048      2048 
+...
