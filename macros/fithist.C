@@ -18,7 +18,8 @@ Float_t binL, binH, startPt, endPt;
 
 Float_t massBins[] = 
 {
-  40, 42, 44, 46, 48, 50, 52, 54, 56, 126, 128, 
+  40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
+  110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 
   130, 132, 134, 136, 138, 140, 142, 144, 146, 148,
   150, 152, 154, 156, 158, 160, 162, 164, 166, 168,
   170, 172, 174, 176, 178, 180, 182, 184, 186, 188,
@@ -26,7 +27,8 @@ Float_t massBins[] =
 }; Float_t sizeMass = sizeof(massBins)/sizeof(Float_t)-1;
 Float_t massBins4[] = 
 {
-  40, 44, 48, 52, 56, 126, 130, 134, 138, 142, 146, 150,
+  40, 44, 48, 52, 56, 60, 64, 68, 72, 
+  110, 114, 118, 122, 126, 130, 134, 138, 142, 146, 150,
   154, 158, 162, 166, 170, 174, 178, 182, 186, 190, 194,
   198, 202
 }; Float_t sizeMass4 = sizeof(massBins4)/sizeof(Float_t)-1;
@@ -47,16 +49,31 @@ Float_t metBins4[] =
 
 Float_t sigBins[] = 
 {
-  10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
+  20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40,
   42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
   74, 76, 80 /*, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100,
   102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124*/
 }; Float_t sizeSig = sizeof(sigBins)/sizeof(Float_t)-1;
 Float_t sigBins4[] = 
 {
-  8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
+  20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
   72, 76, 80 /*, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124*/
 }; Float_t sizeSig4 = sizeof(sigBins4)/sizeof(Float_t)-1;
+
+// Histogram names ////////////////////////////////////////////////////////////
+std::string histEE[] = 
+{
+	"Zee_ZmassFull_2bjet", "Zem_2bjet_elecTrig_ZMass",
+	"Zee_fullMET_2bjet", "Zem_fullMET_2bjet_elec",
+	"Zee_fullMETsig_2bjet", "Zem_fullMETsig_2bjet_elec"
+};
+
+std::string histMM[] = 
+{
+	"Zmm_ZmassFull_2bjet", "Zem_2bjet_muonTrig_ZMass",
+	"Zmm_fullMET_2bjet", "Zem_fullMET_2bjet_muon",
+	"Zmm_fullMETsig_2bjet", "Zem_fullMETsig_2bjet_muon"
+};
 
 // Round method ///////////////////////////////////////////////////////////////
 std::string round(float val, int n)
@@ -85,7 +102,8 @@ void FixBins(TH1F* hist, TH1F* orig, int an)
 	{
 		int size = orig->GetBinContent(i);
 		int center = orig->GetBinCenter(i);
-		if (center >= binL && center <= binH) continue;
+		if (center >= binL && center <= binH && an == 0) continue;
+		if (center > binL && center < binH && an != 0) continue;
 		if (center < startPt || center > endPt) continue;
 		
 		for (Int_t j = 0; j < size; ++j)
@@ -116,17 +134,21 @@ void fithist()
   
   //--- Options to Set ------------------------------------------------------//
   
-  int channel = 1;		// 0 = electron, 1 = muon (completely aesthetic)
-  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
-  int binSize = 0;		// 0 = 2 GeV, 1 = 4 GeV
+  int channel = 0;		// 0 = electron, 1 = muon (completely aesthetic)
+  int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
+  int binSize = 1;		// 0 = 2 GeV, 1 = 4 GeV
 	
   //--- Get the appropriate files & histograms ------------------------------//
-  TFile *f = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
-  TH1F* h1 = (TH1F*)f->Get("Zmm_fullMETsig_2bjet");
-  TH1F* h2 = (TH1F*)f->Get("Zem_fullMETsig_2bjet_muon");
+  TFile *f = new TFile("../output_withTrig/SingleElectron_DATA_2017.root");
+  
+  std::string h1Name = (channel == 0) ? histEE[analysis*2] : histMM[analysis*2];
+  std::string h2Name = (channel == 0) ? histEE[analysis*2+1] : histMM[analysis*2+1];
+  
+  TH1F* h1 = (TH1F*)f->Get(h1Name.c_str());
+  TH1F* h2 = (TH1F*)f->Get(h2Name.c_str());
   
   TFile *f2 = new TFile("../output_MC2020_v2/TT_semi_powheg_MC_2017.root");
-  TH1F* h3 = (TH1F*)f->Get("Zmm_ZmassFull_2bjet");
+  TH1F* h3 = (TH1F*)f->Get(h1Name.c_str());
   
   //--- Get the necessary information to resize the histograms as necessary--//
   Float_t *bins; Int_t binnum = 0;
@@ -136,7 +158,7 @@ void fithist()
     case 0:	//Z mass
       bins = (binSize == 0) ? massBins : massBins4;
       binnum = (binSize == 0) ? sizeMass : sizeMass4;
-      binL = 56; binH = 126; startPt = 38; endPt = 204; break;
+      binL = 72; binH = 110; startPt = 38; endPt = 204; break;
     
     case 1: // MET
       bins = (binSize == 0) ? metBins : metBins4;
@@ -146,8 +168,8 @@ void fithist()
     case 2: // MET Sig
       bins = (binSize == 0) ? sigBins : sigBins4;
       binnum = (binSize == 0) ? sizeSig : sizeSig4; 
-      binL = 0; binH = (binSize == 0) ? 10 : 8;
-      startPt = (binSize == 0) ? 8 : 6; endPt = 126; break;
+      binL = 0; binH = 20; // binH = (binSize == 0) ? 10 : 8;
+      startPt = (binSize == 0) ? 16 : 16; endPt = 82; break;
   }
   
   //--- Now that we have the information, modify the histograms -------------//

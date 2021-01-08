@@ -41,7 +41,7 @@ void METcurve()
     "Z+c Eff vs ttbar Eff (MET Sig)"
   };
 
-  TFile *f2 = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
+  TFile *f2 = new TFile("../output_MC2020_v2/TT_semi_powheg_MC_2017.root");
   TH1F* backgrounds[] =
   {
     (TH1F*)f2->Get("lJet_MET"),
