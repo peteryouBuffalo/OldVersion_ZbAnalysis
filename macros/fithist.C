@@ -132,18 +132,31 @@ void fithist()
 {
   gStyle->SetOptStat(0);
   
+  //--- Files that are currently being used ---------------------------------//
+  std::string fileLoc = "../output_withTrig/";
+  
+  std::string filesEE[] = 
+  {  "SingleElectron_DATA_2016.root", "SingleElectron_DATA_2017.root",
+     "EGamma_DATA_2018.root" };
+  std::string filesMM[] =
+  {  "SingleMuon_DATA_2016.root", "SingleMuon_DATA_2017.root",
+     "SingleMuon_DATA_2018.root" };
+  
   //--- Options to Set ------------------------------------------------------//
   
+  int year = 2018;
   int channel = 0;		// 0 = electron, 1 = muon (completely aesthetic)
-  int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
+  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
   int binSize = 1;		// 0 = 2 GeV, 1 = 4 GeV
 	
   //--- Get the appropriate files & histograms ------------------------------//
-  TFile *f = new TFile("../output_withTrig/SingleElectron_DATA_2017.root");
-  
+
+  std::string fName = (channel == 0) ? filesEE[year-2016] : filesMM[year-2016];
   std::string h1Name = (channel == 0) ? histEE[analysis*2] : histMM[analysis*2];
   std::string h2Name = (channel == 0) ? histEE[analysis*2+1] : histMM[analysis*2+1];
   
+  std::string filename = fileLoc + fName;
+  TFile *f = new TFile(filename.c_str());
   TH1F* h1 = (TH1F*)f->Get(h1Name.c_str());
   TH1F* h2 = (TH1F*)f->Get(h2Name.c_str());
   
@@ -169,7 +182,7 @@ void fithist()
       bins = (binSize == 0) ? sigBins : sigBins4;
       binnum = (binSize == 0) ? sizeSig : sizeSig4; 
       binL = 0; binH = 20; // binH = (binSize == 0) ? 10 : 8;
-      startPt = (binSize == 0) ? 16 : 16; endPt = 82; break;
+      startPt = (binSize == 0) ? 16 : 16; endPt = 84; break;
   }
   
   //--- Now that we have the information, modify the histograms -------------//

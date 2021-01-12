@@ -3,9 +3,9 @@ import json
 import subprocess
 
 #########################################################
-samples_json = "../datasets_Nano25Oct2019_json.txt"
+samples_json = "../datasets_Nano02Apr2020_json.txt"
 
-outDir = '../FileLists_Nano25Oct2019/'
+outDir = '../FileLists_Nano02Apr2020/'
 os.system('mkdir ' + outDir)
 
 samples_input = []
