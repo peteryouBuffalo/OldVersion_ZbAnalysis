@@ -1,8 +1,0 @@
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/B390222F-69C2-5344-A430-A0EB7D06D146.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/4D0BC3EE-60D3-984D-9377-3AD8DAA5E0C5.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/D705FB60-34BB-3843-BF59-F559436DB436.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/90445DC0-E3FF-A94A-BBDC-000374470647.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/E83EB82E-E27F-2F41-806A-5A202AA89D15.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/1C27C509-A045-9548-818F-20C882B083C8.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/C6F80509-3F7C-1E4E-A2A1-304D1E8DD66C.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/40000/A50B1121-5549-6E46-BF61-10F1BC5A841A.root

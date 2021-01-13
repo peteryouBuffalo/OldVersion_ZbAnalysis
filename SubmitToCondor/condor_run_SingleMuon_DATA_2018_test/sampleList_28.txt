@@ -1,8 +1,0 @@
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/9E6D6F3D-CEBB-F443-A8E7-C85A5E66077C.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/E96851FB-44CA-C94A-BB53-D7678F4EF1F8.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/EA182DBA-9767-F54F-8810-7A42587B91B3.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/168C1E03-09B7-1E41-963A-75303DF0FA6C.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/DB361ED8-7E45-1347-A710-40E953BB6684.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/7038189D-7320-4F4E-9AC9-48A6AD30B18F.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/AEB4E576-2969-FD4F-B497-C68B6485B6F2.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018B/SingleMuon/NANOAOD/Nano25Oct2019-v1/240000/4493F699-63CB-5E40-8A44-564894CBD055.root

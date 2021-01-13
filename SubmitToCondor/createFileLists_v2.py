@@ -1,9 +1,10 @@
 import os,sys
 import json
 import subprocess
+import time
 
 #########################################################
-samples_json = "../datasets_Nano02Apr2020_json.txt"
+samples_json = "../datasets_Nano02Apr2020_fullset_json.txt"
 
 outDir = '../FileLists_Nano02Apr2020/'
 os.system('mkdir ' + outDir)
@@ -40,6 +41,7 @@ for k in samples_used:
     #result_str = p.stdout.read()
     #ls = result_str.split()
     #print '>>>>>>>>>>', len(ls)
+    time.sleep(30)
 
     #write to file
     if i==0:

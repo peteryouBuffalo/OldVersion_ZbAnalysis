@@ -1,2 +1,0 @@
-sampleList_0.txt
-sampleList_1.txt

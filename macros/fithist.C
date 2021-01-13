@@ -64,15 +64,15 @@ Float_t sigBins4[] =
 std::string histEE[] = 
 {
 	"Zee_ZmassFull_2bjet", "Zem_2bjet_elecTrig_ZMass",
-	"Zee_fullMET_2bjet", "Zem_fullMET_2bjet_elec",
-	"Zee_fullMETsig_2bjet", "Zem_fullMETsig_2bjet_elec"
+	"Zee_MET_2bjet", "Zem_MET_2bjet_elec",
+	"Zee_METsig_2bjet", "Zem_METsig_2bjet_elec"
 };
 
 std::string histMM[] = 
 {
 	"Zmm_ZmassFull_2bjet", "Zem_2bjet_muonTrig_ZMass",
-	"Zmm_fullMET_2bjet", "Zem_fullMET_2bjet_muon",
-	"Zmm_fullMETsig_2bjet", "Zem_fullMETsig_2bjet_muon"
+	"Zmm_MET_2bjet", "Zem_MET_2bjet_muon",
+	"Zmm_METsig_2bjet", "Zem_METsig_2bjet_muon"
 };
 
 // Round method ///////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ void fithist()
   
   int year = 2018;
   int channel = 0;		// 0 = electron, 1 = muon (completely aesthetic)
-  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
+  int analysis = 1;		// 0 = mass, 1 = MET, 2 = MET sig
   int binSize = 1;		// 0 = 2 GeV, 1 = 4 GeV
 	
   //--- Get the appropriate files & histograms ------------------------------//

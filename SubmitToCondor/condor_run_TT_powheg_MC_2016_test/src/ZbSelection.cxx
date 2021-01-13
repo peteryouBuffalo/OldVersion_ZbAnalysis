@@ -494,7 +494,7 @@ void ZbSelection::Process(Reader* r) {
       { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
       if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
       { 
-        if (*(r->MET_pt) > 80.0) {
+        if (*(r->MET_pt) < 50.0) {
           h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w);
           h_Zee_MET_2bjet->Fill(*(r->MET_pt), zee_w);
           h_Zee_METsig_2bjet->Fill(*(r->MET_significance), zee_w);
@@ -502,9 +502,7 @@ void ZbSelection::Process(Reader* r) {
         h_Zee_fullMET_2bjet->Fill(*(r->MET_pt), zee_w);
         h_Zee_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zee_w);
         h_Zee_fullMETsig_2bjet->Fill(*(r->MET_significance), zee_w);
-      } 
-
-      
+      }    
 
       if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
@@ -614,7 +612,7 @@ void ZbSelection::Process(Reader* r) {
       { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
       if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
       {
-        if (*(r->MET_pt) > 80.0) {
+        if (*(r->MET_pt) < 50.0) {
           h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w);
           h_Zmm_MET_2bjet->Fill(*(r->MET_pt), zmm_w);
           h_Zmm_METsig_2bjet->Fill(*(r->MET_significance), zmm_w);

@@ -1,3 +1,0 @@
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/30000/4AF5C3FE-EFD3-394E-BAD1-C8DB003DC630.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/30000/41BFADA7-746E-D64C-99E5-AED33A2FEDC4.root
-root:://cmsxrootd.fnal.gov///store/data/Run2018C/EGamma/NANOAOD/Nano25Oct2019-v1/30000/3EAE52A2-6C75-634C-8A41-353FB00424E2.root
