@@ -12,14 +12,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              1472345 &           3464283\\           
-  tt &                                              17026 &             39771\\             
-  Single t &                                        1600 &              3620\\              
-  VV &                                              9750 &              21404\\             
+  DY &                                              1617567 &           2278658\\           
+  tt &                                              18115 &             23553\\             
+  Single t &                                        1669 &              2194\\              
+  VV &                                              10721 &             14492\\             
+  ZH &                                              10721 &             14492\\             
 \hline
-  MC &                                              1500721 &           3529078\\           
-  Data &                                            1487944 &           3383949\\           
-  Data/MC &                                         0.99 &              0.96\\              
+  MC &                                              1658792 &           2333390\\           
+  Data &                                            1552852 &           2249168\\           
+  Data/MC &                                         0.94 &              0.96\\              
   \hline
   \hline
 \end{tabular}
@@ -34,14 +35,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              58748 &             135337\\            
-  tt &                                              10757 &             24858\\             
-  Single t &                                        825 &               1826\\              
-  VV &                                              485 &               1097\\              
+  DY &                                              nan &               nan\\               
+  tt &                                              inf &               18152\\             
+  Single t &                                        1087 &              1415\\              
+  VV &                                              1097 &              nan\\               
+  ZH &                                              1097 &              nan\\               
 \hline
-  MC &                                              70815 &             163118\\            
-  Data &                                            62326 &             138625\\            
-  Data/MC &                                         0.88 &              0.85\\              
+  MC &                                              nan &               nan\\               
+  Data &                                            110071 &            155989\\            
+  Data/MC &                                         nan &               nan\\               
   \hline
   \hline
 \end{tabular}
@@ -56,16 +58,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY+bb &                                           1976 &              4263\\              
-  DY+bX &                                           38 &                90\\                
-  DY+XX &                                           10 &                90\\                
-  tt &                                              784 &               1773\\              
-  single t &                                        18 &                40\\                
-  VV &                                              44 &                99\\                
+  DY &                                              inf &               nan\\               
+  tt &                                              4665 &              6059\\              
+  Single t &                                        133 &               186\\               
+  VV &                                              119 &               157\\               
+  ZH &                                              119 &               157\\               
 \hline
-  MC &                                              2869 &              6354\\              
-  Data &                                            2549 &              5503\\              
-  Data/MC &                                         0.89 &              0.87\\              
+  MC &                                              inf &               nan\\               
+  Data &                                            9314 &              12764\\             
+  Data/MC &                                         0.00 &              nan\\               
   \hline
   \hline
 \end{tabular}
@@ -80,14 +81,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              1897290 &           4228420\\           
-  tt &                                              21345 &             47576\\             
-  Single t &                                        1934 &              4384\\              
-  VV &                                              12167 &             25378\\             
+  DY &                                              2195111 &           2856518\\           
+  tt &                                              23587 &             29159\\             
+  Single t &                                        2114 &              2727\\              
+  VV &                                              13485 &             17226\\             
+  ZH &                                              13485 &             17226\\             
 \hline
-  MC &                                              1932735 &           4305757\\           
-  Data &                                            1914006 &           4356677\\           
-  Data/MC &                                         0.99 &              1.01\\              
+  MC &                                              2247781 &           2922855\\           
+  Data &                                            2002414 &           3006894\\           
+  Data/MC &                                         0.89 &              1.03\\              
   \hline
   \hline
 \end{tabular}
@@ -102,14 +104,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              69488 &             152347\\            
-  tt &                                              14133 &             30831\\             
-  Single t &                                        1046 &              2262\\              
-  VV &                                              624 &               1354\\              
+  DY &                                              129287 &            nan\\               
+  tt &                                              18387 &             22755\\             
+  Single t &                                        1376 &              1784\\              
+  VV &                                              1352 &              1708\\              
+  ZH &                                              1352 &              1708\\              
 \hline
-  MC &                                              85291 &             186794\\            
-  Data &                                            79410 &             177136\\            
-  Data/MC &                                         0.93 &              0.95\\              
+  MC &                                              151753 &            nan\\               
+  Data &                                            131813 &            193082\\            
+  Data/MC &                                         0.87 &              nan\\               
   \hline
   \hline
 \end{tabular}
@@ -124,16 +127,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY+bb &                                           2389 &              4864\\              
-  DY+bX &                                           31 &                86\\                
-  DY+XX &                                           2 &                 56\\                
-  tt &                                              1102 &              2366\\              
-  single t &                                        22 &                59\\                
-  VV &                                              65 &                137\\               
+  DY &                                              6433 &              8130\\              
+  tt &                                              6295 &              7789\\              
+  Single t &                                        170 &               228\\               
+  VV &                                              172 &               199\\               
+  ZH &                                              172 &               199\\               
 \hline
-  MC &                                              3611 &              7568\\              
-  Data &                                            3070 &              6547\\              
-  Data/MC &                                         0.85 &              0.87\\              
+  MC &                                              13242 &             16546\\             
+  Data &                                            11868 &             16414\\             
+  Data/MC &                                         0.90 &              0.99\\              
   \hline
   \hline
 \end{tabular}
@@ -148,14 +150,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              2913662 &           6305021\\           
-  tt &                                              32193 &             70712\\             
-  Single t &                                        2905 &              6552\\              
-  VV &                                              18619 &             37970\\             
+  DY &                                              3036417 &           4019006\\           
+  tt &                                              33182 &             41318\\             
+  Single t &                                        2976 &              3889\\              
+  VV &                                              18906 &             24599\\             
+  ZH &                                              18906 &             24599\\             
 \hline
-  MC &                                              2967379 &           6420255\\           
-  Data &                                            2766717 &           6129055\\           
-  Data/MC &                                         0.93 &              0.95\\              
+  MC &                                              3110387 &           4113410\\           
+  Data &                                            2875841 &           4087483\\           
+  Data/MC &                                         0.92 &              0.99\\              
   \hline
   \hline
 \end{tabular}
@@ -170,14 +173,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY &                                              111452 &            237759\\            
-  tt &                                              21996 &             47537\\             
-  Single t &                                        1609 &              3568\\              
-  VV &                                              990 &               2118\\              
+  DY &                                              nan &               nan\\               
+  tt &                                              26846 &             nan\\               
+  Single t &                                        2035 &              2672\\              
+  VV &                                              2121 &              2854\\              
+  ZH &                                              2121 &              2854\\              
 \hline
-  MC &                                              136047 &            290983\\            
-  Data &                                            122837 &            271149\\            
-  Data/MC &                                         0.90 &              0.93\\              
+  MC &                                              nan &               nan\\               
+  Data &                                            222950 &            314249\\            
+  Data/MC &                                         nan &               nan\\               
   \hline
   \hline
 \end{tabular}
@@ -192,16 +196,15 @@
   \hline
    &                                                Electron &          Muon\\              
   \hline
-  DY+bb &                                           3929 &              8170\\              
-  DY+bX &                                           68 &                163\\               
-  DY+XX &                                           43 &                233\\               
-  tt &                                              1823 &              3892\\              
-  single t &                                        48 &                100\\               
-  VV &                                              98 &                220\\               
+  DY &                                              10841 &             13626\\             
+  tt &                                              9901 &              nan\\               
+  Single t &                                        284 &               356\\               
+  VV &                                              255 &               334\\               
+  ZH &                                              255 &               334\\               
 \hline
-  MC &                                              6008 &              12779\\             
-  Data &                                            5070 &              10757\\             
-  Data/MC &                                         0.84 &              0.84\\              
+  MC &                                              21538 &             nan\\               
+  Data &                                            19838 &             26694\\             
+  Data/MC &                                         0.92 &              nan\\               
   \hline
   \hline
 \end{tabular}

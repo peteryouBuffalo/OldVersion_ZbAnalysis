@@ -326,19 +326,19 @@ for r in regions:
       if dy_type == 'mg':
         hDY = getHist(hN,['DY_MG'],fHist,lumiScales)
       
-      if r.split('_')[1] == '2bjet':
-        hN1 = chan + '_' + r.split('_')[1] + '_bb_' + plN
-        hN2 = chan + '_' + r.split('_')[1] + '_bX_' + plN
-        hN3 = chan + '_' + r.split('_')[1] + '_XX_' + plN
-        print hN1, hN2, hN3
-        if dy_type != 'mg':
-          hDY1 = getHist(hN1,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
-          hDY2 = getHist(hN2,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
-          hDY3 = getHist(hN3,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
-        else:
-          hDY1 = getHist(hN1,['DY_MG'],fHist,lumiScales)
-          hDY2 = getHist(hN2,['DY_MG'],fHist,lumiScales)
-          hDY3 = getHist(hN3,['DY_MG'],fHist,lumiScales)
+      #if r.split('_')[1] == '2bjet':
+        #hN1 = chan + '_' + r.split('_')[1] + '_bb_' + plN
+        #hN2 = chan + '_' + r.split('_')[1] + '_bX_' + plN
+        #hN3 = chan + '_' + r.split('_')[1] + '_XX_' + plN
+        #print "hN1 = ",  hN1, hN2, hN3
+        #if dy_type != 'mg':
+        #  hDY1 = getHist(hN1,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
+        #  hDY2 = getHist(hN2,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
+        #  hDY3 = getHist(hN3,['DY_0J','DY_1J','DY_2J'],fHist,lumiScales)
+        #else:
+        #  hDY1 = getHist(hN1,['DY_MG'],fHist,lumiScales)
+        #  hDY2 = getHist(hN2,['DY_MG'],fHist,lumiScales)
+        #  hDY3 = getHist(hN3,['DY_MG'],fHist,lumiScales)
 
 
       hTT = getHist(hN,['TT'],fHist,lumiScales)
@@ -357,20 +357,20 @@ for r in regions:
           nums[r][chan][y]['Data'] = tmp
           fLatex.write('\n Data: '+str(tmp[0]))
 
-          if r.split('_')[1] != '2bjet':
-            tmp = getHistIntegral(hDY[y])
-            nums[r][chan][y]['DY'] = tmp
-            fLatex.write('\n DY: '+str(tmp[0]))
-          else:
-            tmp = getHistIntegral(hDY1[y])
-            nums[r][chan][y]['DYbb'] = tmp
-            fLatex.write('\n DY (bb): '+str(tmp[0]))
-            tmp = getHistIntegral(hDY2[y])
-            nums[r][chan][y]['DYbX'] = tmp
-            fLatex.write('\n DY (bX): '+str(tmp[0]))
-            tmp = getHistIntegral(hDY3[y])
-            nums[r][chan][y]['DYXX'] = tmp
-            fLatex.write('\n DY (XX): '+str(tmp[0]))
+          #if r.split('_')[1] != '2bjet':
+          tmp = getHistIntegral(hDY[y])
+          nums[r][chan][y]['DY'] = tmp
+          fLatex.write('\n DY: '+str(tmp[0]))
+          #else:
+          #  tmp = getHistIntegral(hDY1[y])
+          #  nums[r][chan][y]['DYbb'] = tmp
+          #  fLatex.write('\n DY (bb): '+str(tmp[0]))
+          #  tmp = getHistIntegral(hDY2[y])
+          #  nums[r][chan][y]['DYbX'] = tmp
+          #  fLatex.write('\n DY (bX): '+str(tmp[0]))
+          #  tmp = getHistIntegral(hDY3[y])
+          #  nums[r][chan][y]['DYXX'] = tmp
+          #  fLatex.write('\n DY (XX): '+str(tmp[0]))
           tmp = getHistIntegral(hTT[y])
           nums[r][chan][y]['TT'] = tmp
           fLatex.write('\n tt: '+str(tmp[0]))
@@ -393,10 +393,10 @@ for r in regions:
         xA_title = cfg.get(plN,'xAxisTitle')
         nRebin = int(cfg.get(plN,'rebin'))
         
-        if r.split('_')[1] != '2bjet':
-          plots_process = [hDat[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hVV[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZH[y].Clone().Rebin(nRebin),hDY[y].Clone().Rebin(nRebin)]
-        else:
-          plots_process = [hDat[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hVV[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZH[y].Clone().Rebin(nRebin),hDY3[y].Clone().Rebin(nRebin),hDY2[y].Clone().Rebin(nRebin),hDY1[y].Clone().Rebin(nRebin)]
+        #if r.split('_')[1] != '2bjet':
+        plots_process = [hDat[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hVV[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZH[y].Clone().Rebin(nRebin),hDY[y].Clone().Rebin(nRebin)]
+        #else:
+        #  plots_process = [hDat[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hVV[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZH[y].Clone().Rebin(nRebin),hDY3[y].Clone().Rebin(nRebin),hDY2[y].Clone().Rebin(nRebin),hDY1[y].Clone().Rebin(nRebin)]
         plotNames_process = []
         dataTitle = 'Data ('
         if r == 'Z_jet' and chan == 'Zee': dataTitle = dataTitle + 'Z(ee) + jets)'
@@ -406,8 +406,8 @@ for r in regions:
         if r == 'Z_2bjet' and chan == 'Zee': dataTitle = dataTitle + 'Z(ee) + 2 b jets)'
         if r == 'Z_2bjet' and chan == 'Zmm': dataTitle = dataTitle + 'Z(#mu#mu) + 2 b jets)'
         plotNames_process = [dataTitle, 'Single top', 'Diboson', 't#bar{t}','ZH', 'Z+jets']
-        if r.split('_')[1] == '2bjet':
-          plotNames_process = [dataTitle, 'Single top', 'Diboson', 't#bar{t}','ZH', 'Z+XX', 'Z+bX', 'Z+bb']
+        #if r.split('_')[1] == '2bjet':
+        #  plotNames_process = [dataTitle, 'Single top', 'Diboson', 't#bar{t}','ZH', 'Z+XX', 'Z+bX', 'Z+bb']
 
         utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_'+chan+'_'+y+'_'+dy_type, plotFolder + '/20'+y, xA_title, xA_range, 'MC unc. (stat.)', False, lumi=lumiS[y])
 
@@ -419,16 +419,16 @@ for r in regions:
       
       hDatA = hDat['16'].Clone(hDat['16'].GetName()+'_all')
       hDYA = hDY['16'].Clone(hDY['16'].GetName()+'_all')
-      if r.split('_')[1] == '2bjet':
-        hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
-        hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
-        hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
-        hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
-        hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
-        hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
-        hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
-        hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
-        hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
+      #if r.split('_')[1] == '2bjet':
+      #  hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
+      #  hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
+      #  hDY1A = hDY1['16'].Clone(hDY1['16'].GetName()+'_all')
+      #  hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
+      #  hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
+      #  hDY2A = hDY2['16'].Clone(hDY2['16'].GetName()+'_all')
+      #  hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
+      #  hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
+      #  hDY3A = hDY3['16'].Clone(hDY3['16'].GetName()+'_all')
       hTTA = hTT['16'].Clone(hTT['16'].GetName()+'_all')
       hSTA = hST['16'].Clone(hST['16'].GetName()+'_all')
       hVVA = hVV['16'].Clone(hVV['16'].GetName()+'_all')
@@ -436,19 +436,19 @@ for r in regions:
       for y in ['17','18']:
         hDatA.Add(hDat[y])
         hDYA.Add(hDY[y])
-        if r.split('_')[1] == '2bjet':
-          hDY1A.Add(hDY1[y])
-          hDY2A.Add(hDY2[y])
-          hDY3A.Add(hDY3[y])
+        #if r.split('_')[1] == '2bjet':
+        #  hDY1A.Add(hDY1[y])
+        #  hDY2A.Add(hDY2[y])
+        #  hDY3A.Add(hDY3[y])
         hTTA.Add(hTT[y])
         hSTA.Add(hST[y])
         hVVA.Add(hVV[y])
         hZHA.Add(hZH[y])
 
-      if r.split('_')[1] != '2bjet':
-        plots_process = [hDatA.Clone().Rebin(nRebin),hSTA.Clone().Rebin(nRebin),hVVA.Clone().Rebin(nRebin),hTTA.Clone().Rebin(nRebin),hZHA.Clone().Rebin(nRebin),hDYA.Clone().Rebin(nRebin)]
-      else:
-        plots_process = [hDatA.Clone().Rebin(nRebin),hSTA.Clone().Rebin(nRebin),hVVA.Clone().Rebin(nRebin),hTTA.Clone().Rebin(nRebin),hZHA.Clone().Rebin(nRebin),hDY3A.Clone().Rebin(nRebin),hDY2A.Clone().Rebin(nRebin),hDY1A.Clone().Rebin(nRebin)]
+      #if r.split('_')[1] != '2bjet':
+      plots_process = [hDatA.Clone().Rebin(nRebin),hSTA.Clone().Rebin(nRebin),hVVA.Clone().Rebin(nRebin),hTTA.Clone().Rebin(nRebin),hZHA.Clone().Rebin(nRebin),hDYA.Clone().Rebin(nRebin)]
+      #else:
+      #  plots_process = [hDatA.Clone().Rebin(nRebin),hSTA.Clone().Rebin(nRebin),hVVA.Clone().Rebin(nRebin),hTTA.Clone().Rebin(nRebin),hZHA.Clone().Rebin(nRebin),hDY3A.Clone().Rebin(nRebin),hDY2A.Clone().Rebin(nRebin),hDY1A.Clone().Rebin(nRebin)]
       
       utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_'+chan+'_All_'+dy_type, plotFolder + '/All', xA_title, xA_range, 'MC unc. (stat.)', False, lumi='137.1')
 
@@ -458,8 +458,8 @@ for r in regions:
   for chan in ['Zee','Zmm']:
     print nums[r][chan]['18'].keys()
     pp = ['TT', 'ST', 'Data', 'VV','ZH', 'DY']
-    if r == "Z_2bjet":
-      pp = ['DYXX', 'TT', 'DYbX', 'ST', 'DYbb', 'VV','ZH', 'Data']
+    #if r == "Z_2bjet":
+    #  pp = ['DYXX', 'TT', 'DYbX', 'ST', 'DYbb', 'VV','ZH', 'Data']
     nums[r][chan]['All'] = {}
     for p in pp:
       nums[r][chan]['All'][p] = [0,0]
@@ -472,8 +472,8 @@ for r in regions:
 #calculate total MC and data/MC ratios
 for r in regions:
   mc_name = ['DY','TT','ST','VV','ZH']
-  if r == "Z_2bjet":
-    mc_name = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH']
+  #if r == "Z_2bjet":
+  #  mc_name = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH']
   yy = years + ['All']
   for y in yy:
     #for chan in ['Zee','Zmm']:
@@ -500,9 +500,9 @@ for y in years:
   for r in regions:
     label_nums = ['DY','TT','ST','VV','ZH','MC','Data','DMCratio']
     label_translate = {'DY':'DY','TT':'tt','ST':'Single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
-    if r == 'Z_2bjet':
-      label_nums = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH','MC','Data','DMCratio']
-      label_translate = {'DYbb':'DY+bb','DYbX':'DY+bX','DYXX':'DY+XX','TT':'tt','ST':'single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
+    #if r == 'Z_2bjet':
+    #  label_nums = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH','MC','Data','DMCratio']
+    #  label_translate = {'DYbb':'DY+bb','DYbX':'DY+bX','DYXX':'DY+XX','TT':'tt','ST':'single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
     k = y + '_' + r
     numTmp = {}
     numTmp['Ele'] = nums[r]['Zee'][y]
@@ -525,9 +525,9 @@ for r in regions:
   
   label_nums = ['DY','TT','ST','VV','ZH','MC','Data','DMCratio']
   label_translate = {'DY':'DY','TT':'tt','ST':'Single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
-  if r == 'Z_2bjet':
-    label_nums = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH','MC','Data','DMCratio']
-    label_translate = {'DYbb':'DY+bb','DYbX':'DY+bX','DYXX':'DY+XX','TT':'tt','ST':'single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
+  #if r == 'Z_2bjet':
+  #  label_nums = ['DYbb','DYbX','DYXX','TT','ST','VV','ZH','MC','Data','DMCratio']
+  #  label_translate = {'DYbb':'DY+bb','DYbX':'DY+bX','DYXX':'DY+XX','TT':'tt','ST':'single t','VV':'VV','ZH':'ZH','MC':'MC','Data':'Data','DMCratio':'Data/MC'}
   k = y + '_' + r
 
   printEventCountTwoChannelsAll(nums[r],label_nums,label_translate,k,fLatex_evtCount)
