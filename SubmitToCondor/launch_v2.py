@@ -74,7 +74,7 @@ submit = True # for executing submission
 
 debug = False 
 
-dataSet_list = '../datasets_Nano02Apr2020_json.txt' 
+dataSet_list = '../datasets_Nano02Apr2020_fullset_json.txt' 
 
 nFile = 1
 
