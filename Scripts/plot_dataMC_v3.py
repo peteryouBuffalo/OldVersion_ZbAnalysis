@@ -293,7 +293,7 @@ for s in ss:
 #sys.exit()
 
 getHist('Zee_jet_pt_lep0',['TT'],fHist,lumiScales)
-getHist('Zee_jet_pt_lep0',['ZH'],fHist,lumiScales)
+#getHist('Zee_jet_pt_lep0',['ZH'],fHist,lumiScales)
 nums = {}
 
 for r in regions:

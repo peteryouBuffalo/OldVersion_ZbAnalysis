@@ -16,6 +16,8 @@
 TH1F* background;
 Float_t binL, binH, startPt, endPt;
 
+/*The following arrays contain the binning options for each analysis. They
+ * are for either 2 GeV bins or 4 GeV bins. */
 Float_t massBins[] = 
 {
   40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
@@ -97,19 +99,25 @@ std::string toSci(float val, int n)
 // FixBins method /////////////////////////////////////////////////////////////
 void FixBins(TH1F* hist, TH1F* orig, int an)
 {
+        // get the contents from the original bin
 	int n1 = orig->GetNbinsX();
 	for (Int_t i = 0; i < n1; ++i)
 	{
+                // determine the size of the bin & its appropriate value
 		int size = orig->GetBinContent(i);
 		int center = orig->GetBinCenter(i);
+
+		// if this bin is not in the range we want to look at, skip it
 		if (center >= binL && center <= binH && an == 0) continue;
 		if (center > binL && center < binH && an != 0) continue;
 		if (center < startPt || center > endPt) continue;
 		
+                // fill the new histogram
 		for (Int_t j = 0; j < size; ++j)
 			hist->Fill(center);
 	}
 	
+        // add the appropriate label
 	std::string xLbl;
 	if (an == 0) xLbl = "M_{Z}"; 
 	else if (an == 1) xLbl = "MET"; 
@@ -160,6 +168,8 @@ void fithist()
   TH1F* h1 = (TH1F*)f->Get(h1Name.c_str());
   TH1F* h2 = (TH1F*)f->Get(h2Name.c_str());
   
+  /* This is for including the ttbar background over top if you wish to do so.
+   * It is currently not included and any ttbar contribution is scaled to 0. */
   TFile *f2 = new TFile("../output_MC2020_v2/TT_semi_powheg_MC_2017.root");
   TH1F* h3 = (TH1F*)f->Get(h1Name.c_str());
   
@@ -271,6 +281,7 @@ void fithist()
     le->SetLabel(labels[i-1].c_str()); }
   pad->Modified(); pad->Update();
 
+  // Create the legend that contains the stats
   TLegend *l2 = new TLegend(0.1, 0.7, 0.35, 0.9);
   l2->SetLineColor(kWhite);
   l2->SetBorderSize(0);
