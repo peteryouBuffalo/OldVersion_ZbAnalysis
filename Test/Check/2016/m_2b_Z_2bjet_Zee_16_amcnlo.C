@@ -1,7 +1,7 @@
 void m_2b_Z_2bjet_Zee_16_amcnlo()
 {
 //=========Macro generated from canvas: m_2b_Z_2bjet_Zee_16_amcnlo/m_2b_Z_2bjet_Zee_16_amcnlo
-//=========  (Thu Jan 14 10:42:49 2021) by ROOT version 6.14/09
+//=========  (Thu Jan 21 10:46:23 2021) by ROOT version 6.14/09
    TCanvas *m_2b_Z_2bjet_Zee_16_amcnlo = new TCanvas("m_2b_Z_2bjet_Zee_16_amcnlo", "m_2b_Z_2bjet_Zee_16_amcnlo",0,0,600,600);
    m_2b_Z_2bjet_Zee_16_amcnlo->SetHighLightColor(2);
    m_2b_Z_2bjet_Zee_16_amcnlo->Range(0,0,1,1);
@@ -16,7 +16,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-76.6127,-0.4031303,526.2097,412.7272);
+   topPad->Range(-76.6127,-2.177987,526.2097,2185.809);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
@@ -30,11 +30,11 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(353.7278);
+   st->SetMaximum(1873.343);
    
    TH1F *st_stack_213 = new TH1F("st_stack_213","",50,0,500);
    st_stack_213->SetMinimum(0.01);
-   st_stack_213->SetMaximum(371.4141);
+   st_stack_213->SetMaximum(1967.011);
    st_stack_213->SetDirectory(0);
    st_stack_213->SetStats(0);
 
@@ -61,65 +61,83 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    
    
    TH1D *Zee_2bjet_m_2b_stack_1 = new TH1D("Zee_2bjet_m_2b_stack_1","",50,0,500);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(4,0.7527046);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(5,0.2425328);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(6,1.10195);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(7,0.5362044);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(8,1.080229);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(9,1.095421);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(10,1.059335);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(11,1.151541);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(12,1.16386);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(13,0.578976);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(14,0.7509994);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(15,0.5012567);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(16,1.221345);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(17,0.8970032);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(18,0.5472961);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(19,0.7905473);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(20,0.9609418);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(21,0.3687331);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(22,0.8394696);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(23,0.3454388);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(24,0.3571256);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(26,0.700892);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(27,0.1761617);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(28,0.2155893);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(30,0.3597636);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(31,0.06738112);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(32,0.1681514);
-   Zee_2bjet_m_2b_stack_1->SetBinContent(43,0.2058413);
-   Zee_2bjet_m_2b_stack_1->SetBinError(4,0.3730999);
-   Zee_2bjet_m_2b_stack_1->SetBinError(5,0.1886678);
-   Zee_2bjet_m_2b_stack_1->SetBinError(6,0.4507497);
-   Zee_2bjet_m_2b_stack_1->SetBinError(7,0.30996);
-   Zee_2bjet_m_2b_stack_1->SetBinError(8,0.4138389);
-   Zee_2bjet_m_2b_stack_1->SetBinError(9,0.4251849);
-   Zee_2bjet_m_2b_stack_1->SetBinError(10,0.4344538);
-   Zee_2bjet_m_2b_stack_1->SetBinError(11,0.4706599);
-   Zee_2bjet_m_2b_stack_1->SetBinError(12,0.445972);
-   Zee_2bjet_m_2b_stack_1->SetBinError(13,0.3152991);
-   Zee_2bjet_m_2b_stack_1->SetBinError(14,0.3771389);
-   Zee_2bjet_m_2b_stack_1->SetBinError(15,0.2894784);
-   Zee_2bjet_m_2b_stack_1->SetBinError(16,0.4628504);
-   Zee_2bjet_m_2b_stack_1->SetBinError(17,0.3781423);
-   Zee_2bjet_m_2b_stack_1->SetBinError(18,0.3165678);
-   Zee_2bjet_m_2b_stack_1->SetBinError(19,0.3638322);
-   Zee_2bjet_m_2b_stack_1->SetBinError(20,0.4314816);
-   Zee_2bjet_m_2b_stack_1->SetBinError(21,0.2607389);
-   Zee_2bjet_m_2b_stack_1->SetBinError(22,0.3825475);
-   Zee_2bjet_m_2b_stack_1->SetBinError(23,0.2447527);
-   Zee_2bjet_m_2b_stack_1->SetBinError(24,0.2466716);
-   Zee_2bjet_m_2b_stack_1->SetBinError(26,0.3518779);
-   Zee_2bjet_m_2b_stack_1->SetBinError(27,0.1761617);
-   Zee_2bjet_m_2b_stack_1->SetBinError(28,0.2155893);
-   Zee_2bjet_m_2b_stack_1->SetBinError(30,0.255288);
-   Zee_2bjet_m_2b_stack_1->SetBinError(31,0.06738112);
-   Zee_2bjet_m_2b_stack_1->SetBinError(32,0.1681514);
-   Zee_2bjet_m_2b_stack_1->SetBinError(43,0.2058413);
-   Zee_2bjet_m_2b_stack_1->SetEntries(109);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(3,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(4,0.6493358);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(5,1.572834);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(6,1.376929);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(7,1.378606);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(8,3.147905);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(9,2.724995);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(10,2.246308);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(11,2.725555);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(12,3.539715);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(13,1.830359);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(14,1.376929);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(15,1.461009);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(16,1.844656);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(17,2.239263);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(18,0.9834405);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(19,1.770976);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(20,1.451168);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(21,1.058799);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(22,1.574512);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(23,0.3929288);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(24,1.378047);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(25,0.5899525);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(26,0.7869761);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(27,1.043383);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(28,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(29,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(30,0.3929288);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(31,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(34,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(38,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(39,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(40,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(41,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(44,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(50,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinContent(51,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(3,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(4,0.3457473);
+   Zee_2bjet_m_2b_stack_1->SetBinError(5,0.5560811);
+   Zee_2bjet_m_2b_stack_1->SetBinError(6,0.5204306);
+   Zee_2bjet_m_2b_stack_1->SetBinError(7,0.5210645);
+   Zee_2bjet_m_2b_stack_1->SetBinError(8,0.7869769);
+   Zee_2bjet_m_2b_stack_1->SetBinError(9,0.7192145);
+   Zee_2bjet_m_2b_stack_1->SetBinError(10,0.6574321);
+   Zee_2bjet_m_2b_stack_1->SetBinError(11,0.7193675);
+   Zee_2bjet_m_2b_stack_1->SetBinError(12,0.8343195);
+   Zee_2bjet_m_2b_stack_1->SetBinError(13,0.5933052);
+   Zee_2bjet_m_2b_stack_1->SetBinError(14,0.5204306);
+   Zee_2bjet_m_2b_stack_1->SetBinError(15,0.5272987);
+   Zee_2bjet_m_2b_stack_1->SetBinError(16,0.5946759);
+   Zee_2bjet_m_2b_stack_1->SetBinError(17,0.6568837);
+   Zee_2bjet_m_2b_stack_1->SetBinError(18,0.4398084);
+   Zee_2bjet_m_2b_stack_1->SetBinError(19,0.5903259);
+   Zee_2bjet_m_2b_stack_1->SetBinError(20,0.5255691);
+   Zee_2bjet_m_2b_stack_1->SetBinError(21,0.4463702);
+   Zee_2bjet_m_2b_stack_1->SetBinError(22,0.5566744);
+   Zee_2bjet_m_2b_stack_1->SetBinError(23,0.2778426);
+   Zee_2bjet_m_2b_stack_1->SetBinError(24,0.5208533);
+   Zee_2bjet_m_2b_stack_1->SetBinError(25,0.3406095);
+   Zee_2bjet_m_2b_stack_1->SetBinError(26,0.3934885);
+   Zee_2bjet_m_2b_stack_1->SetBinError(27,0.4440472);
+   Zee_2bjet_m_2b_stack_1->SetBinError(28,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinError(29,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(30,0.2778426);
+   Zee_2bjet_m_2b_stack_1->SetBinError(31,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinError(34,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(38,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(39,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(40,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinError(41,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(44,0.1964644);
+   Zee_2bjet_m_2b_stack_1->SetBinError(50,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetBinError(51,0.1970237);
+   Zee_2bjet_m_2b_stack_1->SetEntries(221);
 
-   ci = TColor::GetColor("#00cccc");
+   ci = TColor::GetColor("#ff6600");
    Zee_2bjet_m_2b_stack_1->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
@@ -141,49 +159,63 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    st->Add(Zee_2bjet_m_2b_stack_1,"");
    
    TH1D *Zee_2bjet_m_2b_stack_2 = new TH1D("Zee_2bjet_m_2b_stack_2","",50,0,500);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(4,0.4589317);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(5,0.2633924);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(6,0.5317983);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(7,4.436657);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(8,6.796658);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(9,12.52015);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(10,7.596646);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(11,4.024894);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(12,1.597231);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(13,1.500165);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(14,0.508904);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(15,0.3133393);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(16,0.2656309);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(17,0.5512589);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(19,0.2853023);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(21,0.5352244);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(24,0.287051);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(25,0.5371486);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(47,0.2768404);
-   Zee_2bjet_m_2b_stack_2->SetBinContent(51,0.2851452);
-   Zee_2bjet_m_2b_stack_2->SetBinError(4,0.3266735);
-   Zee_2bjet_m_2b_stack_2->SetBinError(5,0.2633924);
-   Zee_2bjet_m_2b_stack_2->SetBinError(6,0.3773068);
-   Zee_2bjet_m_2b_stack_2->SetBinError(7,1.081645);
-   Zee_2bjet_m_2b_stack_2->SetBinError(8,1.323619);
-   Zee_2bjet_m_2b_stack_2->SetBinError(9,1.848544);
-   Zee_2bjet_m_2b_stack_2->SetBinError(10,1.426536);
-   Zee_2bjet_m_2b_stack_2->SetBinError(11,1.041155);
-   Zee_2bjet_m_2b_stack_2->SetBinError(12,0.6523902);
-   Zee_2bjet_m_2b_stack_2->SetBinError(13,0.6591982);
-   Zee_2bjet_m_2b_stack_2->SetBinError(14,0.3601539);
-   Zee_2bjet_m_2b_stack_2->SetBinError(15,0.3133393);
-   Zee_2bjet_m_2b_stack_2->SetBinError(16,0.2656309);
-   Zee_2bjet_m_2b_stack_2->SetBinError(17,0.389799);
-   Zee_2bjet_m_2b_stack_2->SetBinError(19,0.2853023);
-   Zee_2bjet_m_2b_stack_2->SetBinError(21,0.378629);
-   Zee_2bjet_m_2b_stack_2->SetBinError(24,0.287051);
-   Zee_2bjet_m_2b_stack_2->SetBinError(25,0.3836533);
-   Zee_2bjet_m_2b_stack_2->SetBinError(47,0.2768404);
-   Zee_2bjet_m_2b_stack_2->SetBinError(51,0.2851452);
-   Zee_2bjet_m_2b_stack_2->SetEntries(170);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(3,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(4,1.19219);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(5,2.162545);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(6,1.913039);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(7,8.768133);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(8,19.0265);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(9,26.52624);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(10,19.15126);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(11,8.470086);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(12,2.086333);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(13,2.807182);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(14,1.018896);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(15,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(16,1.490238);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(17,1.490238);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(19,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(21,0.8941428);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(22,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(23,0.5332903);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(24,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(25,0.8941428);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(31,0.4228008);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(33,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(37,0.5960952);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(41,0.4228008);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(47,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinContent(51,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(3,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(4,0.5960952);
+   Zee_2bjet_m_2b_stack_2->SetBinError(5,0.8959791);
+   Zee_2bjet_m_2b_stack_2->SetBinError(6,0.7892543);
+   Zee_2bjet_m_2b_stack_2->SetBinError(7,1.632809);
+   Zee_2bjet_m_2b_stack_2->SetBinError(8,2.403392);
+   Zee_2bjet_m_2b_stack_2->SetBinError(9,2.811775);
+   Zee_2bjet_m_2b_stack_2->SetBinError(10,2.422029);
+   Zee_2bjet_m_2b_stack_2->SetBinError(11,1.605377);
+   Zee_2bjet_m_2b_stack_2->SetBinError(12,0.7885598);
+   Zee_2bjet_m_2b_stack_2->SetBinError(13,0.9430904);
+   Zee_2bjet_m_2b_stack_2->SetBinError(14,0.5970136);
+   Zee_2bjet_m_2b_stack_2->SetBinError(15,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(16,0.6664547);
+   Zee_2bjet_m_2b_stack_2->SetBinError(17,0.6664547);
+   Zee_2bjet_m_2b_stack_2->SetBinError(19,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(21,0.5162336);
+   Zee_2bjet_m_2b_stack_2->SetBinError(22,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(23,0.5332903);
+   Zee_2bjet_m_2b_stack_2->SetBinError(24,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(25,0.5162336);
+   Zee_2bjet_m_2b_stack_2->SetBinError(31,0.4228008);
+   Zee_2bjet_m_2b_stack_2->SetBinError(33,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(37,0.4215029);
+   Zee_2bjet_m_2b_stack_2->SetBinError(41,0.4228008);
+   Zee_2bjet_m_2b_stack_2->SetBinError(47,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetBinError(51,0.2980476);
+   Zee_2bjet_m_2b_stack_2->SetEntries(336);
 
-   ci = TColor::GetColor("#ff6600");
+   ci = TColor::GetColor("#cccc00");
    Zee_2bjet_m_2b_stack_2->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
@@ -205,107 +237,107 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    st->Add(Zee_2bjet_m_2b_stack_2,"");
    
    TH1D *Zee_2bjet_m_2b_stack_3 = new TH1D("Zee_2bjet_m_2b_stack_3","",50,0,500);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(3,2.477404);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(4,11.06976);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(5,18.83425);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(6,19.77828);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(7,28.26821);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(8,32.52647);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(9,38.82051);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(10,40.82031);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(11,46.77897);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(12,41.79437);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(13,47.74033);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(14,45.04583);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(15,44.38708);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(16,41.69178);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(17,39.10659);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(18,32.442);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(19,28.07599);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(20,24.73378);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(21,22.86051);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(22,22.57723);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(23,21.98421);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(24,15.42599);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(25,13.773);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(26,16.11463);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(27,9.865606);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(28,11.46371);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(29,7.938623);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(30,7.636159);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(31,7.607017);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(32,4.99518);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(33,3.603128);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(34,4.238231);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(35,3.788935);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(36,3.718508);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(37,2.620086);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(38,1.59972);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(39,1.74231);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(40,2.165476);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(41,1.119952);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(42,1.469054);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(43,1.261003);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(44,1.267087);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(45,1.155794);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(46,0.7649597);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(47,0.3768645);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(48,0.7435123);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(49,1.455394);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(50,0.5634303);
-   Zee_2bjet_m_2b_stack_3->SetBinContent(51,3.536425);
-   Zee_2bjet_m_2b_stack_3->SetBinError(3,0.6458658);
-   Zee_2bjet_m_2b_stack_3->SetBinError(4,1.387275);
-   Zee_2bjet_m_2b_stack_3->SetBinError(5,1.812546);
-   Zee_2bjet_m_2b_stack_3->SetBinError(6,1.846994);
-   Zee_2bjet_m_2b_stack_3->SetBinError(7,2.223913);
-   Zee_2bjet_m_2b_stack_3->SetBinError(8,2.373465);
-   Zee_2bjet_m_2b_stack_3->SetBinError(9,2.580523);
-   Zee_2bjet_m_2b_stack_3->SetBinError(10,2.646647);
-   Zee_2bjet_m_2b_stack_3->SetBinError(11,2.847194);
-   Zee_2bjet_m_2b_stack_3->SetBinError(12,2.695506);
-   Zee_2bjet_m_2b_stack_3->SetBinError(13,2.888965);
-   Zee_2bjet_m_2b_stack_3->SetBinError(14,2.814559);
-   Zee_2bjet_m_2b_stack_3->SetBinError(15,2.790259);
-   Zee_2bjet_m_2b_stack_3->SetBinError(16,2.717561);
-   Zee_2bjet_m_2b_stack_3->SetBinError(17,2.621673);
-   Zee_2bjet_m_2b_stack_3->SetBinError(18,2.387676);
-   Zee_2bjet_m_2b_stack_3->SetBinError(19,2.233465);
-   Zee_2bjet_m_2b_stack_3->SetBinError(20,2.082093);
-   Zee_2bjet_m_2b_stack_3->SetBinError(21,2.022315);
-   Zee_2bjet_m_2b_stack_3->SetBinError(22,2.015076);
-   Zee_2bjet_m_2b_stack_3->SetBinError(23,1.984383);
-   Zee_2bjet_m_2b_stack_3->SetBinError(24,1.657154);
-   Zee_2bjet_m_2b_stack_3->SetBinError(25,1.55482);
-   Zee_2bjet_m_2b_stack_3->SetBinError(26,1.707622);
-   Zee_2bjet_m_2b_stack_3->SetBinError(27,1.334942);
-   Zee_2bjet_m_2b_stack_3->SetBinError(28,1.43309);
-   Zee_2bjet_m_2b_stack_3->SetBinError(29,1.193824);
-   Zee_2bjet_m_2b_stack_3->SetBinError(30,1.16969);
-   Zee_2bjet_m_2b_stack_3->SetBinError(31,1.16971);
-   Zee_2bjet_m_2b_stack_3->SetBinError(32,0.9502265);
-   Zee_2bjet_m_2b_stack_3->SetBinError(33,0.7840739);
-   Zee_2bjet_m_2b_stack_3->SetBinError(34,0.8623726);
-   Zee_2bjet_m_2b_stack_3->SetBinError(35,0.8256042);
-   Zee_2bjet_m_2b_stack_3->SetBinError(36,0.8323901);
-   Zee_2bjet_m_2b_stack_3->SetBinError(37,0.6856609);
-   Zee_2bjet_m_2b_stack_3->SetBinError(38,0.5326868);
-   Zee_2bjet_m_2b_stack_3->SetBinError(39,0.5639363);
-   Zee_2bjet_m_2b_stack_3->SetBinError(40,0.6274292);
-   Zee_2bjet_m_2b_stack_3->SetBinError(41,0.4581706);
-   Zee_2bjet_m_2b_stack_3->SetBinError(42,0.5202185);
-   Zee_2bjet_m_2b_stack_3->SetBinError(43,0.4771044);
-   Zee_2bjet_m_2b_stack_3->SetBinError(44,0.4817602);
-   Zee_2bjet_m_2b_stack_3->SetBinError(45,0.4649954);
-   Zee_2bjet_m_2b_stack_3->SetBinError(46,0.3737263);
-   Zee_2bjet_m_2b_stack_3->SetBinError(47,0.2665342);
-   Zee_2bjet_m_2b_stack_3->SetBinError(48,0.3725786);
-   Zee_2bjet_m_2b_stack_3->SetBinError(49,0.5152221);
-   Zee_2bjet_m_2b_stack_3->SetBinError(50,0.306669);
-   Zee_2bjet_m_2b_stack_3->SetBinError(51,0.7911087);
-   Zee_2bjet_m_2b_stack_3->SetEntries(4701);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(3,6.815912);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(4,31.54794);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(5,45.17976);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(6,55.30626);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(7,64.6538);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(8,69.91178);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(9,91.91744);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(10,92.89115);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(11,88.21738);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(12,93.08589);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(13,89.38582);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(14,88.8016);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(15,81.79095);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(16,81.01198);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(17,67.76964);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(18,69.32756);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(19,54.72204);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(20,55.11152);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(21,47.90613);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(22,41.28495);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(23,39.72703);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(24,32.13216);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(25,28.23735);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(26,29.01631);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(27,20.64248);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(28,20.253);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(29,16.74767);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(30,15.18975);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(31,13.43708);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(32,12.26864);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(33,11.68442);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(34,7.789614);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(35,6.426431);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(36,6.621172);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(37,5.257989);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(38,3.310586);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(39,4.673768);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(40,4.089547);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(41,3.115846);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(42,3.115846);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(43,2.531625);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(44,2.336884);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(45,2.726365);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(46,1.752663);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(47,1.752663);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(48,0.9737017);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(49,2.336884);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(50,0.9737017);
+   Zee_2bjet_m_2b_stack_3->SetBinContent(51,7.789614);
+   Zee_2bjet_m_2b_stack_3->SetBinError(3,1.152099);
+   Zee_2bjet_m_2b_stack_3->SetBinError(4,2.47864);
+   Zee_2bjet_m_2b_stack_3->SetBinError(5,2.966197);
+   Zee_2bjet_m_2b_stack_3->SetBinError(6,3.281823);
+   Zee_2bjet_m_2b_stack_3->SetBinError(7,3.548338);
+   Zee_2bjet_m_2b_stack_3->SetBinError(8,3.689803);
+   Zee_2bjet_m_2b_stack_3->SetBinError(9,4.230843);
+   Zee_2bjet_m_2b_stack_3->SetBinError(10,4.253193);
+   Zee_2bjet_m_2b_stack_3->SetBinError(11,4.144814);
+   Zee_2bjet_m_2b_stack_3->SetBinError(12,4.257649);
+   Zee_2bjet_m_2b_stack_3->SetBinError(13,4.172173);
+   Zee_2bjet_m_2b_stack_3->SetBinError(14,4.158516);
+   Zee_2bjet_m_2b_stack_3->SetBinError(15,3.99099);
+   Zee_2bjet_m_2b_stack_3->SetBinError(16,3.971939);
+   Zee_2bjet_m_2b_stack_3->SetBinError(17,3.632834);
+   Zee_2bjet_m_2b_stack_3->SetBinError(18,3.674354);
+   Zee_2bjet_m_2b_stack_3->SetBinError(19,3.264443);
+   Zee_2bjet_m_2b_stack_3->SetBinError(20,3.27604);
+   Zee_2bjet_m_2b_stack_3->SetBinError(21,3.054383);
+   Zee_2bjet_m_2b_stack_3->SetBinError(22,2.835462);
+   Zee_2bjet_m_2b_stack_3->SetBinError(23,2.781449);
+   Zee_2bjet_m_2b_stack_3->SetBinError(24,2.501485);
+   Zee_2bjet_m_2b_stack_3->SetBinError(25,2.344984);
+   Zee_2bjet_m_2b_stack_3->SetBinError(26,2.377109);
+   Zee_2bjet_m_2b_stack_3->SetBinError(27,2.004975);
+   Zee_2bjet_m_2b_stack_3->SetBinError(28,1.98597);
+   Zee_2bjet_m_2b_stack_3->SetBinError(29,1.805948);
+   Zee_2bjet_m_2b_stack_3->SetBinError(30,1.7199);
+   Zee_2bjet_m_2b_stack_3->SetBinError(31,1.617635);
+   Zee_2bjet_m_2b_stack_3->SetBinError(32,1.545704);
+   Zee_2bjet_m_2b_stack_3->SetBinError(33,1.508452);
+   Zee_2bjet_m_2b_stack_3->SetBinError(34,1.231646);
+   Zee_2bjet_m_2b_stack_3->SetBinError(35,1.118698);
+   Zee_2bjet_m_2b_stack_3->SetBinError(36,1.135522);
+   Zee_2bjet_m_2b_stack_3->SetBinError(37,1.011901);
+   Zee_2bjet_m_2b_stack_3->SetBinError(38,0.802935);
+   Zee_2bjet_m_2b_stack_3->SetBinError(39,0.954029);
+   Zee_2bjet_m_2b_stack_3->SetBinError(40,0.8924124);
+   Zee_2bjet_m_2b_stack_3->SetBinError(41,0.7789614);
+   Zee_2bjet_m_2b_stack_3->SetBinError(42,0.7789614);
+   Zee_2bjet_m_2b_stack_3->SetBinError(43,0.7021463);
+   Zee_2bjet_m_2b_stack_3->SetBinError(44,0.6746004);
+   Zee_2bjet_m_2b_stack_3->SetBinError(45,0.7286517);
+   Zee_2bjet_m_2b_stack_3->SetBinError(46,0.584221);
+   Zee_2bjet_m_2b_stack_3->SetBinError(47,0.584221);
+   Zee_2bjet_m_2b_stack_3->SetBinError(48,0.4354527);
+   Zee_2bjet_m_2b_stack_3->SetBinError(49,0.6746004);
+   Zee_2bjet_m_2b_stack_3->SetBinError(50,0.4354527);
+   Zee_2bjet_m_2b_stack_3->SetBinError(51,1.231646);
+   Zee_2bjet_m_2b_stack_3->SetEntries(8337);
 
-   ci = TColor::GetColor("#cccc00");
+   ci = TColor::GetColor("#0000cc");
    Zee_2bjet_m_2b_stack_3->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
@@ -326,415 +358,355 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    Zee_2bjet_m_2b_stack_3->GetZaxis()->SetTitleFont(42);
    st->Add(Zee_2bjet_m_2b_stack_3,"");
    
-   TH1D *Zee_2bjet_XX_m_2b_stack_4 = new TH1D("Zee_2bjet_XX_m_2b_stack_4","",50,0,500);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(3,0.4400626);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(4,0.9100791);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(5,0.9523217);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(6,0.9906296);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(7,-1.216129);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(8,2.049394);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(9,0.9128765);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(10,0.438723);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(11,-0.2673429);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(12,0.895292);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(13,0.9391728);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(14,0.8978027);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(15,-0.4210032);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(16,0.4020475);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(17,0.7302836);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(19,-0.5452018);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(20,-0.02300774);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(21,-0.1836464);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(24,1.156261);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(25,0.08475388);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(28,0.5043973);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(29,0.5631825);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(30,-0.08636183);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(40,0.2211225);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(41,-0.4352756);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(44,0.515722);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(45,-0.4507464);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(47,0.4800856);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinContent(51,-0.3860709);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(3,0.4400626);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(4,0.6456254);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(5,0.6740131);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(6,1.293295);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(7,0.8791312);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(8,1.395974);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(9,0.8666318);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(10,0.7647183);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(11,0.4670754);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(12,0.9184013);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(13,0.9278086);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(14,0.6356383);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(15,0.4210032);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(16,0.4020475);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(17,0.7302836);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(19,0.5452018);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(20,0.6515877);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(21,0.7733777);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(24,0.9022944);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(25,0.5182888);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(28,0.5043973);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(29,0.5631825);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(30,0.08636183);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(40,0.2211225);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(41,0.4352756);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(44,0.515722);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(45,0.4507464);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(47,0.4800856);
-   Zee_2bjet_XX_m_2b_stack_4->SetBinError(51,0.4211854);
-   Zee_2bjet_XX_m_2b_stack_4->SetEntries(60);
-
-   ci = TColor::GetColor("#0000cc");
-   Zee_2bjet_XX_m_2b_stack_4->SetFillColor(ci);
-
-   ci = TColor::GetColor("#000099");
-   Zee_2bjet_XX_m_2b_stack_4->SetLineColor(ci);
-   Zee_2bjet_XX_m_2b_stack_4->GetXaxis()->SetRange(1,500);
-   Zee_2bjet_XX_m_2b_stack_4->GetXaxis()->SetLabelFont(42);
-   Zee_2bjet_XX_m_2b_stack_4->GetXaxis()->SetLabelSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetXaxis()->SetTitleSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetXaxis()->SetTitleFont(42);
-   Zee_2bjet_XX_m_2b_stack_4->GetYaxis()->SetLabelFont(42);
-   Zee_2bjet_XX_m_2b_stack_4->GetYaxis()->SetLabelSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetYaxis()->SetTitleSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetYaxis()->SetTitleOffset(0);
-   Zee_2bjet_XX_m_2b_stack_4->GetYaxis()->SetTitleFont(42);
-   Zee_2bjet_XX_m_2b_stack_4->GetZaxis()->SetLabelFont(42);
-   Zee_2bjet_XX_m_2b_stack_4->GetZaxis()->SetLabelSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetZaxis()->SetTitleSize(0.035);
-   Zee_2bjet_XX_m_2b_stack_4->GetZaxis()->SetTitleFont(42);
-   st->Add(Zee_2bjet_XX_m_2b_stack_4,"");
-   
-   TH1D *Zee_2bjet_bX_m_2b_stack_5 = new TH1D("Zee_2bjet_bX_m_2b_stack_5","",50,0,500);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(3,0.3078746);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(4,2.127485);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(5,0.6115734);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(6,0.09861408);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(7,5.645563);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(8,0.4296879);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(9,0.09071977);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(10,3.105237);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(11,0.6766555);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(12,1.696684);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(13,0.1293869);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(14,1.032905);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(15,1.595888);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(16,-0.5537102);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(17,2.696721);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(18,0.8265971);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(19,1.557162);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(20,0.8064604);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(21,1.713061);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(22,-0.3337231);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(23,-1.196249);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(24,3.273745);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(25,0.8951671);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(26,-0.07305381);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(27,-0.1903354);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(28,0.5100354);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(29,1.630888);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(30,1.404574);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(31,0.09625517);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(33,1.025641);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(34,0.4597683);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(35,-0.07629069);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(36,1.151929);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(37,0.5800828);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(38,0.4792728);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(41,0.9162384);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(43,0.08085408);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(47,0.4720387);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinContent(51,1.861372);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(3,1.050405);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(4,1.075929);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(5,1.273998);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(6,1.455846);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(7,1.76321);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(8,1.531658);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(9,1.806859);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(10,1.377537);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(11,1.808331);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(12,1.824573);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(13,1.159319);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(14,1.750246);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(15,1.570788);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(16,1.049011);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(17,1.580503);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(18,0.938073);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(19,1.046021);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(20,1.222528);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(21,1.380554);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(22,1.2188);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(23,0.9681374);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(24,1.359931);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(25,0.986596);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(26,0.7221919);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(27,0.1903354);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(28,0.5100354);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(29,0.9286975);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(30,0.8034599);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(31,0.09625517);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(33,0.725388);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(34,0.3736099);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(35,0.948244);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(36,0.6804395);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(37,0.719744);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(38,0.4792728);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(41,0.6489482);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(43,0.684837);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(47,0.4720387);
-   Zee_2bjet_bX_m_2b_stack_5->SetBinError(51,1.532211);
-   Zee_2bjet_bX_m_2b_stack_5->SetEntries(253);
+   TH1D *Zee_2bjet_m_2b_stack_4 = new TH1D("Zee_2bjet_m_2b_stack_4","",50,0,500);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(2,0.0005795809);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(3,0.02550156);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(4,0.1095408);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(5,0.2092287);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(6,0.315292);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(7,0.5992867);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(8,1.116273);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(9,2.266161);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(10,4.237316);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(11,6.949755);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(12,8.403924);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(13,7.262729);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(14,3.373741);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(15,0.9991975);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(16,0.2909496);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(17,0.1732947);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(18,0.1280874);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(19,0.0973696);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(20,0.07070887);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(21,0.06027642);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(22,0.0730272);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(23,0.05506019);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(24,0.0486848);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(25,0.04984396);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(26,0.03361569);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(27,0.03593402);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(28,0.0365136);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(29,0.03303611);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(30,0.02608114);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(31,0.01738743);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(32,0.02376282);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(33,0.01738743);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(34,0.01564869);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(35,0.0150691);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(36,0.01448952);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(37,0.01622827);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(38,0.01738743);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(39,0.01390994);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(40,0.009273295);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(41,0.009852876);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(42,0.01275078);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(43,0.009273295);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(44,0.009852876);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(45,0.00637539);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(46,0.003477486);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(47,0.004057067);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(48,0.006954971);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(49,0.002897905);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(50,0.004057067);
+   Zee_2bjet_m_2b_stack_4->SetBinContent(51,0.06433348);
+   Zee_2bjet_m_2b_stack_4->SetBinError(2,0.0005795809);
+   Zee_2bjet_m_2b_stack_4->SetBinError(3,0.003844505);
+   Zee_2bjet_m_2b_stack_4->SetBinError(4,0.007967921);
+   Zee_2bjet_m_2b_stack_4->SetBinError(5,0.01101204);
+   Zee_2bjet_m_2b_stack_4->SetBinError(6,0.01351803);
+   Zee_2bjet_m_2b_stack_4->SetBinError(7,0.01863693);
+   Zee_2bjet_m_2b_stack_4->SetBinError(8,0.02543561);
+   Zee_2bjet_m_2b_stack_4->SetBinError(9,0.03624119);
+   Zee_2bjet_m_2b_stack_4->SetBinError(10,0.04955671);
+   Zee_2bjet_m_2b_stack_4->SetBinError(11,0.0634661);
+   Zee_2bjet_m_2b_stack_4->SetBinError(12,0.06979079);
+   Zee_2bjet_m_2b_stack_4->SetBinError(13,0.06487942);
+   Zee_2bjet_m_2b_stack_4->SetBinError(14,0.0442194);
+   Zee_2bjet_m_2b_stack_4->SetBinError(15,0.02406483);
+   Zee_2bjet_m_2b_stack_4->SetBinError(16,0.01298572);
+   Zee_2bjet_m_2b_stack_4->SetBinError(17,0.01002189);
+   Zee_2bjet_m_2b_stack_4->SetBinError(18,0.00861609);
+   Zee_2bjet_m_2b_stack_4->SetBinError(19,0.007512228);
+   Zee_2bjet_m_2b_stack_4->SetBinError(20,0.006401681);
+   Zee_2bjet_m_2b_stack_4->SetBinError(21,0.005910589);
+   Zee_2bjet_m_2b_stack_4->SetBinError(22,0.00650578);
+   Zee_2bjet_m_2b_stack_4->SetBinError(23,0.005649056);
+   Zee_2bjet_m_2b_stack_4->SetBinError(24,0.005311947);
+   Zee_2bjet_m_2b_stack_4->SetBinError(25,0.005374812);
+   Zee_2bjet_m_2b_stack_4->SetBinError(26,0.004413957);
+   Zee_2bjet_m_2b_stack_4->SetBinError(27,0.004563625);
+   Zee_2bjet_m_2b_stack_4->SetBinError(28,0.004600281);
+   Zee_2bjet_m_2b_stack_4->SetBinError(29,0.00437574);
+   Zee_2bjet_m_2b_stack_4->SetBinError(30,0.003887947);
+   Zee_2bjet_m_2b_stack_4->SetBinError(31,0.003174496);
+   Zee_2bjet_m_2b_stack_4->SetBinError(32,0.003711129);
+   Zee_2bjet_m_2b_stack_4->SetBinError(33,0.003174496);
+   Zee_2bjet_m_2b_stack_4->SetBinError(34,0.003011591);
+   Zee_2bjet_m_2b_stack_4->SetBinError(35,0.002955295);
+   Zee_2bjet_m_2b_stack_4->SetBinError(36,0.002897905);
+   Zee_2bjet_m_2b_stack_4->SetBinError(37,0.003066854);
+   Zee_2bjet_m_2b_stack_4->SetBinError(38,0.003174496);
+   Zee_2bjet_m_2b_stack_4->SetBinError(39,0.002839355);
+   Zee_2bjet_m_2b_stack_4->SetBinError(40,0.002318324);
+   Zee_2bjet_m_2b_stack_4->SetBinError(41,0.002389673);
+   Zee_2bjet_m_2b_stack_4->SetBinError(42,0.002718476);
+   Zee_2bjet_m_2b_stack_4->SetBinError(43,0.002318324);
+   Zee_2bjet_m_2b_stack_4->SetBinError(44,0.002389673);
+   Zee_2bjet_m_2b_stack_4->SetBinError(45,0.001922253);
+   Zee_2bjet_m_2b_stack_4->SetBinError(46,0.001419678);
+   Zee_2bjet_m_2b_stack_4->SetBinError(47,0.001533427);
+   Zee_2bjet_m_2b_stack_4->SetBinError(48,0.002007727);
+   Zee_2bjet_m_2b_stack_4->SetBinError(49,0.001295982);
+   Zee_2bjet_m_2b_stack_4->SetBinError(50,0.001533427);
+   Zee_2bjet_m_2b_stack_4->SetBinError(51,0.006106264);
+   Zee_2bjet_m_2b_stack_4->SetEntries(64487);
 
    ci = TColor::GetColor("#cc0000");
-   Zee_2bjet_bX_m_2b_stack_5->SetFillColor(ci);
+   Zee_2bjet_m_2b_stack_4->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
-   Zee_2bjet_bX_m_2b_stack_5->SetLineColor(ci);
-   Zee_2bjet_bX_m_2b_stack_5->GetXaxis()->SetRange(1,500);
-   Zee_2bjet_bX_m_2b_stack_5->GetXaxis()->SetLabelFont(42);
-   Zee_2bjet_bX_m_2b_stack_5->GetXaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetXaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetXaxis()->SetTitleFont(42);
-   Zee_2bjet_bX_m_2b_stack_5->GetYaxis()->SetLabelFont(42);
-   Zee_2bjet_bX_m_2b_stack_5->GetYaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetYaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetYaxis()->SetTitleOffset(0);
-   Zee_2bjet_bX_m_2b_stack_5->GetYaxis()->SetTitleFont(42);
-   Zee_2bjet_bX_m_2b_stack_5->GetZaxis()->SetLabelFont(42);
-   Zee_2bjet_bX_m_2b_stack_5->GetZaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetZaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bX_m_2b_stack_5->GetZaxis()->SetTitleFont(42);
-   st->Add(Zee_2bjet_bX_m_2b_stack_5,"");
+   Zee_2bjet_m_2b_stack_4->SetLineColor(ci);
+   Zee_2bjet_m_2b_stack_4->GetXaxis()->SetRange(1,500);
+   Zee_2bjet_m_2b_stack_4->GetXaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_4->GetXaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetXaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetXaxis()->SetTitleFont(42);
+   Zee_2bjet_m_2b_stack_4->GetYaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_4->GetYaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetYaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetYaxis()->SetTitleOffset(0);
+   Zee_2bjet_m_2b_stack_4->GetYaxis()->SetTitleFont(42);
+   Zee_2bjet_m_2b_stack_4->GetZaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_4->GetZaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetZaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_4->GetZaxis()->SetTitleFont(42);
+   st->Add(Zee_2bjet_m_2b_stack_4,"");
    
-   TH1D *Zee_2bjet_bb_m_2b_stack_6 = new TH1D("Zee_2bjet_bb_m_2b_stack_6","",50,0,500);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(2,0.1941181);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(3,15.54095);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(4,61.39284);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(5,65.67166);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(6,62.12712);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(7,100.2296);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(8,93.84238);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(9,124.5293);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(10,136.1248);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(11,142.1855);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(12,127.3319);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(13,108.3452);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(14,93.89015);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(15,79.80024);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(16,79.01881);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(17,58.18258);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(18,54.88101);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(19,55.5527);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(20,46.59751);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(21,49.45891);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(22,35.39088);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(23,36.1526);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(24,42.94318);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(25,29.70395);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(26,28.21045);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(27,20.67396);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(28,19.16433);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(29,17.5849);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(30,12.69496);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(31,10.93647);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(32,16.10143);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(33,15.95998);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(34,17.13487);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(35,6.451828);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(36,13.46955);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(37,3.403557);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(38,7.326255);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(39,7.746989);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(40,2.110746);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(41,4.259322);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(42,10.79385);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(43,0.9534927);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(44,3.10544);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(45,7.577793);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(46,3.983222);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(47,4.699401);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(48,4.770268);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(49,8.684752);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(50,3.082339);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinContent(51,26.17751);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(2,0.1941181);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(3,4.798334);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(4,7.772825);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(5,8.820011);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(6,9.506505);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(7,11.19349);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(8,12.05758);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(9,13.13974);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(10,13.52364);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(11,13.29694);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(12,12.84134);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(13,12.06314);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(14,11.70704);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(15,11.11121);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(16,10.51313);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(17,9.930473);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(18,9.667239);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(19,8.744104);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(20,8.414743);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(21,8.022282);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(22,7.319424);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(23,7.398559);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(24,6.835898);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(25,6.600569);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(26,5.853156);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(27,5.417269);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(28,5.457182);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(29,5.385001);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(30,4.243469);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(31,5.039512);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(32,4.18075);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(33,4.117806);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(34,3.843286);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(35,3.641111);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(36,3.591596);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(37,3.367364);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(38,2.979843);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(39,2.693933);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(40,2.838853);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(41,2.924194);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(42,2.885908);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(43,2.481477);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(44,2.247131);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(45,2.269836);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(46,2.035114);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(47,2.100976);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(48,2.10621);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(49,2.189811);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(50,1.825023);
-   Zee_2bjet_bb_m_2b_stack_6->SetBinError(51,6.049201);
-   Zee_2bjet_bb_m_2b_stack_6->SetEntries(13604);
+   TH1D *Zee_2bjet_m_2b_stack_5 = new TH1D("Zee_2bjet_m_2b_stack_5","",50,0,500);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(2,2.767139);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(3,135.6826);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(4,359.0071);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(5,411.0595);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(6,487.8134);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(7,640.7592);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(8,840.6958);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(9,906.6655);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(10,911.8129);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(11,908.5724);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(12,800.9371);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(13,769.4566);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(14,716.1792);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(15,632.66);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(16,574.715);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(17,524.6171);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(18,472.0878);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(19,390.8249);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(20,374.7939);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(21,349.8788);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(22,286.7186);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(23,278.1284);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(24,251.3173);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(25,217.2716);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(26,181.7672);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(27,166.7875);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(28,160.006);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(29,140.7236);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(30,126.5322);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(31,115.9994);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(32,106.219);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(33,98.98926);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(34,90.23956);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(35,66.24712);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(36,74.47652);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(37,60.48093);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(38,63.516);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(39,44.7539);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(40,53.75106);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(41,40.0234);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(42,34.48913);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(43,41.50738);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(44,38.2404);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(45,32.25784);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(46,23.99244);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(47,24.49228);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(48,28.75894);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(49,20.49354);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(50,17.74686);
+   Zee_2bjet_m_2b_stack_5->SetBinContent(51,249.9572);
+   Zee_2bjet_m_2b_stack_5->SetBinError(2,1.260492);
+   Zee_2bjet_m_2b_stack_5->SetBinError(3,9.161762);
+   Zee_2bjet_m_2b_stack_5->SetBinError(4,15.01229);
+   Zee_2bjet_m_2b_stack_5->SetBinError(5,14.83599);
+   Zee_2bjet_m_2b_stack_5->SetBinError(6,16.59884);
+   Zee_2bjet_m_2b_stack_5->SetBinError(7,19.2464);
+   Zee_2bjet_m_2b_stack_5->SetBinError(8,21.66324);
+   Zee_2bjet_m_2b_stack_5->SetBinError(9,22.08066);
+   Zee_2bjet_m_2b_stack_5->SetBinError(10,22.35316);
+   Zee_2bjet_m_2b_stack_5->SetBinError(11,21.98944);
+   Zee_2bjet_m_2b_stack_5->SetBinError(12,20.42337);
+   Zee_2bjet_m_2b_stack_5->SetBinError(13,20.39836);
+   Zee_2bjet_m_2b_stack_5->SetBinError(14,20.11529);
+   Zee_2bjet_m_2b_stack_5->SetBinError(15,18.64813);
+   Zee_2bjet_m_2b_stack_5->SetBinError(16,17.08193);
+   Zee_2bjet_m_2b_stack_5->SetBinError(17,16.883);
+   Zee_2bjet_m_2b_stack_5->SetBinError(18,15.57525);
+   Zee_2bjet_m_2b_stack_5->SetBinError(19,14.05751);
+   Zee_2bjet_m_2b_stack_5->SetBinError(20,13.75461);
+   Zee_2bjet_m_2b_stack_5->SetBinError(21,13.61793);
+   Zee_2bjet_m_2b_stack_5->SetBinError(22,12.32156);
+   Zee_2bjet_m_2b_stack_5->SetBinError(23,11.89491);
+   Zee_2bjet_m_2b_stack_5->SetBinError(24,11.45467);
+   Zee_2bjet_m_2b_stack_5->SetBinError(25,10.47044);
+   Zee_2bjet_m_2b_stack_5->SetBinError(26,9.778683);
+   Zee_2bjet_m_2b_stack_5->SetBinError(27,9.186728);
+   Zee_2bjet_m_2b_stack_5->SetBinError(28,9.194552);
+   Zee_2bjet_m_2b_stack_5->SetBinError(29,8.399128);
+   Zee_2bjet_m_2b_stack_5->SetBinError(30,8.004309);
+   Zee_2bjet_m_2b_stack_5->SetBinError(31,7.641522);
+   Zee_2bjet_m_2b_stack_5->SetBinError(32,7.552324);
+   Zee_2bjet_m_2b_stack_5->SetBinError(33,7.323223);
+   Zee_2bjet_m_2b_stack_5->SetBinError(34,6.731364);
+   Zee_2bjet_m_2b_stack_5->SetBinError(35,5.772246);
+   Zee_2bjet_m_2b_stack_5->SetBinError(36,6.101354);
+   Zee_2bjet_m_2b_stack_5->SetBinError(37,5.498266);
+   Zee_2bjet_m_2b_stack_5->SetBinError(38,5.670926);
+   Zee_2bjet_m_2b_stack_5->SetBinError(39,4.751379);
+   Zee_2bjet_m_2b_stack_5->SetBinError(40,5.20315);
+   Zee_2bjet_m_2b_stack_5->SetBinError(41,4.518496);
+   Zee_2bjet_m_2b_stack_5->SetBinError(42,4.152003);
+   Zee_2bjet_m_2b_stack_5->SetBinError(43,4.989761);
+   Zee_2bjet_m_2b_stack_5->SetBinError(44,4.801982);
+   Zee_2bjet_m_2b_stack_5->SetBinError(45,4.040983);
+   Zee_2bjet_m_2b_stack_5->SetBinError(46,3.46301);
+   Zee_2bjet_m_2b_stack_5->SetBinError(47,3.498897);
+   Zee_2bjet_m_2b_stack_5->SetBinError(48,3.818461);
+   Zee_2bjet_m_2b_stack_5->SetBinError(49,3.200553);
+   Zee_2bjet_m_2b_stack_5->SetBinError(50,3.579873);
+   Zee_2bjet_m_2b_stack_5->SetBinError(51,11.19601);
+   Zee_2bjet_m_2b_stack_5->SetEntries(27953);
 
    ci = TColor::GetColor("#00cc00");
-   Zee_2bjet_bb_m_2b_stack_6->SetFillColor(ci);
+   Zee_2bjet_m_2b_stack_5->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
-   Zee_2bjet_bb_m_2b_stack_6->SetLineColor(ci);
-   Zee_2bjet_bb_m_2b_stack_6->GetXaxis()->SetRange(1,500);
-   Zee_2bjet_bb_m_2b_stack_6->GetXaxis()->SetLabelFont(42);
-   Zee_2bjet_bb_m_2b_stack_6->GetXaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetXaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetXaxis()->SetTitleFont(42);
-   Zee_2bjet_bb_m_2b_stack_6->GetYaxis()->SetLabelFont(42);
-   Zee_2bjet_bb_m_2b_stack_6->GetYaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetYaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetYaxis()->SetTitleOffset(0);
-   Zee_2bjet_bb_m_2b_stack_6->GetYaxis()->SetTitleFont(42);
-   Zee_2bjet_bb_m_2b_stack_6->GetZaxis()->SetLabelFont(42);
-   Zee_2bjet_bb_m_2b_stack_6->GetZaxis()->SetLabelSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetZaxis()->SetTitleSize(0.035);
-   Zee_2bjet_bb_m_2b_stack_6->GetZaxis()->SetTitleFont(42);
-   st->Add(Zee_2bjet_bb_m_2b_stack_6,"");
+   Zee_2bjet_m_2b_stack_5->SetLineColor(ci);
+   Zee_2bjet_m_2b_stack_5->GetXaxis()->SetRange(1,500);
+   Zee_2bjet_m_2b_stack_5->GetXaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_5->GetXaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetXaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetXaxis()->SetTitleFont(42);
+   Zee_2bjet_m_2b_stack_5->GetYaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_5->GetYaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetYaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetYaxis()->SetTitleOffset(0);
+   Zee_2bjet_m_2b_stack_5->GetYaxis()->SetTitleFont(42);
+   Zee_2bjet_m_2b_stack_5->GetZaxis()->SetLabelFont(42);
+   Zee_2bjet_m_2b_stack_5->GetZaxis()->SetLabelSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetZaxis()->SetTitleSize(0.035);
+   Zee_2bjet_m_2b_stack_5->GetZaxis()->SetTitleFont(42);
+   st->Add(Zee_2bjet_m_2b_stack_5,"");
    st->Draw("hist");
    
    TH1D *Zee_2bjet_m_2b__425 = new TH1D("Zee_2bjet_m_2b__425","",50,0,500);
-   Zee_2bjet_m_2b__425->SetBinContent(3,20);
-   Zee_2bjet_m_2b__425->SetBinContent(4,54);
-   Zee_2bjet_m_2b__425->SetBinContent(5,86);
-   Zee_2bjet_m_2b__425->SetBinContent(6,81);
-   Zee_2bjet_m_2b__425->SetBinContent(7,104);
-   Zee_2bjet_m_2b__425->SetBinContent(8,130);
-   Zee_2bjet_m_2b__425->SetBinContent(9,168);
-   Zee_2bjet_m_2b__425->SetBinContent(10,177);
-   Zee_2bjet_m_2b__425->SetBinContent(11,129);
-   Zee_2bjet_m_2b__425->SetBinContent(12,157);
-   Zee_2bjet_m_2b__425->SetBinContent(13,126);
-   Zee_2bjet_m_2b__425->SetBinContent(14,129);
-   Zee_2bjet_m_2b__425->SetBinContent(15,116);
-   Zee_2bjet_m_2b__425->SetBinContent(16,104);
-   Zee_2bjet_m_2b__425->SetBinContent(17,108);
-   Zee_2bjet_m_2b__425->SetBinContent(18,85);
-   Zee_2bjet_m_2b__425->SetBinContent(19,64);
-   Zee_2bjet_m_2b__425->SetBinContent(20,71);
-   Zee_2bjet_m_2b__425->SetBinContent(21,75);
-   Zee_2bjet_m_2b__425->SetBinContent(22,57);
-   Zee_2bjet_m_2b__425->SetBinContent(23,61);
-   Zee_2bjet_m_2b__425->SetBinContent(24,52);
-   Zee_2bjet_m_2b__425->SetBinContent(25,47);
-   Zee_2bjet_m_2b__425->SetBinContent(26,38);
-   Zee_2bjet_m_2b__425->SetBinContent(27,29);
-   Zee_2bjet_m_2b__425->SetBinContent(28,27);
-   Zee_2bjet_m_2b__425->SetBinContent(29,34);
-   Zee_2bjet_m_2b__425->SetBinContent(30,29);
-   Zee_2bjet_m_2b__425->SetBinContent(31,25);
-   Zee_2bjet_m_2b__425->SetBinContent(32,13);
-   Zee_2bjet_m_2b__425->SetBinContent(33,17);
-   Zee_2bjet_m_2b__425->SetBinContent(34,14);
-   Zee_2bjet_m_2b__425->SetBinContent(35,14);
-   Zee_2bjet_m_2b__425->SetBinContent(36,13);
-   Zee_2bjet_m_2b__425->SetBinContent(37,7);
-   Zee_2bjet_m_2b__425->SetBinContent(38,8);
-   Zee_2bjet_m_2b__425->SetBinContent(39,5);
-   Zee_2bjet_m_2b__425->SetBinContent(40,11);
-   Zee_2bjet_m_2b__425->SetBinContent(41,4);
-   Zee_2bjet_m_2b__425->SetBinContent(42,7);
-   Zee_2bjet_m_2b__425->SetBinContent(43,5);
-   Zee_2bjet_m_2b__425->SetBinContent(44,1);
-   Zee_2bjet_m_2b__425->SetBinContent(45,1);
-   Zee_2bjet_m_2b__425->SetBinContent(46,2);
-   Zee_2bjet_m_2b__425->SetBinContent(47,5);
-   Zee_2bjet_m_2b__425->SetBinContent(48,4);
-   Zee_2bjet_m_2b__425->SetBinContent(49,4);
-   Zee_2bjet_m_2b__425->SetBinContent(50,3);
-   Zee_2bjet_m_2b__425->SetBinContent(51,28);
-   Zee_2bjet_m_2b__425->SetBinError(3,4.472136);
-   Zee_2bjet_m_2b__425->SetBinError(4,7.348469);
-   Zee_2bjet_m_2b__425->SetBinError(5,9.273618);
-   Zee_2bjet_m_2b__425->SetBinError(6,9);
-   Zee_2bjet_m_2b__425->SetBinError(7,10.19804);
-   Zee_2bjet_m_2b__425->SetBinError(8,11.40175);
-   Zee_2bjet_m_2b__425->SetBinError(9,12.96148);
-   Zee_2bjet_m_2b__425->SetBinError(10,13.30413);
-   Zee_2bjet_m_2b__425->SetBinError(11,11.35782);
-   Zee_2bjet_m_2b__425->SetBinError(12,12.52996);
-   Zee_2bjet_m_2b__425->SetBinError(13,11.22497);
-   Zee_2bjet_m_2b__425->SetBinError(14,11.35782);
-   Zee_2bjet_m_2b__425->SetBinError(15,10.77033);
-   Zee_2bjet_m_2b__425->SetBinError(16,10.19804);
-   Zee_2bjet_m_2b__425->SetBinError(17,10.3923);
-   Zee_2bjet_m_2b__425->SetBinError(18,9.219544);
-   Zee_2bjet_m_2b__425->SetBinError(19,8);
-   Zee_2bjet_m_2b__425->SetBinError(20,8.42615);
-   Zee_2bjet_m_2b__425->SetBinError(21,8.660254);
-   Zee_2bjet_m_2b__425->SetBinError(22,7.549834);
-   Zee_2bjet_m_2b__425->SetBinError(23,7.81025);
-   Zee_2bjet_m_2b__425->SetBinError(24,7.211103);
-   Zee_2bjet_m_2b__425->SetBinError(25,6.855655);
-   Zee_2bjet_m_2b__425->SetBinError(26,6.164414);
-   Zee_2bjet_m_2b__425->SetBinError(27,5.385165);
-   Zee_2bjet_m_2b__425->SetBinError(28,5.196152);
-   Zee_2bjet_m_2b__425->SetBinError(29,5.830952);
-   Zee_2bjet_m_2b__425->SetBinError(30,5.385165);
-   Zee_2bjet_m_2b__425->SetBinError(31,5);
-   Zee_2bjet_m_2b__425->SetBinError(32,3.605551);
-   Zee_2bjet_m_2b__425->SetBinError(33,4.123106);
-   Zee_2bjet_m_2b__425->SetBinError(34,3.741657);
-   Zee_2bjet_m_2b__425->SetBinError(35,3.741657);
-   Zee_2bjet_m_2b__425->SetBinError(36,3.605551);
-   Zee_2bjet_m_2b__425->SetBinError(37,2.645751);
-   Zee_2bjet_m_2b__425->SetBinError(38,2.828427);
-   Zee_2bjet_m_2b__425->SetBinError(39,2.236068);
-   Zee_2bjet_m_2b__425->SetBinError(40,3.316625);
-   Zee_2bjet_m_2b__425->SetBinError(41,2);
-   Zee_2bjet_m_2b__425->SetBinError(42,2.645751);
-   Zee_2bjet_m_2b__425->SetBinError(43,2.236068);
-   Zee_2bjet_m_2b__425->SetBinError(44,1);
-   Zee_2bjet_m_2b__425->SetBinError(45,1);
-   Zee_2bjet_m_2b__425->SetBinError(46,1.414214);
-   Zee_2bjet_m_2b__425->SetBinError(47,2.236068);
-   Zee_2bjet_m_2b__425->SetBinError(48,2);
-   Zee_2bjet_m_2b__425->SetBinError(49,2);
-   Zee_2bjet_m_2b__425->SetBinError(50,1.732051);
-   Zee_2bjet_m_2b__425->SetBinError(51,5.291503);
-   Zee_2bjet_m_2b__425->SetEntries(2549);
+   Zee_2bjet_m_2b__425->SetBinContent(3,47);
+   Zee_2bjet_m_2b__425->SetBinContent(4,150);
+   Zee_2bjet_m_2b__425->SetBinContent(5,174);
+   Zee_2bjet_m_2b__425->SetBinContent(6,219);
+   Zee_2bjet_m_2b__425->SetBinContent(7,249);
+   Zee_2bjet_m_2b__425->SetBinContent(8,291);
+   Zee_2bjet_m_2b__425->SetBinContent(9,324);
+   Zee_2bjet_m_2b__425->SetBinContent(10,343);
+   Zee_2bjet_m_2b__425->SetBinContent(11,294);
+   Zee_2bjet_m_2b__425->SetBinContent(12,299);
+   Zee_2bjet_m_2b__425->SetBinContent(13,294);
+   Zee_2bjet_m_2b__425->SetBinContent(14,256);
+   Zee_2bjet_m_2b__425->SetBinContent(15,268);
+   Zee_2bjet_m_2b__425->SetBinContent(16,224);
+   Zee_2bjet_m_2b__425->SetBinContent(17,204);
+   Zee_2bjet_m_2b__425->SetBinContent(18,190);
+   Zee_2bjet_m_2b__425->SetBinContent(19,133);
+   Zee_2bjet_m_2b__425->SetBinContent(20,141);
+   Zee_2bjet_m_2b__425->SetBinContent(21,138);
+   Zee_2bjet_m_2b__425->SetBinContent(22,120);
+   Zee_2bjet_m_2b__425->SetBinContent(23,114);
+   Zee_2bjet_m_2b__425->SetBinContent(24,88);
+   Zee_2bjet_m_2b__425->SetBinContent(25,94);
+   Zee_2bjet_m_2b__425->SetBinContent(26,79);
+   Zee_2bjet_m_2b__425->SetBinContent(27,65);
+   Zee_2bjet_m_2b__425->SetBinContent(28,54);
+   Zee_2bjet_m_2b__425->SetBinContent(29,67);
+   Zee_2bjet_m_2b__425->SetBinContent(30,54);
+   Zee_2bjet_m_2b__425->SetBinContent(31,43);
+   Zee_2bjet_m_2b__425->SetBinContent(32,44);
+   Zee_2bjet_m_2b__425->SetBinContent(33,46);
+   Zee_2bjet_m_2b__425->SetBinContent(34,34);
+   Zee_2bjet_m_2b__425->SetBinContent(35,33);
+   Zee_2bjet_m_2b__425->SetBinContent(36,29);
+   Zee_2bjet_m_2b__425->SetBinContent(37,26);
+   Zee_2bjet_m_2b__425->SetBinContent(38,24);
+   Zee_2bjet_m_2b__425->SetBinContent(39,11);
+   Zee_2bjet_m_2b__425->SetBinContent(40,23);
+   Zee_2bjet_m_2b__425->SetBinContent(41,16);
+   Zee_2bjet_m_2b__425->SetBinContent(42,15);
+   Zee_2bjet_m_2b__425->SetBinContent(43,19);
+   Zee_2bjet_m_2b__425->SetBinContent(44,6);
+   Zee_2bjet_m_2b__425->SetBinContent(45,11);
+   Zee_2bjet_m_2b__425->SetBinContent(46,10);
+   Zee_2bjet_m_2b__425->SetBinContent(47,12);
+   Zee_2bjet_m_2b__425->SetBinContent(48,10);
+   Zee_2bjet_m_2b__425->SetBinContent(49,6);
+   Zee_2bjet_m_2b__425->SetBinContent(50,6);
+   Zee_2bjet_m_2b__425->SetBinContent(51,93);
+   Zee_2bjet_m_2b__425->SetBinError(3,6.855655);
+   Zee_2bjet_m_2b__425->SetBinError(4,12.24745);
+   Zee_2bjet_m_2b__425->SetBinError(5,13.19091);
+   Zee_2bjet_m_2b__425->SetBinError(6,14.79865);
+   Zee_2bjet_m_2b__425->SetBinError(7,15.77973);
+   Zee_2bjet_m_2b__425->SetBinError(8,17.05872);
+   Zee_2bjet_m_2b__425->SetBinError(9,18);
+   Zee_2bjet_m_2b__425->SetBinError(10,18.52026);
+   Zee_2bjet_m_2b__425->SetBinError(11,17.14643);
+   Zee_2bjet_m_2b__425->SetBinError(12,17.29162);
+   Zee_2bjet_m_2b__425->SetBinError(13,17.14643);
+   Zee_2bjet_m_2b__425->SetBinError(14,16);
+   Zee_2bjet_m_2b__425->SetBinError(15,16.37071);
+   Zee_2bjet_m_2b__425->SetBinError(16,14.96663);
+   Zee_2bjet_m_2b__425->SetBinError(17,14.28286);
+   Zee_2bjet_m_2b__425->SetBinError(18,13.78405);
+   Zee_2bjet_m_2b__425->SetBinError(19,11.53256);
+   Zee_2bjet_m_2b__425->SetBinError(20,11.87434);
+   Zee_2bjet_m_2b__425->SetBinError(21,11.74734);
+   Zee_2bjet_m_2b__425->SetBinError(22,10.95445);
+   Zee_2bjet_m_2b__425->SetBinError(23,10.67708);
+   Zee_2bjet_m_2b__425->SetBinError(24,9.380832);
+   Zee_2bjet_m_2b__425->SetBinError(25,9.69536);
+   Zee_2bjet_m_2b__425->SetBinError(26,8.888194);
+   Zee_2bjet_m_2b__425->SetBinError(27,8.062258);
+   Zee_2bjet_m_2b__425->SetBinError(28,7.348469);
+   Zee_2bjet_m_2b__425->SetBinError(29,8.185353);
+   Zee_2bjet_m_2b__425->SetBinError(30,7.348469);
+   Zee_2bjet_m_2b__425->SetBinError(31,6.557439);
+   Zee_2bjet_m_2b__425->SetBinError(32,6.63325);
+   Zee_2bjet_m_2b__425->SetBinError(33,6.78233);
+   Zee_2bjet_m_2b__425->SetBinError(34,5.830952);
+   Zee_2bjet_m_2b__425->SetBinError(35,5.744563);
+   Zee_2bjet_m_2b__425->SetBinError(36,5.385165);
+   Zee_2bjet_m_2b__425->SetBinError(37,5.09902);
+   Zee_2bjet_m_2b__425->SetBinError(38,4.898979);
+   Zee_2bjet_m_2b__425->SetBinError(39,3.316625);
+   Zee_2bjet_m_2b__425->SetBinError(40,4.795832);
+   Zee_2bjet_m_2b__425->SetBinError(41,4);
+   Zee_2bjet_m_2b__425->SetBinError(42,3.872983);
+   Zee_2bjet_m_2b__425->SetBinError(43,4.358899);
+   Zee_2bjet_m_2b__425->SetBinError(44,2.44949);
+   Zee_2bjet_m_2b__425->SetBinError(45,3.316625);
+   Zee_2bjet_m_2b__425->SetBinError(46,3.162278);
+   Zee_2bjet_m_2b__425->SetBinError(47,3.464102);
+   Zee_2bjet_m_2b__425->SetBinError(48,3.162278);
+   Zee_2bjet_m_2b__425->SetBinError(49,2.44949);
+   Zee_2bjet_m_2b__425->SetBinError(50,2.44949);
+   Zee_2bjet_m_2b__425->SetBinError(51,9.643651);
+   Zee_2bjet_m_2b__425->SetEntries(5490);
 
    ci = TColor::GetColor("#000099");
    Zee_2bjet_m_2b__425->SetLineColor(ci);
@@ -757,7 +729,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    Zee_2bjet_m_2b__425->GetZaxis()->SetTitleFont(42);
    Zee_2bjet_m_2b__425->Draw("same E");
    
-   Double_t Graph_from_Zee_2bjet_bb_m_2b_fx1425[50] = {
+   Double_t Graph_from_Zee_2bjet_m_2b_fx1425[50] = {
    5,
    15,
    25,
@@ -808,58 +780,58 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    475,
    485,
    495};
-   Double_t Graph_from_Zee_2bjet_bb_m_2b_fy1425[50] = {
+   Double_t Graph_from_Zee_2bjet_m_2b_fy1425[50] = {
    0,
-   0.1941181,
-   18.76629,
-   76.7118,
-   86.57574,
-   84.62839,
-   137.9001,
-   136.7248,
-   177.9689,
-   189.145,
-   194.5503,
-   174.4794,
-   159.2332,
-   142.1266,
-   126.1768,
-   122.0459,
-   102.1644,
-   88.69691,
-   85.71649,
-   73.07569,
-   74.75279,
-   58.47386,
-   57.286,
-   63.44336,
-   44.99402,
-   44.95293,
-   30.52539,
-   31.85806,
-   27.71759,
-   22.00909,
-   18.70712,
-   21.26477,
-   20.58875,
-   21.83287,
-   10.16447,
-   18.33999,
-   6.603726,
-   9.405248,
-   9.489299,
-   4.497345,
-   5.860236,
-   12.26291,
-   2.501191,
-   4.88825,
-   8.28284,
-   4.748182,
-   6.30523,
-   5.51378,
-   10.14015,
-   3.64577};
-   Double_t Graph_from_Zee_2bjet_bb_m_2b_fex1425[50] = {
+   2.767719,
+   143.0191,
+   392.5061,
+   460.1838,
+   546.7249,
+   716.159,
+   933.8983,
+   1030.1,
+   1030.339,
+   1014.935,
+   908.053,
+   870.7427,
+   810.7504,
+   717.2092,
+   659.3529,
+   596.2895,
+   542.5269,
+   447.7133,
+   431.4273,
+   399.7981,
+   329.9491,
+   318.8368,
+   285.1742,
+   247.0428,
+   211.6041,
+   188.5093,
+   180.492,
+   157.7014,
+   142.1409,
+   130.0732,
+   118.5114,
+   110.9891,
+   98.24185,
+   72.68862,
+   81.11218,
+   66.35124,
+   67.04099,
+   49.6386,
+   58.04635,
+   43.76893,
+   37.61772,
+   44.04828,
+   40.7836,
+   34.99058,
+   25.74858,
+   26.54705,
+   29.7396,
+   22.83332,
+   18.92165};
+   Double_t Graph_from_Zee_2bjet_m_2b_fex1425[50] = {
    5,
    5,
    5,
@@ -910,59 +882,59 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    5,
    5,
    5};
-   Double_t Graph_from_Zee_2bjet_bb_m_2b_fey1425[50] = {
+   Double_t Graph_from_Zee_2bjet_m_2b_fey1425[50] = {
    0,
-   0.1941181,
-   4.973747,
-   8.010101,
-   9.124706,
-   9.895588,
-   11.63563,
-   12.5394,
-   13.67207,
-   13.9499,
-   13.77348,
-   13.30273,
-   12.51416,
-   12.19491,
-   11.57891,
-   10.92968,
-   10.43138,
-   10.00683,
-   9.113337,
-   8.789103,
-   8.435766,
-   7.698462,
-   7.724872,
-   7.230661,
-   6.882889,
-   6.149861,
-   5.58535,
-   5.691715,
-   5.621664,
-   4.482564,
-   5.174815,
-   4.290674,
-   4.254091,
-   3.956528,
-   3.852074,
-   3.749058,
-   3.511026,
-   3.064788,
-   2.752326,
-   2.915759,
-   3.061279,
-   2.932421,
-   2.626162,
-   2.355347,
-   2.360413,
-   2.069145,
-   2.239438,
-   2.138909,
-   2.249606,
-   1.850609};
-   TGraphErrors *gre = new TGraphErrors(50,Graph_from_Zee_2bjet_bb_m_2b_fx1425,Graph_from_Zee_2bjet_bb_m_2b_fy1425,Graph_from_Zee_2bjet_bb_m_2b_fex1425,Graph_from_Zee_2bjet_bb_m_2b_fey1425);
-   gre->SetName("Graph_from_Zee_2bjet_bb_m_2b");
+   1.260492,
+   9.240827,
+   15.23113,
+   15.16631,
+   16.94656,
+   19.64567,
+   22.12028,
+   22.66893,
+   22.89224,
+   22.44579,
+   20.89412,
+   20.85056,
+   20.55596,
+   19.08005,
+   17.56037,
+   17.29477,
+   16.00884,
+   14.44672,
+   14.14913,
+   13.97294,
+   12.65937,
+   12.23057,
+   11.73998,
+   10.74763,
+   10.07115,
+   9.413453,
+   9.408638,
+   8.593348,
+   8.191717,
+   7.824766,
+   7.708879,
+   7.482905,
+   6.845951,
+   5.879653,
+   6.206121,
+   5.606474,
+   5.730875,
+   4.850217,
+   5.282781,
+   4.608815,
+   4.224443,
+   5.038921,
+   4.853115,
+   4.106151,
+   3.511944,
+   3.559835,
+   3.843211,
+   3.270876,
+   3.611638};
+   TGraphErrors *gre = new TGraphErrors(50,Graph_from_Zee_2bjet_m_2b_fx1425,Graph_from_Zee_2bjet_m_2b_fy1425,Graph_from_Zee_2bjet_m_2b_fex1425,Graph_from_Zee_2bjet_m_2b_fey1425);
+   gre->SetName("Graph_from_Zee_2bjet_m_2b");
    gre->SetTitle("");
 
    ci = TColor::GetColor("#333333");
@@ -972,28 +944,28 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    ci = TColor::GetColor("#000099");
    gre->SetLineColor(ci);
    
-   TH1F *Graph_Graph_from_Zee_2bjet_bb_m_2b1425 = new TH1F("Graph_Graph_from_Zee_2bjet_bb_m_2b1425","",100,0,550);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->SetMinimum(-20.96984);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->SetMaximum(229.1686);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->SetDirectory(0);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->SetStats(0);
+   TH1F *Graph_Graph_from_Zee_2bjet_m_2b1425 = new TH1F("Graph_Graph_from_Zee_2bjet_m_2b1425","",100,0,550);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->SetMinimum(0);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->SetMaximum(1158.554);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->SetDirectory(0);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->SetLineColor(ci);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetXaxis()->SetLabelFont(42);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetXaxis()->SetLabelSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetXaxis()->SetTitleSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetXaxis()->SetTitleFont(42);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetYaxis()->SetLabelFont(42);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetYaxis()->SetLabelSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetYaxis()->SetTitleSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetYaxis()->SetTitleOffset(0);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetYaxis()->SetTitleFont(42);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetZaxis()->SetLabelFont(42);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetZaxis()->SetLabelSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetZaxis()->SetTitleSize(0.035);
-   Graph_Graph_from_Zee_2bjet_bb_m_2b1425->GetZaxis()->SetTitleFont(42);
-   gre->SetHistogram(Graph_Graph_from_Zee_2bjet_bb_m_2b1425);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->SetLineColor(ci);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetXaxis()->SetLabelSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetXaxis()->SetTitleSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetYaxis()->SetLabelSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetYaxis()->SetTitleSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetYaxis()->SetTitleOffset(0);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetZaxis()->SetLabelSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetZaxis()->SetTitleSize(0.035);
+   Graph_Graph_from_Zee_2bjet_m_2b1425->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_Zee_2bjet_m_2b1425);
    
    gre->Draw("2");
    
@@ -1013,7 +985,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1.2);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_bb_m_2b_stack_6","Z+bb","F");
+   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_5","Z+jets","F");
 
    ci = TColor::GetColor("#00cc00");
    entry->SetFillColor(ci);
@@ -1027,7 +999,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_bX_m_2b_stack_5","Z+bX","F");
+   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_4","ZH","F");
 
    ci = TColor::GetColor("#cc0000");
    entry->SetFillColor(ci);
@@ -1041,7 +1013,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_XX_m_2b_stack_4","Z+XX","F");
+   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_3","t#bar{t}","F");
 
    ci = TColor::GetColor("#0000cc");
    entry->SetFillColor(ci);
@@ -1055,7 +1027,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_3","t#bar{t}","F");
+   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_2","Diboson","F");
 
    ci = TColor::GetColor("#cccc00");
    entry->SetFillColor(ci);
@@ -1069,7 +1041,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_2","Diboson","F");
+   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_1","Single top","F");
 
    ci = TColor::GetColor("#ff6600");
    entry->SetFillColor(ci);
@@ -1083,21 +1055,7 @@ void m_2b_Z_2bjet_Zee_16_amcnlo()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
-   entry=leg->AddEntry("Zee_2bjet_m_2b_stack_1","Single top","F");
-
-   ci = TColor::GetColor("#00cccc");
-   entry->SetFillColor(ci);
-   entry->SetFillStyle(1001);
-
-   ci = TColor::GetColor("#000099");
-   entry->SetLineColor(ci);
-   entry->SetLineStyle(1);
-   entry->SetLineWidth(1);
-   entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(21);
-   entry->SetMarkerSize(1);
-   entry->SetTextFont(42);
-   entry=leg->AddEntry("Graph_from_Zee_2bjet_bb_m_2b","MC unc. (stat.)","fl");
+   entry=leg->AddEntry("Graph_from_Zee_2bjet_m_2b","MC unc. (stat.)","fl");
 
    ci = TColor::GetColor("#333333");
    entry->SetFillColor(ci);
@@ -1138,107 +1096,107 @@ tex->SetNDC();
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__426 = new TH1D("data_mc_ratio__426","",50,0,500);
-   data_mc_ratio__426->SetBinContent(3,1.065741);
-   data_mc_ratio__426->SetBinContent(4,0.7039334);
-   data_mc_ratio__426->SetBinContent(5,0.9933499);
-   data_mc_ratio__426->SetBinContent(6,0.9571256);
-   data_mc_ratio__426->SetBinContent(7,0.7541689);
-   data_mc_ratio__426->SetBinContent(8,0.950815);
-   data_mc_ratio__426->SetBinContent(9,0.9439849);
-   data_mc_ratio__426->SetBinContent(10,0.9357899);
-   data_mc_ratio__426->SetBinContent(11,0.6630677);
-   data_mc_ratio__426->SetBinContent(12,0.8998199);
-   data_mc_ratio__426->SetBinContent(13,0.7912922);
-   data_mc_ratio__426->SetBinContent(14,0.9076415);
-   data_mc_ratio__426->SetBinContent(15,0.9193449);
-   data_mc_ratio__426->SetBinContent(16,0.8521384);
-   data_mc_ratio__426->SetBinContent(17,1.057119);
-   data_mc_ratio__426->SetBinContent(18,0.9583198);
-   data_mc_ratio__426->SetBinContent(19,0.7466474);
-   data_mc_ratio__426->SetBinContent(20,0.9715954);
-   data_mc_ratio__426->SetBinContent(21,1.003307);
-   data_mc_ratio__426->SetBinContent(22,0.9747945);
-   data_mc_ratio__426->SetBinContent(23,1.064833);
-   data_mc_ratio__426->SetBinContent(24,0.8196288);
-   data_mc_ratio__426->SetBinContent(25,1.044583);
-   data_mc_ratio__426->SetBinContent(26,0.8453287);
-   data_mc_ratio__426->SetBinContent(27,0.9500289);
-   data_mc_ratio__426->SetBinContent(28,0.8475094);
-   data_mc_ratio__426->SetBinContent(29,1.226658);
-   data_mc_ratio__426->SetBinContent(30,1.317637);
-   data_mc_ratio__426->SetBinContent(31,1.336389);
-   data_mc_ratio__426->SetBinContent(32,0.6113399);
-   data_mc_ratio__426->SetBinContent(33,0.8256936);
-   data_mc_ratio__426->SetBinContent(34,0.6412351);
-   data_mc_ratio__426->SetBinContent(35,1.377347);
-   data_mc_ratio__426->SetBinContent(36,0.7088337);
-   data_mc_ratio__426->SetBinContent(37,1.060008);
-   data_mc_ratio__426->SetBinContent(38,0.8505889);
-   data_mc_ratio__426->SetBinContent(39,0.5269093);
-   data_mc_ratio__426->SetBinContent(40,2.445888);
-   data_mc_ratio__426->SetBinContent(41,0.6825664);
-   data_mc_ratio__426->SetBinContent(42,0.570827);
-   data_mc_ratio__426->SetBinContent(43,1.999048);
-   data_mc_ratio__426->SetBinContent(44,0.2045722);
-   data_mc_ratio__426->SetBinContent(45,0.1207315);
-   data_mc_ratio__426->SetBinContent(46,0.4212138);
-   data_mc_ratio__426->SetBinContent(47,0.7929925);
-   data_mc_ratio__426->SetBinContent(48,0.7254551);
-   data_mc_ratio__426->SetBinContent(49,0.3944716);
-   data_mc_ratio__426->SetBinContent(50,0.8228715);
-   data_mc_ratio__426->SetBinContent(51,0.8896124);
-   data_mc_ratio__426->SetBinError(3,0.2383069);
-   data_mc_ratio__426->SetBinError(4,0.0957932);
-   data_mc_ratio__426->SetBinError(5,0.1071157);
-   data_mc_ratio__426->SetBinError(6,0.1063473);
-   data_mc_ratio__426->SetBinError(7,0.07395235);
-   data_mc_ratio__426->SetBinError(8,0.08339199);
-   data_mc_ratio__426->SetBinError(9,0.07283002);
-   data_mc_ratio__426->SetBinError(10,0.07033828);
-   data_mc_ratio__426->SetBinError(11,0.05837986);
-   data_mc_ratio__426->SetBinError(12,0.07181344);
-   data_mc_ratio__426->SetBinError(13,0.07049391);
-   data_mc_ratio__426->SetBinError(14,0.07991338);
-   data_mc_ratio__426->SetBinError(15,0.08535903);
-   data_mc_ratio__426->SetBinError(16,0.08355904);
-   data_mc_ratio__426->SetBinError(17,0.1017213);
-   data_mc_ratio__426->SetBinError(18,0.1039444);
-   data_mc_ratio__426->SetBinError(19,0.09333093);
-   data_mc_ratio__426->SetBinError(20,0.1153072);
-   data_mc_ratio__426->SetBinError(21,0.1158519);
-   data_mc_ratio__426->SetBinError(22,0.1291147);
-   data_mc_ratio__426->SetBinError(23,0.1363379);
-   data_mc_ratio__426->SetBinError(24,0.1136621);
-   data_mc_ratio__426->SetBinError(25,0.1523681);
-   data_mc_ratio__426->SetBinError(26,0.1371304);
-   data_mc_ratio__426->SetBinError(27,0.1764159);
-   data_mc_ratio__426->SetBinError(28,0.1631033);
-   data_mc_ratio__426->SetBinError(29,0.2103701);
-   data_mc_ratio__426->SetBinError(30,0.2446791);
-   data_mc_ratio__426->SetBinError(31,0.2672779);
-   data_mc_ratio__426->SetBinError(32,0.1695552);
-   data_mc_ratio__426->SetBinError(33,0.2002601);
-   data_mc_ratio__426->SetBinError(34,0.1713773);
-   data_mc_ratio__426->SetBinError(35,0.3681113);
-   data_mc_ratio__426->SetBinError(36,0.1965951);
-   data_mc_ratio__426->SetBinError(37,0.4006453);
-   data_mc_ratio__426->SetBinError(38,0.3007286);
-   data_mc_ratio__426->SetBinError(39,0.235641);
-   data_mc_ratio__426->SetBinError(40,0.7374629);
-   data_mc_ratio__426->SetBinError(41,0.3412832);
-   data_mc_ratio__426->SetBinError(42,0.2157523);
-   data_mc_ratio__426->SetBinError(43,0.8940013);
-   data_mc_ratio__426->SetBinError(44,0.2045722);
-   data_mc_ratio__426->SetBinError(45,0.1207315);
-   data_mc_ratio__426->SetBinError(46,0.2978432);
-   data_mc_ratio__426->SetBinError(47,0.354637);
-   data_mc_ratio__426->SetBinError(48,0.3627276);
-   data_mc_ratio__426->SetBinError(49,0.1972358);
-   data_mc_ratio__426->SetBinError(50,0.4750851);
-   data_mc_ratio__426->SetBinError(51,0.2451133);
+   data_mc_ratio__426->SetBinContent(3,0.3286275);
+   data_mc_ratio__426->SetBinContent(4,0.3821597);
+   data_mc_ratio__426->SetBinContent(5,0.3781098);
+   data_mc_ratio__426->SetBinContent(6,0.4005671);
+   data_mc_ratio__426->SetBinContent(7,0.3476882);
+   data_mc_ratio__426->SetBinContent(8,0.3115971);
+   data_mc_ratio__426->SetBinContent(9,0.3145325);
+   data_mc_ratio__426->SetBinContent(10,0.3329002);
+   data_mc_ratio__426->SetBinContent(11,0.2896737);
+   data_mc_ratio__426->SetBinContent(12,0.3292759);
+   data_mc_ratio__426->SetBinContent(13,0.3376428);
+   data_mc_ratio__426->SetBinContent(14,0.3157569);
+   data_mc_ratio__426->SetBinContent(15,0.3736706);
+   data_mc_ratio__426->SetBinContent(16,0.339727);
+   data_mc_ratio__426->SetBinContent(17,0.3421157);
+   data_mc_ratio__426->SetBinContent(18,0.3502131);
+   data_mc_ratio__426->SetBinContent(19,0.2970651);
+   data_mc_ratio__426->SetBinContent(20,0.3268221);
+   data_mc_ratio__426->SetBinContent(21,0.3451742);
+   data_mc_ratio__426->SetBinContent(22,0.3636925);
+   data_mc_ratio__426->SetBinContent(23,0.3575497);
+   data_mc_ratio__426->SetBinContent(24,0.3085833);
+   data_mc_ratio__426->SetBinContent(25,0.3805008);
+   data_mc_ratio__426->SetBinContent(26,0.3733387);
+   data_mc_ratio__426->SetBinContent(27,0.3448106);
+   data_mc_ratio__426->SetBinContent(28,0.2991822);
+   data_mc_ratio__426->SetBinContent(29,0.4248536);
+   data_mc_ratio__426->SetBinContent(30,0.3799047);
+   data_mc_ratio__426->SetBinContent(31,0.3305831);
+   data_mc_ratio__426->SetBinContent(32,0.3712724);
+   data_mc_ratio__426->SetBinContent(33,0.4144551);
+   data_mc_ratio__426->SetBinContent(34,0.3460847);
+   data_mc_ratio__426->SetBinContent(35,0.4539913);
+   data_mc_ratio__426->SetBinContent(36,0.3575295);
+   data_mc_ratio__426->SetBinContent(37,0.391854);
+   data_mc_ratio__426->SetBinContent(38,0.3579899);
+   data_mc_ratio__426->SetBinContent(39,0.2216017);
+   data_mc_ratio__426->SetBinContent(40,0.3962351);
+   data_mc_ratio__426->SetBinContent(41,0.3655561);
+   data_mc_ratio__426->SetBinContent(42,0.3987482);
+   data_mc_ratio__426->SetBinContent(43,0.4313449);
+   data_mc_ratio__426->SetBinContent(44,0.1471179);
+   data_mc_ratio__426->SetBinContent(45,0.3143703);
+   data_mc_ratio__426->SetBinContent(46,0.388371);
+   data_mc_ratio__426->SetBinContent(47,0.4520277);
+   data_mc_ratio__426->SetBinContent(48,0.336252);
+   data_mc_ratio__426->SetBinContent(49,0.2627739);
+   data_mc_ratio__426->SetBinContent(50,0.3170971);
+   data_mc_ratio__426->SetBinContent(51,0.3600378);
+   data_mc_ratio__426->SetBinError(3,0.04793524);
+   data_mc_ratio__426->SetBinError(4,0.03120321);
+   data_mc_ratio__426->SetBinError(5,0.02866443);
+   data_mc_ratio__426->SetBinError(6,0.02706781);
+   data_mc_ratio__426->SetBinError(7,0.02203384);
+   data_mc_ratio__426->SetBinError(8,0.01826615);
+   data_mc_ratio__426->SetBinError(9,0.01747403);
+   data_mc_ratio__426->SetBinError(10,0.01797492);
+   data_mc_ratio__426->SetBinError(11,0.01689411);
+   data_mc_ratio__426->SetBinError(12,0.01904252);
+   data_mc_ratio__426->SetBinError(13,0.01969173);
+   data_mc_ratio__426->SetBinError(14,0.0197348);
+   data_mc_ratio__426->SetBinError(15,0.02282557);
+   data_mc_ratio__426->SetBinError(16,0.02269897);
+   data_mc_ratio__426->SetBinError(17,0.02395289);
+   data_mc_ratio__426->SetBinError(18,0.02540713);
+   data_mc_ratio__426->SetBinError(19,0.02575881);
+   data_mc_ratio__426->SetBinError(20,0.02752339);
+   data_mc_ratio__426->SetBinError(21,0.02938318);
+   data_mc_ratio__426->SetBinError(22,0.03320043);
+   data_mc_ratio__426->SetBinError(23,0.0334876);
+   data_mc_ratio__426->SetBinError(24,0.03289509);
+   data_mc_ratio__426->SetBinError(25,0.03924566);
+   data_mc_ratio__426->SetBinError(26,0.04200389);
+   data_mc_ratio__426->SetBinError(27,0.0427685);
+   data_mc_ratio__426->SetBinError(28,0.04071354);
+   data_mc_ratio__426->SetBinError(29,0.05190413);
+   data_mc_ratio__426->SetBinError(30,0.05169848);
+   data_mc_ratio__426->SetBinError(31,0.05041345);
+   data_mc_ratio__426->SetBinError(32,0.05597142);
+   data_mc_ratio__426->SetBinError(33,0.06110806);
+   data_mc_ratio__426->SetBinError(34,0.05935304);
+   data_mc_ratio__426->SetBinError(35,0.07902973);
+   data_mc_ratio__426->SetBinError(36,0.06639157);
+   data_mc_ratio__426->SetBinError(37,0.07684889);
+   data_mc_ratio__426->SetBinError(38,0.07307439);
+   data_mc_ratio__426->SetBinError(39,0.06681543);
+   data_mc_ratio__426->SetBinError(40,0.08262073);
+   data_mc_ratio__426->SetBinError(41,0.09138904);
+   data_mc_ratio__426->SetBinError(42,0.1029564);
+   data_mc_ratio__426->SetBinError(43,0.0989573);
+   data_mc_ratio__426->SetBinError(44,0.06006065);
+   data_mc_ratio__426->SetBinError(45,0.09478622);
+   data_mc_ratio__426->SetBinError(46,0.1228137);
+   data_mc_ratio__426->SetBinError(47,0.1304892);
+   data_mc_ratio__426->SetBinError(48,0.1063322);
+   data_mc_ratio__426->SetBinError(49,0.107277);
+   data_mc_ratio__426->SetBinError(50,0.1294544);
+   data_mc_ratio__426->SetBinError(51,0.0405039);
    data_mc_ratio__426->SetMinimum(0.4);
    data_mc_ratio__426->SetMaximum(1.6);
-   data_mc_ratio__426->SetEntries(154.555);
+   data_mc_ratio__426->SetEntries(1266.607);
    data_mc_ratio__426->SetStats(0);
 
    ci = TColor::GetColor("#000099");
@@ -1421,55 +1379,55 @@ tex->SetNDC();
    5};
    Double_t Graph_from_mc_statistical_error_fey1426[50] = {
    0,
-   1,
-   0.2650362,
-   0.1044181,
-   0.1053956,
-   0.1169299,
-   0.0843772,
-   0.09171268,
-   0.07682279,
-   0.07375242,
-   0.07079653,
-   0.07624244,
-   0.07859016,
-   0.08580316,
-   0.09176733,
-   0.08955381,
-   0.1021038,
-   0.1128205,
-   0.1063195,
-   0.120274,
-   0.1128488,
-   0.1316565,
-   0.1348475,
-   0.1139703,
-   0.1529734,
-   0.1368067,
-   0.1829739,
-   0.1786586,
-   0.2028194,
-   0.2036687,
-   0.2766227,
-   0.2017739,
-   0.2066221,
-   0.1812189,
-   0.3789744,
-   0.2044199,
-   0.5316735,
-   0.3258593,
-   0.2900453,
-   0.648329,
-   0.5223815,
-   0.2391293,
-   1.049965,
-   0.4818385,
-   0.2849763,
-   0.4357762,
-   0.3551715,
-   0.3879207,
-   0.2218515,
-   0.5076045};
+   0.4554263,
+   0.06461254,
+   0.03880483,
+   0.03295707,
+   0.0309965,
+   0.027432,
+   0.02368596,
+   0.02200653,
+   0.02221816,
+   0.0221155,
+   0.0230098,
+   0.02394571,
+   0.02535424,
+   0.02660318,
+   0.02663274,
+   0.02900398,
+   0.02950792,
+   0.03226778,
+   0.0327961,
+   0.03495,
+   0.03836763,
+   0.03835999,
+   0.04116774,
+   0.04350513,
+   0.04759432,
+   0.04993629,
+   0.05212773,
+   0.05449127,
+   0.05763096,
+   0.06015664,
+   0.06504759,
+   0.06742017,
+   0.06968467,
+   0.08088822,
+   0.07651281,
+   0.08449689,
+   0.08548315,
+   0.09771058,
+   0.0910097,
+   0.1052988,
+   0.1122993,
+   0.1143954,
+   0.1189967,
+   0.1173502,
+   0.1363937,
+   0.1340954,
+   0.1292287,
+   0.1432501,
+   0.1908734};
    gre = new TGraphErrors(50,Graph_from_mc_statistical_error_fx1426,Graph_from_mc_statistical_error_fy1426,Graph_from_mc_statistical_error_fex1426,Graph_from_mc_statistical_error_fey1426);
    gre->SetName("Graph_from_mc_statistical_error");
    gre->SetTitle("");
@@ -1482,8 +1440,8 @@ tex->SetNDC();
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_mc_statistical_error1426 = new TH1F("Graph_Graph_from_mc_statistical_error1426","",100,0,550);
-   Graph_Graph_from_mc_statistical_error1426->SetMinimum(-0.2599575);
-   Graph_Graph_from_mc_statistical_error1426->SetMaximum(2.259958);
+   Graph_Graph_from_mc_statistical_error1426->SetMinimum(0.4534884);
+   Graph_Graph_from_mc_statistical_error1426->SetMaximum(1.546512);
    Graph_Graph_from_mc_statistical_error1426->SetDirectory(0);
    Graph_Graph_from_mc_statistical_error1426->SetStats(0);
 

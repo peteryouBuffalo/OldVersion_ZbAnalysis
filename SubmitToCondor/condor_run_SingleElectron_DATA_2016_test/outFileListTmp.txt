@@ -1,5 +1,4 @@
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_0.root
-root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_1.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_10.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_100.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_101.root
@@ -638,7 +637,6 @@ root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_75.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_76.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_77.root
-root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_78.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_79.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_8.root
 root://131.225.204.161:1094//eos/uscms/store/user/peteryou/Output_ZplusB/output_background/SingleElectron_DATA_2016/output_80.root

@@ -380,6 +380,7 @@ for r in regions:
           tmp = getHistIntegral(hVV[y])
           nums[r][chan][y]['VV'] = tmp
           fLatex.write('\n VV: '+str(tmp[0]))
+          tmp = getHistIntegral(hZH[y])
           nums[r][chan][y]['ZH'] = tmp
           fLatex.write('\n ZH: '+str(tmp[0]))
 

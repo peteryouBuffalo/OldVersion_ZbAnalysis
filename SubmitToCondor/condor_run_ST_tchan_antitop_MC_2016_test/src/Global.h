@@ -30,6 +30,7 @@ namespace glob {
         parameterNames.push_back("jet_deepJetM_2016") ;
         parameterNames.push_back("jet_deepJetM_2017") ;
         parameterNames.push_back("jet_deepJetM_2018") ;
+        parameterNames.push_back("MET");
       } ;
       
       //passing a constant string https://stackoverflow.com/questions/4475634/c-pass-a-string
@@ -54,6 +55,7 @@ namespace glob {
           if (name == "jet_deepJetM_2016") return jet_deepJetM_2016 ;
           if (name == "jet_deepJetM_2017") return jet_deepJetM_2017 ;
           if (name == "jet_deepJetM_2018") return jet_deepJetM_2018 ;
+          if (name == "MET") return MET;
         }
         else {
           std::cout << "\n There is no parameter " << name << ". Will terminate" << std::endl ;
@@ -80,6 +82,7 @@ namespace glob {
           if (name == "jet_deepJetM_2016") jet_deepJetM_2016 = val;
           if (name == "jet_deepJetM_2017") jet_deepJetM_2017 = val;
           if (name == "jet_deepJetM_2018") jet_deepJetM_2018 = val;
+          if (name == "MET") MET = val;
         }
         else std::cout << "\n Can not set value for parameter named: " << name << ". Not exist in list of parameters " << std::endl; 
       } ;
@@ -96,6 +99,7 @@ namespace glob {
       float lep_jetOverlap_eta ;
       float jet_pt ;
       float jet_eta ;
+      float MET;
       float jet_deepCSVM_2016 ;
       float jet_deepCSVM_2017 ;
       float jet_deepCSVM_2018 ;
