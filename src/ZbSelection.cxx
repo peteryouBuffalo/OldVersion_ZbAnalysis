@@ -350,21 +350,52 @@ void ZbSelection::Process(Reader* r) {
   
   bool eleTrig(false) ;
   bool muonTrig(false) ;
+  float ptThr_ele(0);
+  float ptThr_muon(0);
+  TLorentzVector muon_trigObj;
+  TLorentzVector ele_trigObj;
+  unsigned ele_bits;
+  unsigned muon_bits;
 
 #if defined(MC_2016) || defined(DATA_2016) 
   if (*(r->HLT_Ele27_WPTight_Gsf)) eleTrig = true ;
   if (*(r->HLT_IsoMu24) || *(r->HLT_IsoTkMu24)) muonTrig = true ;
+  muon_bits(2+8); // iso + IsoTkMu
+  ele_bits = (2);
+  ptThr_ele = 27;
+  ptThr_muon = 24;
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017) 
   if (*(r->HLT_Ele35_WPTight_Gsf)) eleTrig = true ;
   if (*(r->HLT_IsoMu27)) muonTrig = true ;
+  ele_bits = (2);
+  muon_bits = (2);
+  ptThr_ele = 32;
+  ptThr_muon = 27;
 #endif
 
 #if defined(MC_2018) || defined(DATA_2018) 
   if (*(r->HLT_Ele32_WPTight_Gsf)) eleTrig = true ;
   if (*(r->HLT_IsoMu24)) muonTrig = true ;
+  ele_bits = (2);
+  muon_bits = (2);
+  ptThr_ele = 32;
+  ptThr_muon = 24;
 #endif
+
+  TLorentzVector trigObj_ele = GetTrigObj(r, 11, ele_bits, ptThr_ele);
+  TLorentzVector trigObj_muon = GetTrigObj(r, 13, muon_bits, ptThr_muon);
+
+  float trigSF_ele(1.0);
+  if (!m_isData && eles.size() >= 2) {
+    trigSF_ele =  CalTrigSF(11,eles[0], eles[1], trigObj_ele, h_dR1_eleTrig, h_dR2_eleTrig, h_pt1_eleTrig, h_pt2_eleTrig) ;
+  }
+
+  float trigSF_muon(1.0);
+  if (!m_isData && muons.size() >= 2) {
+    trigSF_muon =  CalTrigSF(13,muons[0], muons[1], trigObj_muon, h_dR1_muonTrig, h_dR2_muonTrig, h_pt1_muonTrig, h_pt2_muonTrig) ;
+  }
 
   /////////////////////////////////////////////////
   // Zee + jets
@@ -376,8 +407,8 @@ void ZbSelection::Process(Reader* r) {
     // make sure that we have at least 2 electrons and the pt meets our cut
     if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
       
-      float zee_w = 1.0;
-      float zeeb_w = 1.0;
+      float zee_w = evtW*eleSF_w*trigSF_ele;
+      float zeeb_w = zee_w*btag_w;
       
       // Determine the Z mass & make sure we fall into the mass window
       ZObj Z(eles[0], eles[1]);
@@ -471,8 +502,8 @@ void ZbSelection::Process(Reader* r) {
     // make sure that we have at least 2 electrons and the pt meets our cut
     if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
     
-      float zmm_w = 1.0;
-      float zmmb_w = 1.0;
+      float zmm_w = evtW*muonSF_w*trigSF_muon;
+      float zmmb_w = zmm_w*btag_w;
     
       // Determine the Z mass & make sure we fall into the mass window
       ZObj Z(muons[0], muons[1]);
