@@ -98,7 +98,7 @@ std::string toSci(float val, int n)
 }
 
 // FixBins method /////////////////////////////////////////////////////////////
-void FixBins(TH1F* hist, TH1F* orig, int an)
+void FixBins(TH1F* hist, TH1F* orig, int an, bool addCenter=false)
 {
         // get the contents from the original bin
 	int n1 = orig->GetNbinsX();
@@ -109,7 +109,7 @@ void FixBins(TH1F* hist, TH1F* orig, int an)
 		int center = orig->GetBinCenter(i);
 
 		// if this bin is not in the range we want to look at, skip it
-		if (center >= binL && center <= binH && an == 0) continue;
+		if (center >= binL && center <= binH && an == 0 && !addCenter) continue;
 		if (center > binL && center < binH && an != 0) continue;
 		if (center < startPt || center > endPt) continue;
 		
@@ -137,7 +137,7 @@ Double_t ftotal(Double_t *x, Double_t *par)
 }
 
 // fithist method /////////////////////////////////////////////////////////////
-void fithist()
+void fitBackground()
 {
   gStyle->SetOptStat(0);
   
@@ -153,9 +153,9 @@ void fithist()
   
   //--- Options to Set ------------------------------------------------------//
   
-  int year = 2018;
-  int channel = 1;		// 0 = electron, 1 = muon (completely aesthetic)
-  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
+  int year = 2016;
+  int channel = 0;		// 0 = electron, 1 = muon (completely aesthetic)
+  int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
   int binSize = 1;		// 0 = 2 GeV, 1 = 4 GeV
 	
   //--- Get the appropriate files & histograms ------------------------------//
@@ -171,8 +171,9 @@ void fithist()
   
   /* This is for including the ttbar background over top if you wish to do so.
    * It is currently not included and any ttbar contribution is scaled to 0. */
-  TFile *f2 = new TFile("../output_MC2020_v2/TT_semi_powheg_MC_2017.root");
-  TH1F* h3 = (TH1F*)f->Get(h1Name.c_str());
+  TFile *f2 = new TFile("../output_MC2020_v2/TT_powheg_MC_2016.root");
+  TH1F* h3 = (TH1F*)f2->Get(h1Name.c_str());
+  TH1F* h4 = (TH1F*)f2->Get(h2Name.c_str());
   
   //--- Get the necessary information to resize the histograms as necessary--//
   Float_t *bins; Int_t binnum = 0;
@@ -213,6 +214,22 @@ void fithist()
   nHist3->SetLineColor(kRed); nHist3->SetMarkerColor(kRed);
   FixBins(nHist3, h3, analysis);
   
+  TH1F* fHist1 = (TH1F*)h1->Clone(); fHist1->SetDirectory(0);
+  fHist1->SetLineColor(kBlack); fHist1->SetMarkerColor(kBlack);
+  fHist1->Rebin(2);
+  
+  TH1F* fHist2 = (TH1F*)h2->Clone(); fHist2->SetDirectory(0);
+  fHist2->SetLineColor(kBlue); fHist2->SetMarkerColor(kBlue);
+  fHist2->Rebin(2);
+  
+  TH1F* ttHist = (TH1F*)h3->Clone(); ttHist->SetDirectory(0);
+  ttHist->SetLineColor(kRed); ttHist->SetMarkerColor(kRed);
+  ttHist->Rebin(2);
+  
+  TH1F* ttHist2 = (TH1F*)h4->Clone(); ttHist2->SetDirectory(0);
+  ttHist2->SetLineColor(kMagenta+2); ttHist->SetMarkerColor(kMagenta+2);
+  ttHist2->Rebin(2);
+  
   background = nHist2;
   
   //--- Now, use the fit function to get values -----------------------------//
@@ -226,7 +243,6 @@ void fithist()
   
   //--- Modify values for output --------------------------------------------//
   nHist2->Scale(ct);
-  nHist3->Scale(1./nHist1->Integral());
 
   std::string ctOut = "c_{t} = " + round(ct, 3) + 
                       " #pm " + round(err, 3);
@@ -246,50 +262,37 @@ void fithist()
   canv->SetTicky(0);
 
   // Create the ratio plot
-  TRatioPlot *rat = new TRatioPlot(nHist1, nHist2, "pois");
-  rat->SetH1DrawOpt("E"); rat->SetH2DrawOpt("H");
-  rat->Draw(); rat->GetUpperPad()->cd(); nHist3->Draw("same");
-
-  gPad->Modified(); gPad->Update();
-  TPad *pad = rat->GetUpperPad();
-  if (binSize == 0) rat->GetUpperRefYaxis()->SetTitle("Events/2 GeV");
-  else rat->GetUpperRefYaxis()->SetTitle("Events/4 GeV");
-  rat->GetLowerRefYaxis()->SetTitle("ratio");
-  rat->GetUpperRefYaxis()->SetLabelSize(0.03);
-  rat->GetLowerRefXaxis()->SetLabelSize(0.03);
-  rat->GetLowerRefYaxis()->SetRangeUser(0.,2.);
+  std::cout << "ct = " << ct << "\n";
+  fHist2->Scale(ct);
+  THStack *hStack = new THStack();
+  hStack->Add(fHist1);
+  hStack->Add(fHist2);
+  hStack->Add(ttHist);
+  hStack->Add(ttHist2);
+  hStack->Draw("nostack");
+  hStack->GetXaxis()->SetTitle("M_{ll} (GeV)");
+  hStack->GetYaxis()->SetTitle("Events/2 GeV");
   
-  // create the legend
-  TLegend *l = pad->BuildLegend();
-  l->SetLineColor(kWhite); l->SetBorderSize(0);
-  TList *p = l->GetListOfPrimitives();
-
-  TIter next(p); TObject *obj;
-  TLegendEntry *le; int i = 0;
-
-  std::string lbl = "";
+  std::string lbl = "", lbl2 = "";
   switch(channel)
   {
-	  case 0: lbl = "Z(#rightarrow ee) + #geq 2 b-jets"; break;
-	  case 1: lbl = "Z(#rightarrow #mu#mu) + #geq 2 b-jets"; break;
+	  case 0:
+	  	lbl = "ee + #geq 2 b-jets data"; 
+	  	lbl2 = "t#bar{t}#rightarrow ee MC"; break;
+	  case 1: 
+	 	lbl = "#mu#mu + #geq 2 b-jets data"; 
+	 	lbl2 = "t#bar{t}#rightarrow #mu#mu MC"; break;
   }
   std::string labels[] = 
-  { lbl.c_str(), "Z(#rightarrow e#mu) + #geq 2 b-jets", 
-	"t#bar{t}" };
-	  
-  while ((obj=next()))
-  { le = (TLegendEntry*)obj; i++;
-    le->SetLabel(labels[i-1].c_str()); }
-  pad->Modified(); pad->Update();
+  { lbl.c_str(), "e#mu + #geq 2 b-jets data", 
+	lbl2.c_str(), "t#bar{t}#rightarrow e#mu MC" };
+  TLegend *l = new TLegend(0.2, 0.6, 0.6, 0.8);
+  l->SetFillColor(kWhite); l->SetLineColor(kWhite);
+  l->AddEntry(fHist1, labels[0].c_str(), "L");
+  l->AddEntry(fHist2, labels[1].c_str(), "L");
+  l->AddEntry(ttHist, labels[2].c_str(), "L");
+  l->AddEntry(ttHist2, labels[3].c_str(), "L");
+  l->Draw("same");
 
-  // Create the legend that contains the stats
-  TLegend *l2 = new TLegend(0.1, 0.7, 0.35, 0.9);
-  l2->SetLineColor(kWhite);
-  l2->SetBorderSize(0);
-  l2->AddEntry((TObject*)0, ctOut.c_str(), "");
-  l2->AddEntry((TObject*)0, chiOut.c_str(), "");
-  l2->AddEntry((TObject*)0, pvalOut.c_str(), "");
-  l2->Draw("same"); gPad->Modified(); gPad->Update();
-  canv->Update();
 }
 // END OF FILE ////////////////////////////////////////////////////////////////
