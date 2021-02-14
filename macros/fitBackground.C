@@ -71,7 +71,7 @@ Double_t ftotal(Double_t *x, Double_t *par)
 void fitBackground()
 {
 	// Get the location of the files you want to use
-	std::string fileLoc = "../output_withTrig/";
+	std::string fileLoc = "../output_updated/";
 	std::string filesEE[] = 
     {  "SingleElectron_DATA_2016.root", "SingleElectron_DATA_2017.root",
      "EGamma_DATA_2018.root" };
@@ -79,7 +79,7 @@ void fitBackground()
     {  "SingleMuon_DATA_2016.root", "SingleMuon_DATA_2017.root",
      "SingleMuon_DATA_2018.root" };
      
-    std::string fileLoc2 = "../output_MC2020_v2/";
+    std::string fileLoc2 = "../output_updated/";
     std::string filesTT[3][2] =
     {
     	{ "TT_powheg_MC_2016.root", ""},
@@ -89,8 +89,8 @@ void fitBackground()
      
     //--- Set the options that you want -------------------------------------//
     
-   	int year = 2018;
-   	int channel = 1;		// 0 = electron, 1 = muon
+   	int year = 2016;
+   	int channel = 0;		// 0 = electron, 1 = muon
    	int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
    	int binSize = 4;		// (in GeV), size for analysis for ct
    	int outSize = 2;		// (in GeV), size for final plot

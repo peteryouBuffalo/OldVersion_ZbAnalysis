@@ -27,36 +27,23 @@ ZbSelection::~ZbSelection() {
 } 
 
 void ZbSelection::SlaveBegin(Reader* r) {
-
-  // Initialize the histograms
   h_evt = new TH1D("Nevt","",3,-1.5,1.5) ;
-  h_pdfW = new TH2D("iPdf_vs_pdfW","",120,0,120,2000,0,2);
-  h_scaleW = new TH2D("iScale_vs_scaleW","",10,0,10,500,0,5);
   h_zee_jet = new ZbPlots("Zee_jet") ;
   h_zee_bjet = new ZbPlots("Zee_bjet") ;
-  h_zee_bjet_afterMET = new ZbPlots("Zee_bjet_afterMET") ;
   h_zee_2bjet = new Z2bPlots("Zee_2bjet") ;
-
-  h_zee_2bjet_bb = new Z2bPlots("Zee_2bjet_bb") ; //two tagged bjets are bb
-  h_zee_2bjet_bX = new Z2bPlots("Zee_2bjet_bX") ; //two tagged bjets are bb
-  h_zee_2bjet_XX = new Z2bPlots("Zee_2bjet_XX") ; //two tagged bjets are bb
   h_zee_bjet_deepJet = new ZbPlots("Zee_bjetDeepJet") ;
   h_zee_2bjet_deepJet = new Z2bPlots("Zee_2bjetDeepJet") ;
   
   h_zmm_jet = new ZbPlots("Zmm_jet") ;
   h_zmm_bjet = new ZbPlots("Zmm_bjet") ;
-  h_zmm_bjet_afterMET = new ZbPlots("Zmm_bjet_afterMET") ;
   h_zmm_2bjet = new Z2bPlots("Zmm_2bjet") ;
-  h_zmm_2bjet_bb = new Z2bPlots("Zmm_2bjet_bb") ; //two tagged bjets are bb
-  h_zmm_2bjet_bX = new Z2bPlots("Zmm_2bjet_bX") ; //two tagged bjets are bb
-  h_zmm_2bjet_XX = new Z2bPlots("Zmm_2bjet_XX") ; //two tagged bjets are bb
   h_zmm_bjet_deepJet = new ZbPlots("Zmm_bjetDeepJet") ;
   h_zmm_2bjet_deepJet = new Z2bPlots("Zmm_2bjetDeepJet") ;
+ 
+  h_zem_jet = new ZbPlots("Zem_jet");
+  h_zem_2bjet_elec = new Z2bPlots("Zem_2bjet_elecTrig");
+  h_zem_2bjet_muon = new Z2bPlots("Zem_2bjet_muonTrig");
 
-  h_emu_2bjet_eleTrig = new ElMu2bPlots("ElMu_2bjet_eleTrig");
-  h_emu_2bjet_muTrig = new ElMu2bPlots("ElMu_2bjet_muTrig");  
-  
-  // Initialize the efficiency plots
   unsigned nBins = 9 ;
   float bins[10] = {20, 30, 50, 70, 100, 140, 200, 300, 600, 1000} ;
   h_eff_b = new EffPlots("b", nBins, bins) ;
@@ -66,12 +53,67 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_eff_cdj = new EffPlots("cdj", nBins, bins) ;
   h_eff_ldj = new EffPlots("ldj", nBins, bins) ;
 
-  // Initialize the single histograms
   h_dR_je = new TH1D("h_dR_je","",500,0,5) ;
   h_dR_jm = new TH1D("h_dR_jm","",500,0,5) ;
 
   h_Zee_ZmassFull = new TH1D("Zee_ZmassFull","",300,0,300) ;
   h_Zmm_ZmassFull = new TH1D("Zmm_ZmassFull","",300,0,300) ;
+  h_Zem_ZmassFull = new TH1D("Zem_ZmassFull","",300,0,300) ;
+
+  h_lJet_MET = new TH1D("lJet_MET", "", 300, 0, 300);
+  h_lJet_PuppiMET = new TH1D("lJet_PuppiMET", "", 300, 0, 300);
+  h_lJet_METsig = new TH1D("lJet_METsig", "", 300, 0, 300);
+  h_2lJet_MET = new TH1D("2lJet_MET", "", 300, 0, 300);
+  h_2lJet_PuppiMET = new TH1D("2lJet_PuppiMET", "", 300, 0, 300);
+
+  h_bJet_MET = new TH1D("bJet_MET", "", 300, 0, 300);
+  h_bJet_PuppiMET = new TH1D("bJet_PuppiMET", "", 300, 0, 300);
+  h_bJet_METsig = new TH1D("bJet_METsig", "", 300, 0, 300);
+  h_2bJet_MET = new TH1D("2bJet_MET", "", 300, 0, 300);
+  h_2bJet_PuppiMET = new TH1D("2bJet_PuppiMET", "", 300, 0, 300);
+
+  h_cJet_MET = new TH1D("cJet_MET", "", 300, 0, 300);
+  h_cJet_PuppiMET = new TH1D("cJet_PuppiMET", "", 300, 0, 300);
+  h_cJet_METsig = new TH1D("cJet_METsig", "", 300, 0, 300);
+  h_2cJet_MET = new TH1D("2cJet_MET", "", 300, 0, 300);
+  h_2cJet_PuppiMET = new TH1D("2cJet_PuppiMET", "", 300, 0, 300);
+
+  h_Zee_ZMass_bjet = new TH1D("Zee_ZmassFull_bjet", "", 300, 0, 300);
+  h_Zee_ZMass_2bjet = new TH1D("Zee_ZmassFull_2bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_bjet = new TH1D("Zmm_ZmassFull_bjet", "", 300, 0, 300);
+  h_Zmm_ZMass_2bjet = new TH1D("Zmm_ZmassFull_2bjet", "", 300, 0, 300);
+  h_Zem_ZMass_bjet = new TH1D("Zem_ZmassFull_bjet", "", 300, 0, 300);
+  //h_Zem_ZMass_2bjet_elec = new TH1D("Zem_ZmassFull_2bjet_elecTrig", "", 300, 0, 300);
+  //h_Zem_ZMass_2bjet_muon = new TH1D("Zem_ZmassFull_2bjet_muonTrig", "", 300, 0, 300);
+
+  h_Zee_MET_2bjet = new TH1D("Zee_MET_2bjet", "", 300, 0, 300);
+  h_Zmm_MET_2bjet = new TH1D("Zmm_MET_2bjet", "", 300, 0, 300);
+  h_Zem_MET_2bjet_elec = new TH1D("Zem_MET_2bjet_elec", "", 300, 0, 300);
+  h_Zem_MET_2bjet_muon = new TH1D("Zem_MET_2bjet_muon", "", 300, 0, 300);
+
+  h_Zee_METsig_2bjet = new TH1D("Zee_METsig_2bjet", "", 300, 0, 300);
+  h_Zmm_METsig_2bjet = new TH1D("Zmm_METsig_2bjet", "", 300, 0, 300);
+  h_Zem_METsig_2bjet_elec = new TH1D("Zem_METsig_2bjet_elec", "", 300, 0, 300);
+  h_Zem_METsig_2bjet_muon = new TH1D("Zem_METsig_2bjet_muon", "", 300, 0, 300); 
+
+  h_Zee_fullMET_2bjet = new TH1D("Zee_fullMET_2bjet", "", 300, 0, 300);
+  h_Zmm_fullMET_2bjet = new TH1D("Zmm_fullMET_2bjet", "", 300, 0, 300);
+  h_Zem_fullMET_2bjet_elec = new TH1D("Zem_fullMET_2bjet_elec", "", 300, 0, 300);
+  h_Zem_fullMET_2bjet_muon = new TH1D("Zem_fullMET_2bjet_muon", "", 300, 0, 300);
+
+  h_Zee_fullMETsig_2bjet = new TH1D("Zee_fullMETsig_2bjet", "", 300, 0, 300);
+  h_Zmm_fullMETsig_2bjet = new TH1D("Zmm_fullMETsig_2bjet", "", 300, 0, 300);
+  h_Zem_fullMETsig_2bjet_elec = new TH1D("Zem_fullMETsig_2bjet_elec", "", 300, 0, 300);
+  h_Zem_fullMETsig_2bjet_muon = new TH1D("Zem_fullMETsig_2bjet_muon", "", 300, 0, 300);
+
+  h_Zee_fullPuppiMET_2bjet = new TH1D("Zee_fullPuppiMET_2bjet", "", 300, 0, 300);
+  h_Zmm_fullPuppiMET_2bjet = new TH1D("Zmm_fullPuppiMET_2bjet", "", 300, 0, 300);
+
+  h_Zee_sidebar = new TH1D("Zee_sidebar", "", 300,0,300);
+  h_Zee_sidebar_bjet = new TH1D("Zee_sidebar_bjet", "", 300, 0, 300);
+
+  h_Zmm_sidebar = new TH1D("Zmm_sidebar", "", 300,0,300);
+  h_Zmm_sidebar_bjet = new TH1D("Zmm_sidebar_bjet", "", 300,0,300);
 
   h_nMuon = new TH1D("h_nMuon","",10,-0.5,9.5) ;
   h_nEle = new TH1D("h_nEle","",10,-0.5,9.5) ;
@@ -84,67 +126,42 @@ void ZbSelection::SlaveBegin(Reader* r) {
   h_zmm_cutflow = new TH1D("zmm_cutflow","",10,-0.5,9.5) ;
 
   h_pt_jet_after_ele_rem = new TH1D("jet_pt_after_ele_rem","",200,0.0,200) ;
-  h_dR1_muonTrig = new TH1D("dR1_muonTrig","",100,0,10) ;
-  h_dR2_muonTrig = new TH1D("dR2_muonTrig","",100,0,10) ;
-  h_pt1_muonTrig = new TH1D("pt1_muonTrig","",200,0,200) ;
-  h_pt2_muonTrig = new TH1D("pt2_muonTrig","",200,0,200) ;
   
-  h_dR1_eleTrig = new TH1D("dR1_eleTrig","",100,0,10) ;
-  h_dR2_eleTrig = new TH1D("dR2_eleTrig","",100,0,10) ;
-  h_pt1_eleTrig = new TH1D("pt1_eleTrig","",200,0,200) ;
-  h_pt2_eleTrig = new TH1D("pt2_eleTrig","",200,0,200) ;
-
-  // Sumw2
+  //Sumw2
   h_Zee_ZmassFull->Sumw2() ;
   h_Zmm_ZmassFull->Sumw2() ;
+  h_Zem_ZmassFull->Sumw2() ;
 
-  // Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
+  //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
-  r->GetOutputList()->Add(h_pdfW);
-  r->GetOutputList()->Add(h_scaleW);
 
   std::vector<TH1*> tmp = h_zee_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zmm_jet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
+ 
+  tmp = h_zem_jet->returnHisto();
+  for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]); 
+
   tmp = h_zee_bjet->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_zee_bjet_afterMET->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_zmm_bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_zmm_bjet_afterMET->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zem_2bjet_elec->returnHisto() ;
+  for(size_t i=0;i<tmp.size();++i) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_zem_2bjet_muon->returnHisto() ;
+  for(size_t i=0; i<tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_zee_2bjet->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_zee_2bjet_bb->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_zee_2bjet_bX->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
-  tmp = h_zee_2bjet_XX->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_zmm_2bjet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  tmp = h_zmm_2bjet_bb->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_zmm_2bjet_bX->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
-  tmp = h_zmm_2bjet_XX->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
   tmp = h_zee_bjet_deepJet->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
@@ -155,11 +172,6 @@ void ZbSelection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_zmm_2bjet_deepJet->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_emu_2bjet_eleTrig->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_emu_2bjet_muTrig->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_eff_b->returnHisto() ;
@@ -175,26 +187,71 @@ void ZbSelection::SlaveBegin(Reader* r) {
   tmp = h_eff_ldj->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  r->GetOutputList()->Add(h_lJet_MET);
+  r->GetOutputList()->Add(h_lJet_PuppiMET);
+  r->GetOutputList()->Add(h_2lJet_MET);
+  r->GetOutputList()->Add(h_2lJet_PuppiMET);
+  r->GetOutputList()->Add(h_bJet_MET);
+  r->GetOutputList()->Add(h_bJet_PuppiMET);
+  r->GetOutputList()->Add(h_2bJet_MET);
+  r->GetOutputList()->Add(h_2bJet_PuppiMET);
+  r->GetOutputList()->Add(h_cJet_MET);
+  r->GetOutputList()->Add(h_cJet_PuppiMET);
+  r->GetOutputList()->Add(h_2cJet_MET);
+  r->GetOutputList()->Add(h_2cJet_PuppiMET);
+  r->GetOutputList()->Add(h_lJet_METsig);
+  r->GetOutputList()->Add(h_bJet_METsig);
+  r->GetOutputList()->Add(h_cJet_METsig);
+
+  r->GetOutputList()->Add(h_Zee_MET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_MET_2bjet);
+  r->GetOutputList()->Add(h_Zem_MET_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_MET_2bjet_muon);
+  r->GetOutputList()->Add(h_Zee_METsig_2bjet);
+  r->GetOutputList()->Add(h_Zmm_METsig_2bjet);
+  r->GetOutputList()->Add(h_Zem_METsig_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_METsig_2bjet_muon);
+
+  r->GetOutputList()->Add(h_Zee_fullMET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullMET_2bjet);
+  r->GetOutputList()->Add(h_Zem_fullMET_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_fullMET_2bjet_muon);
+  r->GetOutputList()->Add(h_Zee_fullMETsig_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullMETsig_2bjet);
+  r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_elec);
+  r->GetOutputList()->Add(h_Zem_fullMETsig_2bjet_muon);
+
+  r->GetOutputList()->Add(h_Zee_fullPuppiMET_2bjet);
+  r->GetOutputList()->Add(h_Zmm_fullPuppiMET_2bjet);
+
+  r->GetOutputList()->Add(h_Zee_sidebar);
+  r->GetOutputList()->Add(h_Zee_sidebar_bjet);
+  r->GetOutputList()->Add(h_Zmm_sidebar);
+  r->GetOutputList()->Add(h_Zmm_sidebar_bjet);
+
+  r->GetOutputList()->Add(h_Zee_ZMass_bjet);
+  r->GetOutputList()->Add(h_Zee_ZMass_2bjet);
+  r->GetOutputList()->Add(h_Zmm_ZMass_bjet);
+  r->GetOutputList()->Add(h_Zmm_ZMass_2bjet);
+  r->GetOutputList()->Add(h_Zem_ZMass_bjet);
+  //r->GetOutputList()->Add(h_Zem_ZMass_2bjet_elec);
+  //r->GetOutputList()->Add(h_Zem_ZMass_2bjet_muon);
+
   r->GetOutputList()->Add(h_dR_je) ;
   r->GetOutputList()->Add(h_dR_jm) ;
+  //r->GetOutputList()->Add(h_nMuon) ;
+  //r->GetOutputList()->Add(h_nEle) ;
+  //r->GetOutputList()->Add(h_nJet) ;
   r->GetOutputList()->Add(h_Zee_ZmassFull) ;
   r->GetOutputList()->Add(h_Zmm_ZmassFull) ;
+  r->GetOutputList()->Add(h_Zem_ZmassFull) ;
   r->GetOutputList()->Add(h_ele_cutflow) ;
   r->GetOutputList()->Add(h_muon_cutflow) ;
   r->GetOutputList()->Add(h_Jet_cutflow) ;
   r->GetOutputList()->Add(h_zee_cutflow) ;
   r->GetOutputList()->Add(h_zmm_cutflow) ;
   r->GetOutputList()->Add(h_pt_jet_after_ele_rem) ;
-  r->GetOutputList()->Add(h_dR1_muonTrig) ;
-  r->GetOutputList()->Add(h_dR2_muonTrig) ;
-  r->GetOutputList()->Add(h_pt1_muonTrig) ;
-  r->GetOutputList()->Add(h_pt2_muonTrig) ;
-  r->GetOutputList()->Add(h_dR1_eleTrig) ;
-  r->GetOutputList()->Add(h_dR2_eleTrig) ;
-  r->GetOutputList()->Add(h_pt1_eleTrig) ;
-  r->GetOutputList()->Add(h_pt2_eleTrig) ;
-
-
+  
   const Int_t nx = 3, nx1 = 4, yx= 5, nzee=7, nzmm=7;
   const char *ele_cut[nx] = {"all","kine","ID"};
   const char *muon_cut[nx1] = {"all","kine","loose muon ID", "iso"};
@@ -366,208 +423,338 @@ void ZbSelection::Process(Reader* r) {
   if (*(r->HLT_IsoMu24)) muonTrig = true ;
 #endif
 
-  /////////////////////////////////////////////////
-  // Zee + jets
-  /////////////////////////////////////////////////
-
-  if (eleTrig) 
+  /////////////////////////////////////
+  // MET Analysis
+  ////////////////////////////////////
+  std::vector<JetObj> light, bquark, cquark;
+  for (int i = 0; i < jets.size(); ++i)
   {
+    if (jets.at(i).m_flav == 5) bquark.push_back(jets.at(i));
+    if (jets.at(i).m_flav == 4) cquark.push_back(jets.at(i));
+    if (jets.at(i).m_flav < 4) light.push_back(jets.at(i)); 
+  }
+
+  if (light.size() >= 1) 
+  {
+    h_lJet_MET->Fill(*(r->MET_pt));
+    h_lJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    h_lJet_METsig->Fill(*(r->MET_significance));
+    if (light.size() >= 2) 
+    {
+      h_2lJet_MET->Fill(*(r->MET_pt));
+      h_2lJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    } 
+  }
+
+  if (bquark.size() >= 1)
+  {
+    h_bJet_MET->Fill(*(r->MET_pt));
+    h_bJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    h_bJet_METsig->Fill(*(r->MET_significance));
+    if (light.size() >= 2)
+    {
+      h_2bJet_MET->Fill(*(r->MET_pt));
+      h_2bJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    }
+  }
+
+  if (cquark.size() >= 1)
+  {
+    h_cJet_MET->Fill(*(r->MET_pt));
+    h_cJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    h_cJet_METsig->Fill(*(r->MET_significance));
+    if (light.size() >= 2)
+    {
+      h_2cJet_MET->Fill(*(r->MET_pt));
+      h_2cJet_PuppiMET->Fill(*(r->PuppiMET_pt));
+    }
+  }
+
+
+  //TEMP
+  //eleTrig = true ;
+  ////////////////////////////////////
+  //Zee + jets
+  ////////////////////////////////////
+  h_zee_cutflow->Fill(1); //all events (not cut)
+  if (eleTrig) {
+    h_zee_cutflow->Fill(2); //trigger
+
+    if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")
+        && eles[1].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) {
+
+	    h_zee_cutflow->Fill(3) ; //pass electron  cuts
+      
+      float zee_w = evtW*eleSF_w ;
+      float zeeb_w = zee_w*btag_w;
+      
+      ZObj Z(eles[0],eles[1]) ;
     
-    // make sure that we have at least 2 electrons and the pt meets our cut
-    if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
+      if (bjets.size() >= 1)
+      { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
+      if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+      { 
+        if (*(r->MET_pt) < 50.0) {
+          h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w);
+          h_Zee_MET_2bjet->Fill(*(r->MET_pt), zee_w);
+          h_Zee_METsig_2bjet->Fill(*(r->MET_significance), zee_w);
+        }
+        h_Zee_fullMET_2bjet->Fill(*(r->MET_pt), zee_w);
+        h_Zee_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zee_w);
+        h_Zee_fullMETsig_2bjet->Fill(*(r->MET_significance), zee_w);
+      }    
+
+      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
       
-      float zee_w = 1.0;
-      float zeeb_w = 1.0;
-      
-      // Determine the Z mass & make sure we fall into the mass window
-      ZObj Z(eles[0], eles[1]);
-      h_Zee_ZmassFull->Fill(Z.m_lvec.M(), zee_w);
-      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && 
-          Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) {
+        h_zee_cutflow->Fill(4) ; //pass Z mass cuts
 
-        // fill the no. jets
-        h_zee_jet->FillNjet(jets.size(), zee_w);
-
-
-        // If we have at least one jet...
+        h_zee_jet->FillNjet(jets.size(), zee_w) ;
+        
+        //at least on jet
         if (jets.size() >= 1) {
-  
-          // record the mass & MET
-          h_zee_jet->Fill(Z, jets[0], zee_w);
+
+          h_zee_cutflow->Fill(5) ; //pass jet cuts
+
+          h_zee_jet->Fill(Z, jets[0], zee_w) ;
           h_zee_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zee_w);
+        
+          // isolation
+          float deltaRelelep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
+          float deltaRelelep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec); 
+          h_dR_je->Fill(std::min(deltaRelelep0,deltaRelelep1), zee_w) ;
 
-          // record the isolation
-          float dRele0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
-          float dRele1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec);
-          h_dR_je->Fill(std::min(dRele0,dRele1), zee_w);
-        }//end one-jet
+          //tagging efficiency
+          Fill_btagEffi(jets,zee_w) ;
 
-        h_zee_bjet->FillNjet(bjets.size(), zee_w);
+        } //end at least one jet
+        
+        //at least one b-tagged jets
+        h_zee_bjet->FillNjet(bjets.size(),evtW) ; 
+        if (bjets.size() >=1) {
+           
+          h_zee_cutflow->Fill(6) ;
 
-
-        // If we have at least one b-tagged jet...
-        if (bjets.size() >= 1) {
-
-          // record the mass & MET
-          h_zee_bjet->Fill(Z, bjets[0], zeeb_w);
+          h_zee_bjet->Fill(Z, bjets[0], zeeb_w) ;
           h_zee_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
+        }
+
+        //at least two b-tagged jets
+        if (bjets.size() >=2) {
           
-          // record again if we meet a MET cut
-          if (*(r->MET_pt) < CUTS.Get<float>("MET")) {
-            h_zee_bjet_afterMET->Fill(Z, bjets[0], zeeb_w);
-            h_zee_bjet_afterMET->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
-          }
-        }//end one-b jet
+          h_zee_cutflow->Fill(7) ;
 
+          h_zee_2bjet->Fill(Z, bjets[0], bjets[1], zeeb_w) ;
+          h_zee_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
+        }
 
-        // If we have at least two b-tagged jets...
-        if (bjets.size() >= 2) {
+        //at least one b-tagged jets using deepJet
+        h_zee_bjet_deepJet->FillNjet(bjets_deepJet.size(),evtW) ; //FIXME 
+        if (bjets_deepJet.size() >=1) {
           
-          // if the MET cut is met...
-          if (*(r->MET_pt) < CUTS.Get<float>("MET")) {
+          h_zee_cutflow->Fill(8) ;
 
-            // Record the mass & MET
-            h_zee_2bjet->Fill(Z, bjets[0], bjets[1], zeeb_w);
-            h_zee_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
-             
-            // if we are using MC, let's record bb, bX, XX
+          h_zee_bjet_deepJet->Fill(Z, bjets_deepJet[0], evtW) ; //FIXME
+          h_zee_bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
 
-  #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-            
-            if (bjets[0].m_flav == 5 && bjets[1].m_flav == 5) {     // bb
-              h_zee_2bjet_bb->Fill(Z, bjets[0], bjets[1], zeeb_w);
-              h_zee_2bjet_bb->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
-            }
-            else if ((bjets[0].m_flav == 5 && bjets[1].m_flav != 5) || // bX
-                     bjets[0].m_flav != 5 && bjets[1].m_flav == 5) {
-              h_zee_2bjet_bX->Fill(Z, bjets[0], bjets[1], zeeb_w);
-              h_zee_2bjet_bX->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
-            }
-            else { // XX
-              h_zee_2bjet_XX->Fill(Z, bjets[0], bjets[1], zeeb_w);
-              h_zee_2bjet_XX->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zeeb_w);
-            }
+        //at least two b-tagged jets using deepJet
+        if (bjets_deepJet.size() >=2) {
+          
+          h_zee_cutflow->Fill(9) ;
 
-  #endif
+          h_zee_2bjet_deepJet->Fill(Z, bjets_deepJet[0], bjets_deepJet[1], evtW) ; //FIXME
+          h_zee_2bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
 
-          }// end MET cut
-        }//end two b jets
-
-      }//end z mass cut
-
-    }//end two electrons
-
-  }//end ele. trigger
-     
+      }//end Z mass
+    } //end two electrons
+  } //end ele. trigger
+  
+  if (jets_ele_removal.size() > 0) {
+    JetPlot J_cut1(jets_ele_removal[0]);
+    h_pt_jet_after_ele_rem->Fill(J_cut1.m_lvec.Pt(), evtW);
+  }
+  
   
 
-  ///////////////////////////////////////////
-  // Zmm + jets
-  ///////////////////////////////////////////
+  ///////////////////////////
+  //Zmm + jets
+  ///////////////////////////
+  h_zmm_cutflow->Fill(1); //all events (not cut)
+  //trigger cuts
+  if (muonTrig) {
+    h_zmm_cutflow->Fill(2); //trigger
+    
+    // Fill the sidebar information
+    if (muons.size() >= 2)
+    {
+      ZObj Z(muons[0], muons[1]);
+      float zMass = Z.m_lvec.M();
+      if (zMass < 86 || zMass > 100)
+      {
+        if (jets.size() >= 1) h_Zmm_sidebar->Fill(zMass);
+        if (bjets.size() >= 1) h_Zmm_sidebar_bjet->Fill(zMass);   
+      }
+    }
+    
 
+    if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") 
+        && muons[1].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) {
+	    h_zmm_cutflow->Fill(3) ; //pass muon  cuts
+
+      float zmm_w = evtW*muonSF_w ;
+      float zmmb_w = zmm_w*btag_w;
+      
+      ZObj Z(muons[0],muons[1]) ;
+      
+      //h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w) ;
+      if (bjets.size() >= 1)
+      { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
+      if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+      {
+        if (*(r->MET_pt) < 50.0) {
+          h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w);
+          h_Zmm_MET_2bjet->Fill(*(r->MET_pt), zmm_w);
+          h_Zmm_METsig_2bjet->Fill(*(r->MET_significance), zmm_w);
+        }
+        h_Zmm_fullMET_2bjet->Fill(*(r->MET_pt), zmm_w);
+        h_Zmm_fullPuppiMET_2bjet->Fill(*(r->PuppiMET_pt), zmm_w);
+        h_Zmm_fullMETsig_2bjet->Fill(*(r->MET_significance), zmm_w);
+      }
+     
+      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") && Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) { 
+      
+        h_zmm_cutflow->Fill(4) ; //pass Z mass cuts
+        
+        h_zmm_jet->FillNjet(jets.size(), zmm_w) ;
+        
+        if (jets.size() >= 1) {
+
+          h_zmm_cutflow->Fill(5) ; //pass jet cuts
+
+          float deltaRmuonlep0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
+          float deltaRmuonlep1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec);
+        
+          h_zmm_jet->Fill(Z, jets[0], zmm_w) ;
+          h_zmm_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmm_w);
+
+          h_dR_jm->Fill(std::min(deltaRmuonlep0,deltaRmuonlep1), zmm_w) ;
+ 
+          //tagging efficiency
+          Fill_btagEffi(jets,zmm_w) ;
+
+        } //end at least one jet
+        
+        //Zmm+bjets
+        h_zmm_bjet->FillNjet(bjets.size(),zmmb_w) ; 
+        if (bjets.size() >= 1) {
+          
+          h_zmm_cutflow->Fill(6) ;
+          
+          h_zmm_bjet->Fill(Z, bjets[0], zmmb_w) ; 
+          h_zmm_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
+        }
+      
+        //Zmm+2bjets
+        if (bjets.size() >= 2) {
+
+          h_zmm_cutflow->Fill(7) ;
+          
+          h_zmm_2bjet->Fill(Z, bjets[0], bjets[1], zmmb_w) ; 
+          h_zmm_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
+        }
+
+        //at least one b-tagged jets using deepJet
+        h_zmm_bjet_deepJet->FillNjet(bjets_deepJet.size(),evtW) ; //FIXME 
+        if (bjets_deepJet.size() >=1) {
+          
+          h_zmm_cutflow->Fill(8) ;
+
+          h_zmm_bjet_deepJet->Fill(Z, bjets_deepJet[0], evtW) ; //FIXME
+          h_zmm_bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+        //at least two b-tagged jets using deepJet
+        if (bjets_deepJet.size() >=2) {
+          
+          h_zmm_cutflow->Fill(9) ;
+
+          h_zmm_2bjet_deepJet->Fill(Z, bjets_deepJet[0], bjets_deepJet[1], evtW) ; //FIXME
+          h_zmm_2bjet_deepJet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), evtW); //FIXME
+        }
+
+
+      } //end Z mass cut
+
+    } //end two muons
+  } //end trigger
+
+  ////////////////////////////////////////
+  // Zem + 2b-jets (electron trigger)
+  ////////////////////////////////////////
+  
+  // We want to be able to have the background estimation for the Z->ee
+  // case and we need to use the electron trigger.
+  if (eleTrig)
+  {
+    // make sure we have at least one of each lepton
+    if (eles.size() >= 1 && muons.size() >= 1)
+    {
+      // make sure the masses meet our cuts
+      if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") &&
+          muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1"))
+      {
+        // get the Z mass and store it appropriately
+        ZObj Z(eles[0], muons[0]);
+        if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+        {
+          if (*(r->MET_pt) < 50.0) {
+          h_zem_2bjet_elec->Fill(Z, bjets[0], bjets[1], 1.);
+          h_Zem_MET_2bjet_elec->Fill(*(r->MET_pt), 1.);
+          h_Zem_METsig_2bjet_elec->Fill(*(r->MET_significance), 1.);
+          }
+          h_Zem_fullMET_2bjet_elec->Fill(*(r->MET_pt), 1.);
+          h_Zem_fullMETsig_2bjet_elec->Fill(*(r->MET_significance), 1.);
+        }
+        
+      }//end-pt-cut
+
+    }//end-size
+  }//end-trig
+  
+  //////////////////////////////////////////////
+  // Zem + 2-bjets (muon trigger)
+  //////////////////////////////////////////////
+
+  // We want to be able to have the background estimation for the Z->mm
+  // case and we need to use the muon trigger.
   if (muonTrig)
   {
-
-    // make sure that we have at least 2 electrons and the pt meets our cut
-    if (muons.size() >= 2 && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")) {
-    
-      float zmm_w = 1.0;
-      float zmmb_w = 1.0;
-    
-      // Determine the Z mass & make sure we fall into the mass window
-      ZObj Z(muons[0], muons[1]);
-      h_Zmm_ZmassFull->Fill(Z.m_lvec.M(), zmm_w);
-      if (Z.m_lvec.M() >= CUTS.Get<float>("ZMassL") &&
-          Z.m_lvec.M() <= CUTS.Get<float>("ZMassH")) {
-    
-        // fill the no. jets
-        h_zmm_jet->FillNjet(jets.size(), zmm_w);
-    
-       // If we have at least one jet...
-       if (jets.size() >= 1) {
-   
-         // record the mass & MET
-         h_zmm_jet->Fill(Z, jets[0], zmm_w);
-         h_zmm_jet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmm_w);
-   
-         // record the isolation
-         float dRele0 = Z.m_lep0.m_lvec.DeltaR(jets[0].m_lvec);
-         float dRele1 = Z.m_lep1.m_lvec.DeltaR(jets[0].m_lvec);
-         h_dR_je->Fill(std::min(dRele0,dRele1), zmm_w);
-       }//end one-jet
-   
-       h_zmm_bjet->FillNjet(bjets.size(), zmm_w);
-
-       // If we have at least one b-tagged jet...
-       if (bjets.size() >= 1) {
-       
-         // record the mass & MET
-         h_zmm_bjet->Fill(Z, bjets[0], zmmb_w);
-         h_zmm_bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-       
-         // record again if we meet a MET cut
-         if (*(r->MET_pt) < CUTS.Get<float>("MET")) {
-           h_zmm_bjet_afterMET->Fill(Z, bjets[0], zmmb_w);
-           h_zmm_bjet_afterMET->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-         }
-       }//end one-b jet
-
-      
-       // If we have at least two b-tagged jets...
-       if (bjets.size() >= 2) {
-
-         // if the MET cut is met...
-         if (*(r->MET_pt) < CUTS.Get<float>("MET")) {
-
-            // Record the mass & MET
-            h_zmm_2bjet->Fill(Z, bjets[0], bjets[1], zmmb_w);
-            h_zmm_2bjet->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-            
-            // if we are using MC, let's record bb, bX, XX
-   #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-
-            if (bjets[0].m_flav == 5 && bjets[1].m_flav == 5) {     // bb
-              h_zmm_2bjet_bb->Fill(Z, bjets[0], bjets[1], zmmb_w);
-              h_zmm_2bjet_bb->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-            }
-            else if ((bjets[0].m_flav == 5 && bjets[1].m_flav != 5) || // bX
-                     (bjets[0].m_flav != 5 && bjets[1].m_flav == 5)) {
-              h_zmm_2bjet_bX->Fill(Z, bjets[0], bjets[1], zmmb_w);
-              h_zmm_2bjet_bX->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-            }
-            else { // XX
-              h_zmm_2bjet_XX->Fill(Z, bjets[0], bjets[1], zmmb_w);
-              h_zmm_2bjet_XX->FillMet(*(r->MET_pt), *(r->PuppiMET_pt), zmmb_w);
-            }
-
-  #endif
-         }//end MET cut
-       }//end two b jets      
-     }//end z mass cut
-   }//end two muons
-  }//end muon trigger  
-
-
-  /////////////////////////////////////////////////////////////////
-  // Zem + 2b-jets 
-  /////////////////////////////////////////////////////////////////
-
-  if (eles.size() >= 1 && muons.size() >= 1)
-  {
-    if ((eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0") && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1")) ||
-        (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1") && muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")))
+    // make sure we have at least one of each lepton
+    if (eles.size() >= 1 && muons.size() >= 1)
     {
-      if (bjets.size() >= 2)
+      // make sure the masses meet our cuts
+      if (eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt1") &&
+          muons[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0"))
       {
-        if (*(r->MET_pt) > 80.0) {
-          if (eleTrig) h_emu_2bjet_eleTrig->Fill(eles[0],muons[0],bjets[0],bjets[1],*(r->MET_pt),1.0);
-          if (muonTrig) h_emu_2bjet_muTrig->Fill(eles[0],muons[0],bjets[0],bjets[1],*(r->MET_pt),1.0);
+        // get the Z mass and store it appropriately
+        ZObj Z(eles[0], muons[0]);
+        if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
+        {
+          if (*(r->MET_pt) < 50.0) {
+          h_zem_2bjet_muon->Fill(Z, bjets[0], bjets[1], 1.0);
+          h_Zem_MET_2bjet_muon->Fill(*(r->MET_pt), 1.);
+          h_Zem_METsig_2bjet_muon->Fill(*(r->MET_significance), 1.);
+          }
+          h_Zem_fullMET_2bjet_muon->Fill(*(r->MET_pt), 1.);
+          h_Zem_fullMETsig_2bjet_muon->Fill(*(r->MET_significance), 1.);
         }
-      }
-      
-    }//end-pt-cut
-  } 
-                                 
+
+      }//end-pt-cut
+
+    }//end-size
+  }//end-trig
+
 } //end Process
 
 
@@ -595,14 +782,13 @@ void ZbSelection::Terminate(TList* mergedList, std::string outFileName) {
   aList->Add(a) ;
   a = new TParameter<double>("jet_eta",CUTS.Get<float>("jet_eta")) ;
   aList->Add(a) ;
-  a = new TParameter<double>("MET",CUTS.Get<float>("MET"));
-  aList->Add(a) ;
   std::string name = "jet_deepCSVM_" + m_year ;
   a = new TParameter<double>(name.c_str(),CUTS.Get<float>(name)) ;
   aList->Add(a) ;
   name = "jet_deepJetM_" + m_year ;
   a = new TParameter<double>(name.c_str(),CUTS.Get<float>(name)) ;
   aList->Add(a) ;
+
   
   TFile* f = new TFile(outFileName.c_str(), "UPDATE") ;
   aList->Write("ZbSelectionCuts",TObject::kSingleKey) ;

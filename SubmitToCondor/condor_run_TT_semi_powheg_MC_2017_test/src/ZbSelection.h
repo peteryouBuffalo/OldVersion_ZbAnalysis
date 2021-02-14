@@ -24,45 +24,64 @@ public:
 
 private:
 
-  // Z + >= 1 histograms
-  ZbPlots* h_zee_jet;			// Z->ee (all jets)
-  ZbPlots* h_zmm_jet;			// Z->mm (all jets)
-  ZbPlots* h_zee_bjet;			// Z->ee (b jets)
-  ZbPlots* h_zee_bjet_afterMET;		// Z->ee (b jets, MET cut)
-  ZbPlots* h_zmm_bjet;			// Z->mm (b jets)
-  ZbPlots* h_zmm_bjet_afterMET;		// Z->mm (b jets, MET cut)
-  
-  // Z + >= 2 histograms
-  Z2bPlots* h_zee_2bjet;		// Z->ee (2 b jets)
-  Z2bPlots* h_zmm_2bjet;		// Z->mm (2 b jets)
-  Z2bPlots* h_zee_2bjet_bb;		// Z->ee (both tagged as b)
-  Z2bPlots* h_zee_2bjet_bX;             // Z->ee (one tagged as b)
-  Z2bPlots* h_zee_2bjet_XX;		// Z->ee (none tagged as b)
-  Z2bPlots* h_zmm_2bjet_bb;		// Z->mm (both tagged as b)
-  Z2bPlots* h_zmm_2bjet_bX;		// Z->mm (one tagged as b)
-  Z2bPlots* h_zmm_2bjet_XX;		// Z->mm (none tagged as b)
+  //histograms
+  ZbPlots* h_zee_jet ;
+  ZbPlots* h_zmm_jet ;
+  ZbPlots* h_zem_jet ;
+  ZbPlots* h_zee_bjet ;
+  ZbPlots* h_zmm_bjet ;
 
-  // DeepJet histograms
-  ZbPlots* h_zee_bjet_deepJet;		// Z->ee (b jets)
-  ZbPlots* h_zmm_bjet_deepJet;		// Z->mm (b jets)
-  Z2bPlots* h_zee_2bjet_deepJet;	// Z->ee (2 b jets)
-  Z2bPlots* h_zmm_2bjet_deepJet;	// Z->mm (2 b jets)
+  Z2bPlots* h_zem_2bjet_elec ;
+  Z2bPlots* h_zem_2bjet_muon ;
+
+  Z2bPlots* h_zee_2bjet ;
+  Z2bPlots* h_zmm_2bjet ;
+
+  ZbPlots* h_zee_bjet_deepJet ;
+  ZbPlots* h_zmm_bjet_deepJet ;
+  Z2bPlots* h_zee_2bjet_deepJet ;
+  Z2bPlots* h_zmm_2bjet_deepJet ;
  
-  // "emu" histograms
-  ElMu2bPlots* h_emu_2bjet_eleTrig;	// Z->em (elec trig)
-  ElMu2bPlots* h_emu_2bjet_muTrig;	// Z->em (muon trig)
+  EffPlots* h_eff_b ;
+  EffPlots* h_eff_c ;
+  EffPlots* h_eff_l ;
+  EffPlots* h_eff_bdj ;
+  EffPlots* h_eff_cdj ;
+  EffPlots* h_eff_ldj ;
 
-  // efficiency plots
-  EffPlots* h_eff_b;			// Efficiency b jets
-  EffPlots* h_eff_c;			// Efficiency c jets
-  EffPlots* h_eff_l;			// Efficiency l jets
-  EffPlots* h_eff_bdj;			// Efficiency b jets (deep jet)
-  EffPlots* h_eff_cdj;			// Efficiency c jets (deep jet)
-  EffPlots* h_eff_ldj;			// Efficiency l jets (deep jet)
+  TH1D* h_Zee_sidebar;
+  TH1D* h_Zmm_sidebar;
+  TH1D* h_Zee_sidebar_bjet;
+  TH1D* h_Zmm_sidebar_bjet; 
+
+  TH1D* h_Zee_ZMass_bjet;
+  TH1D* h_Zee_ZMass_2bjet;
+  TH1D* h_Zmm_ZMass_bjet;
+  TH1D* h_Zmm_ZMass_2bjet;
+  TH1D* h_Zem_ZMass_bjet;
+  TH1D* h_Zem_ZMass_2bjet;
+
+  TH1D* h_Zee_MET_2bjet;          TH1D* h_Zee_fullMET_2bjet;
+  TH1D* h_Zmm_MET_2bjet;          TH1D* h_Zmm_fullMET_2bjet;
+  TH1D* h_Zem_MET_2bjet_elec;     TH1D* h_Zem_fullMET_2bjet_elec;
+  TH1D* h_Zem_MET_2bjet_muon;     TH1D* h_Zem_fullMET_2bjet_muon;
+  TH1D* h_Zee_METsig_2bjet;       TH1D* h_Zee_fullMETsig_2bjet;
+  TH1D* h_Zmm_METsig_2bjet;       TH1D* h_Zmm_fullMETsig_2bjet;
+  TH1D* h_Zem_METsig_2bjet_elec;  TH1D* h_Zem_fullMETsig_2bjet_elec;
+  TH1D* h_Zem_METsig_2bjet_muon;  TH1D* h_Zem_fullMETsig_2bjet_muon;
+ 
+  TH1D* h_Zee_fullPuppiMET_2bjet;
+  TH1D* h_Zmm_fullPuppiMET_2bjet;
+
+  TH1D* h_lJet_MET;  TH1D* h_lJet_PuppiMET; TH1D* h_lJet_METsig;
+  TH1D* h_cJet_MET;  TH1D* h_cJet_PuppiMET; TH1D* h_cJet_METsig;
+  TH1D* h_bJet_MET;  TH1D* h_bJet_PuppiMET; TH1D* h_bJet_METsig;
+
+  TH1D* h_2lJet_MET; TH1D* h_2lJet_PuppiMET;
+  TH1D* h_2cJet_MET; TH1D* h_2cJet_PuppiMET;
+  TH1D* h_2bJet_MET; TH1D* h_2bJet_PuppiMET;
 
   TH1D* h_evt ;
-  TH2D* h_pdfW;
-  TH2D* h_scaleW;
   TH1D* h_dR_je ;
   TH1D* h_dR_jm ;
   TH1D* h_nMuon ;
@@ -77,17 +96,7 @@ private:
  
   TH1D* h_Zee_ZmassFull ;
   TH1D* h_Zmm_ZmassFull ;
-
-  // check trigger matching
-  TH1D* h_dR1_muonTrig ;
-  TH1D* h_dR2_muonTrig ;
-  TH1D* h_pt1_muonTrig ;
-  TH1D* h_pt2_muonTrig ;
-           
-  TH1D* h_dR1_eleTrig ;
-  TH1D* h_dR2_eleTrig ;
-  TH1D* h_pt1_eleTrig ;
-  TH1D* h_pt2_eleTrig ;
+  TH1D* h_Zem_ZmassFull ;
 } ;
 
 #endif

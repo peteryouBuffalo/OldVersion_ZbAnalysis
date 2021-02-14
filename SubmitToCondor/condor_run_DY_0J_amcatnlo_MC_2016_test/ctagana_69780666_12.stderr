@@ -1,14 +1,0 @@
-WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
-src/ZbSelection.cxx: In member function 'virtual void ZbSelection::Process(Reader*)':
-src/ZbSelection.cxx:442:43: warning: suggest parentheses around '&&' within '||' [-Wparentheses]
-                      bjets[0].m_flav != 5 && bjets[1].m_flav == 5) {
-src/ZbSelection.cxx:340:9: warning: variable 'eleSF_w' set but not used [-Wunused-but-set-variable]
-   float eleSF_w(1.);
-         ^~~~~~~
-src/ZbSelection.cxx:341:9: warning: variable 'muonSF_w' set but not used [-Wunused-but-set-variable]
-   float muonSF_w(1.);
-         ^~~~~~~~
-src/ZbSelection.cxx:342:9: warning: variable 'btag_w' set but not used [-Wunused-but-set-variable]
-   float btag_w(1.);
-         ^~~~~~
-[531.3kB/531.3kB][100%][==================================================][531.3kB/s]  [531.3kB/531.3kB][100%][==================================================][531.3kB/s]  

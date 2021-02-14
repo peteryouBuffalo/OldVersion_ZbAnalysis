@@ -151,7 +151,7 @@ namespace {
     };
     static const char* includePaths[] = {
 "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/lcg/root/6.14.09/include",
-"/uscms/homes/p/peteryou/CMSSW_10_6_4/src/ZbAnalysis/",
+"/uscms_data/d3/peteryou/CMSSW_10_6_4/src/ZbAnalysis/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(

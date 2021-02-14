@@ -142,7 +142,7 @@ void fithist()
   gStyle->SetOptStat(0);
   
   //--- Files that are currently being used ---------------------------------//
-  std::string fileLoc = "../output_withTrig/";
+  std::string fileLoc = "../output_updated/";
   
   std::string filesEE[] = 
   {  "SingleElectron_DATA_2016.root", "SingleElectron_DATA_2017.root",
@@ -153,9 +153,9 @@ void fithist()
   
   //--- Options to Set ------------------------------------------------------//
   
-  int year = 2018;
+  int year = 2016;
   int channel = 1;		// 0 = electron, 1 = muon (completely aesthetic)
-  int analysis = 2;		// 0 = mass, 1 = MET, 2 = MET sig
+  int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
   int binSize = 1;		// 0 = 2 GeV, 1 = 4 GeV
 	
   //--- Get the appropriate files & histograms ------------------------------//

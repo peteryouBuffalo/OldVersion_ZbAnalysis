@@ -1,0 +1,12 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+src/ZbSelection.cxx: In member function 'virtual void ZbSelection::Process(Reader*)':
+src/ZbSelection.cxx:430:21: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+   for (int i = 0; i < jets.size(); ++i)
+                   ~~^~~~~~~~~~~~~
+Error in <TNetXNGFile::Open>: [ERROR] Server responded with an error: [3006] tried hosts option not supported.
+
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  the file root:://cmsxrootd.fnal.gov///store/data/Run2017F/SingleMuon/NANOAOD/02Apr2020-v1/40000/9870BCF5-1725-504F-8515-A17B1961068D.root does not exist of does not contain the tree named Events
+./condor_exec.exe: line 12:   191 Aborted                 (core dumped) ./main -filelist sampleList_$1.txt -out output_$1.root -data 1 -year 2017
+xrdcp: No such file or directory processing *.root
+rm: cannot remove '*.root': No such file or directory
