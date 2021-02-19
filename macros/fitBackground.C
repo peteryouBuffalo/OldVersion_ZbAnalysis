@@ -89,8 +89,8 @@ void fitBackground()
      
     //--- Set the options that you want -------------------------------------//
     
-   	int year = 2016;
-   	int channel = 0;		// 0 = electron, 1 = muon
+   	int year = 2018;
+   	int channel = 1;		// 0 = electron, 1 = muon
    	int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
    	int binSize = 4;		// (in GeV), size for analysis for ct
    	int outSize = 2;		// (in GeV), size for final plot
@@ -231,7 +231,8 @@ void fitBackground()
 	l->AddEntry(ttHist, labels[2].c_str(), "L");
 	l->Draw("same");
 	
-	TLegend *l2 = new TLegend(0.3, 0.2, 0.7, 0.33);
+	//TLegend *l2 = new TLegend(0.3, 0.2, 0.7, 0.33);
+	TLegend *l2 = new TLegend(0.65, 0.4, 0.92, 0.55);
 	l2->SetLineColor(kWhite);
 	l2->SetBorderSize(0);
 	l2->AddEntry((TObject*)0, ctOut.c_str(), "");
