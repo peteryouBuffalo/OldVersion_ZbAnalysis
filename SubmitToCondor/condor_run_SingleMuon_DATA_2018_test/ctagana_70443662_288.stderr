@@ -1,0 +1,6 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+src/ZbSelection.cxx: In member function 'virtual void ZbSelection::Process(Reader*)':
+src/ZbSelection.cxx:436:21: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+   for (int i = 0; i < jets.size(); ++i)
+                   ~~^~~~~~~~~~~~~
+[277.5kB/277.5kB][100%][==================================================][277.5kB/s]  [277.5kB/277.5kB][100%][==================================================][277.5kB/s]  

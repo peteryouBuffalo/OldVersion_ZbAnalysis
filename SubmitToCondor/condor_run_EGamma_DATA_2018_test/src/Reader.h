@@ -88,6 +88,10 @@ public :
    TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
 #endif
 
+#if defined(MC_2016) || defined(MC_2017)
+   TTreeReaderValue<Float_t> L1PreFiringWeight_Nom = {fReader, "L1PreFiringWeight_Nom"};
+#endif
+
    Reader(TTree * /*tree*/ =0) {}
 
    virtual ~Reader() { }

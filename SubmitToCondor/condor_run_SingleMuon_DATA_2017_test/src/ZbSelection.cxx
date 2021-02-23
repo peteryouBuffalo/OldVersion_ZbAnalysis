@@ -269,6 +269,8 @@ void ZbSelection::SlaveBegin(Reader* r) {
 void ZbSelection::Process(Reader* r) {
   //Weights
   float genWeight = 1. ;
+  float l1preW = 1. ;
+
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   if (*(r->genWeight) < 0) genWeight = -1. ;
   if (*(r->genWeight) == 0) h_evt->Fill(0) ; 
@@ -276,9 +278,13 @@ void ZbSelection::Process(Reader* r) {
   if (*(r->genWeight) > 0) h_evt->Fill(1) ; 
 #endif
 
+#if defined(MC_2016) || defined(MC_2017)
+ l1preW = *(r->L1PreFiringWeight_Nom);
+#endif
+
   float evtW = 1. ;
   
-  if (!m_isData) evtW *= genWeight ;
+  if (!m_isData) evtW *= genWeight*l1preW ;
   
   //=============Get objects============= 
   //electrons
