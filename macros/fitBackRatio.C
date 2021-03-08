@@ -51,7 +51,7 @@ void FillBins(TH1F* hist, TH1F* orig, int an, bool fillMid=false)
 	}
 	
 	std::string xLbl;
-	if (an == 0) xLbl = "M_{Z}"; 
+	if (an == 0) xLbl = "M_{ll} (GeV)"; 
 	else if (an == 1) xLbl = "MET"; 
 	else xLbl = "MET Significance";
 	
@@ -68,7 +68,7 @@ Double_t ftotal(Double_t *x, Double_t *par)
 }
 
 // fistBackground method (MAIN CODE) //////////////////////////////////////////
-void fitBackground()
+void fitBackRatio()
 {
 	// Get the location of the files you want to use
 	std::string fileLoc = "../output_prefire/";
@@ -89,8 +89,8 @@ void fitBackground()
      
     //--- Set the options that you want -------------------------------------//
     
-   	int year = 2016;
-   	int channel = 0;		// 0 = electron, 1 = muon
+   	int year = 2017;
+   	int channel = 1;		// 0 = electron, 1 = muon
    	int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
    	int binSize = 4;		// (in GeV), size for analysis for ct
    	int outSize = 2;		// (in GeV), size for final plot
@@ -200,16 +200,24 @@ void fitBackground()
     FillBins(nHist1, h1, analysis, true); //nHist1->Rebin(outSize);
     FillBins(nHist2, h2, analysis, true); //nHist2->Rebin(outSize);
     
+    gStyle->SetOptStat(0);
     nHist2->Scale(ct);
-    THStack *hStack = new THStack();
-    hStack->Add(nHist1, "HIST");
-    hStack->Add(nHist2, "HIST");
-    hStack->Add(ttHist, "HIST");
-    hStack->Draw("nostack");
-    hStack->GetXaxis()->SetTitle("M_{ll} (GeV)");
+    TRatioPlot *rat = new TRatioPlot(nHist2, ttHist, "pois");
+    rat->SetH1DrawOpt("H"); rat->SetH2DrawOpt("H");
+    rat->Draw(); rat->GetUpperPad()->cd(); nHist1->Draw("SAME E");
     
+    gPad->Modified(); gPad->Update();
+    TPad *pad = rat->GetUpperPad();
     std::string yLbl = "Events/" + std::to_string(binSize) + " GeV";
-    hStack->GetYaxis()->SetTitle(yLbl.c_str());
+    rat->GetUpperRefYaxis()->SetTitle(yLbl.c_str());
+    rat->GetLowerRefYaxis()->SetTitle("e#mu / MC");
+    rat->GetUpperRefYaxis()->SetLabelSize(0.03);
+    rat->GetLowerRefYaxis()->SetLabelSize(0.03);
+    rat->GetLowerRefXaxis()->SetLabelSize(0.03);
+    //rat->GetLowerRefXaxis()->SetTitle("M_{ll} (GeV)");
+    rat->GetLowerRefYaxis()->SetRangeUser(0.5,1.5);
+    
+    rat->GetUpperRefYaxis()->SetRangeUser(0.,1000.);
     
     std::string lbl = "", lbl2 = "";
 	switch(channel)
@@ -224,15 +232,15 @@ void fitBackground()
 	std::string labels[] = 
 	{ lbl.c_str(), "e#mu + #geq 2 b-jets data", 
 	lbl2.c_str() };
-	TLegend *l = new TLegend(0.65, 0.7, 0.92, 0.9);
+	TLegend *l = new TLegend(0.55, 0.65, 0.85, 0.85);
 	l->SetFillColor(kWhite); l->SetLineColor(kWhite);
-	l->AddEntry(nHist1, labels[0].c_str(), "L");
+	l->AddEntry(nHist1, labels[0].c_str());
 	l->AddEntry(nHist2, labels[1].c_str(), "L");
 	l->AddEntry(ttHist, labels[2].c_str(), "L");
 	l->Draw("same");
 	
 	//TLegend *l2 = new TLegend(0.3, 0.2, 0.7, 0.33);
-	TLegend *l2 = new TLegend(0.65, 0.4, 0.92, 0.55);
+	TLegend *l2 = new TLegend(0.55, 0.4, 0.85, 0.55);
 	l2->SetLineColor(kWhite);
 	l2->SetBorderSize(0);
 	l2->AddEntry((TObject*)0, ctOut.c_str(), "");
