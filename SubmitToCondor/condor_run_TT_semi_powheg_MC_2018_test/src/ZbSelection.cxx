@@ -483,7 +483,7 @@ void ZbSelection::Process(Reader* r) {
   //Zee + jets
   ////////////////////////////////////
   h_zee_cutflow->Fill(1); //all events (not cut)
-  if (eleTrig) {
+  //if (eleTrig) {
     h_zee_cutflow->Fill(2); //trigger
 
     if (eles.size() >= 2 && eles[0].m_lvec.Pt() >= CUTS.Get<float>("lep_pt0")
@@ -574,7 +574,7 @@ void ZbSelection::Process(Reader* r) {
 
       }//end Z mass
     } //end two electrons
-  } //end ele. trigger
+  //} //end ele. trigger
   
   if (jets_ele_removal.size() > 0) {
     JetPlot J_cut1(jets_ele_removal[0]);
@@ -588,7 +588,7 @@ void ZbSelection::Process(Reader* r) {
   ///////////////////////////
   h_zmm_cutflow->Fill(1); //all events (not cut)
   //trigger cuts
-  if (muonTrig) {
+  //if (muonTrig) {
     h_zmm_cutflow->Fill(2); //trigger
     
     // Fill the sidebar information
@@ -693,7 +693,7 @@ void ZbSelection::Process(Reader* r) {
       } //end Z mass cut
 
     } //end two muons
-  } //end trigger
+  //} //end trigger
 
   ////////////////////////////////////////
   // Zem + 2b-jets (electron trigger)
@@ -701,8 +701,8 @@ void ZbSelection::Process(Reader* r) {
   
   // We want to be able to have the background estimation for the Z->ee
   // case and we need to use the electron trigger.
-  if (eleTrig)
-  {
+  //if (eleTrig)
+  //{
     // make sure we have at least one of each lepton
     if (eles.size() >= 1 && muons.size() >= 1)
     {
@@ -726,7 +726,7 @@ void ZbSelection::Process(Reader* r) {
       }//end-pt-cut
 
     }//end-size
-  }//end-trig
+  //}//end-trig
   
   //////////////////////////////////////////////
   // Zem + 2-bjets (muon trigger)
@@ -734,8 +734,8 @@ void ZbSelection::Process(Reader* r) {
 
   // We want to be able to have the background estimation for the Z->mm
   // case and we need to use the muon trigger.
-  if (muonTrig)
-  {
+  //if (muonTrig)
+  //{
     // make sure we have at least one of each lepton
     if (eles.size() >= 1 && muons.size() >= 1)
     {
@@ -759,7 +759,7 @@ void ZbSelection::Process(Reader* r) {
       }//end-pt-cut
 
     }//end-size
-  }//end-trig
+  //}//end-trig
 
 } //end Process
 

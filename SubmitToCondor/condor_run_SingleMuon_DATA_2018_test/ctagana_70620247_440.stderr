@@ -1,0 +1,12 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+src/ZbSelection.cxx: In member function 'virtual void ZbSelection::Process(Reader*)':
+src/ZbSelection.cxx:436:21: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+   for (int i = 0; i < jets.size(); ++i)
+                   ~~^~~~~~~~~~~~~
+src/ZbSelection.cxx:414:8: warning: variable 'eleTrig' set but not used [-Wunused-but-set-variable]
+   bool eleTrig(false) ;
+        ^~~~~~~
+src/ZbSelection.cxx:415:8: warning: variable 'muonTrig' set but not used [-Wunused-but-set-variable]
+   bool muonTrig(false) ;
+        ^~~~~~~~
+[492.5kB/492.5kB][100%][==================================================][492.5kB/s]  [492.5kB/492.5kB][100%][==================================================][492.5kB/s]  

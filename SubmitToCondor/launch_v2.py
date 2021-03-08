@@ -80,9 +80,9 @@ nFile = 1
 
 dir_file_list = '../FileLists_Nano02Apr2020'
 
-outputDir_eos = '/eos/uscms/store/user/peteryou/Output_ZplusB/output_prefire'
+outputDir_eos = '/eos/uscms/store/user/peteryou/Output_ZplusB/output_noTrig'
 #outputDir_scratch = '/uscms/home/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output_background' 
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output_prefire'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/ZbAnalysis/output_noTrig'
 
 #Print setting
 print '============================='
