@@ -89,7 +89,7 @@ void fitBackRatio()
      
     //--- Set the options that you want -------------------------------------//
     
-   	int year = 2017;
+   	int year = 2018;
    	int channel = 1;		// 0 = electron, 1 = muon
    	int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
    	int binSize = 4;		// (in GeV), size for analysis for ct
@@ -129,26 +129,7 @@ void fitBackRatio()
 	FillBins(nHist2, h2, analysis);
 	 
 	//--- Now, use the fit function to get the values ------------------------//
-	
-	background = nHist2;
-	TF1* ftot = new TF1("ftot", ftotal, 40, 200, 1);
-    nHist1->Fit("ftot", "0q");
-    float ct = ftot->GetParameter(0);
-    float err = ftot->GetParError(0);
-    float chi2 = ftot->GetChisquare();
-    float ndf = ftot->GetNDF();
-    float pval = ftot->GetProb();
-    float chi = chi2/ndf;
-    
-    std::string ctOut = "c_{t} = " + round(ct, 3) + 
-    			 		" #pm " + round(err,3);
-	std::string chiOut = "#chi^{2}/ndf = " + round(chi,3);
-	std::string pvalOut = "p-val = " + toSci(pval, 2);
-	
-	std::cout << ctOut << std::endl;
-	std::cout << chiOut << std::endl;
-	std::cout << pvalOut << std::endl;
-	
+
 	//--- Create the canvas -------------------------------------------------//
 	
 	int W = 800; int H = 600;
@@ -193,6 +174,38 @@ void fitBackRatio()
 		//delete ttbar;
 	}
 	
+	//--- Get the values from the file --------------------------------------//
+	
+	fstream fin;
+	fin.open("coefficients.csv");
+	
+	std::vector<std::string> lines;
+	std::string line;
+	
+	while (std::getline(fin, line))
+	{
+		lines.push_back(line);
+	}
+	fin.close();
+	
+	// figure out the proper line to use
+	int index = (year-2016)*6 + channel*3 + analysis;
+	std::string properLine = lines.at(index);  
+	std::vector<std::string> tokens;
+	std::string token;
+	
+	std::istringstream tokenStream(properLine);
+	while(std::getline(tokenStream, token, ','))
+	{  tokens.push_back(token); }
+	
+	float ct = std::stof(tokens.at(3));
+	float err = std::stof(tokens.at(4));
+	float chi = std::stof(tokens.at(5));
+	float pval = std::stof(tokens.at(6));
+	
+	std::string ctOut = "c_{t} = " + round(ct,3) + " #pm " + round(err,3);
+	std::string chiOut = "#chi^2/ndf = " + round(chi, 3);
+	std::string pvalOut = "p-val = " + toSci(pval, 2);
     
     //--- Create the background plot ----------------------------------------//
     
@@ -217,7 +230,13 @@ void fitBackRatio()
     //rat->GetLowerRefXaxis()->SetTitle("M_{ll} (GeV)");
     rat->GetLowerRefYaxis()->SetRangeUser(0.5,1.5);
     
-    rat->GetUpperRefYaxis()->SetRangeUser(0.,1000.);
+    float maxVal = 0;
+    for (int i = 0; i < nHist1->GetNbinsX(); ++i)
+    {
+    	float val = nHist1->GetBinContent(i);
+    	if (val > maxVal) maxVal = val;
+    }
+    rat->GetUpperRefYaxis()->SetRangeUser(0., maxVal + 100);
     
     std::string lbl = "", lbl2 = "";
 	switch(channel)

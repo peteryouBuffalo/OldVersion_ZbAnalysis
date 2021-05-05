@@ -71,7 +71,7 @@ Double_t ftotal(Double_t *x, Double_t *par)
 void fithist_v2()
 {
 	// Get the location of the files you want to use
-	std::string fileLoc = "../output_noTrig/";
+	std::string fileLoc = "../output_updated/";
 	std::string filesEE[] = 
     {  "SingleElectron_DATA_2016.root", "SingleElectron_DATA_2017.root",
      "EGamma_DATA_2018.root" };
@@ -79,7 +79,7 @@ void fithist_v2()
     {  "SingleMuon_DATA_2016.root", "SingleMuon_DATA_2017.root",
      "SingleMuon_DATA_2018.root" };
      
-    std::string fileLoc2 = "../output_noTrig/";
+    std::string fileLoc2 = "../output_updated/";
     std::string filesTT[3][2] =
     {
     	{ "TT_powheg_MC_2016.root", ""},
@@ -92,8 +92,9 @@ void fithist_v2()
    	int year = 2016;
    	int channel = 0;		// 0 = electron, 1 = muon
    	int analysis = 0;		// 0 = mass, 1 = MET, 2 = MET sig
-   	int binSize = 2;		// (in GeV), size for analysis for ct
-   	int outSize = 2;		// (in GeV), size for final plot
+   	int binSize = 4;		// (in GeV), size for analysis for ct
+   	bool saveCoeff = false; //
+   	//int outSize = 2;		// (in GeV), size for final plot
    	
    	// Set the appropriate files & histograms -------------------------------//
    	
@@ -245,7 +246,66 @@ void fithist_v2()
 	l2->AddEntry((TObject*)0, chiOut.c_str(), "");
 	l2->AddEntry((TObject*)0, pvalOut.c_str(), "");
 	l2->Draw("same");
-    
+	
+	//-- Extract the DATA/MC coefficient ------------------------------------//
+	
+	background = ttHist;
+	TF1* ftot2 = new TF1("ftot2", ftotal, 40, 200, 1);
+    nHist2->Fit("ftot2", "0q");
+    float ratio = ftot2->GetParameter(0);
+    float rErr = ftot2->GetParError(0);
+    std::cout << "\nDATA/MC = " << ratio << " +/- " << rErr << "\n"; 
+	
+	//-- Let's put the values into the file in its appropriate spot ---------//
+	
+	if (saveCoeff)
+	{
+		fstream fin;
+		fin.open("coefficients.csv");
+		
+		std::vector<std::string> lines;
+		std::string line;
+		
+		while (std::getline(fin, line))
+		{
+			lines.push_back(line);
+		}
+		fin.close();
+		
+		// figure out the proper line to modify
+		int index = (year-2016)*6 + channel*3 + analysis;
+
+		// get this line and split it apart
+		std::string properLine = lines.at(index);  
+		std::vector<std::string> tokens;
+		std::string token;
+		
+		std::istringstream tokenStream(properLine);
+		while(std::getline(tokenStream, token, ','))
+		{  tokens.push_back(token); }
+		
+		// update the values
+		tokens.at(3) = std::to_string(ct);
+		tokens.at(4) = std::to_string(err);
+		tokens.at(5) = std::to_string(chi);
+		tokens.at(6) = std::to_string(pval);
+
+		std::string temp;
+		for (int i = 0; i < tokens.size(); ++i)
+		{
+			temp += tokens.at(i);
+			if (i < tokens.size() - 1)
+				temp += ",";
+		}
+		lines.at(index) = temp;
+		
+		fstream fout("coefficients.csv");
+		for (int i = 0; i < lines.size(); ++i)
+		{
+			fout << lines.at(i) << "\n";
+		}
+		fout.close();
+	}
 }
 // END OF FILE ////////////////////////////////////////////////////////////////
 

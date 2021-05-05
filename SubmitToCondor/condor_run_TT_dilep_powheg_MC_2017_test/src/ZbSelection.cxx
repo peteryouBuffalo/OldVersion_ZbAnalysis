@@ -500,7 +500,7 @@ void ZbSelection::Process(Reader* r) {
       { h_Zee_ZMass_bjet->Fill(Z.m_lvec.M(), zee_w) ; }
       if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
       { 
-        if (*(r->MET_pt) < 50.0) {
+        if (*(r->MET_pt) > 80.0) {
           h_Zee_ZMass_2bjet->Fill(Z.m_lvec.M(), zee_w);
           h_Zee_MET_2bjet->Fill(*(r->MET_pt), zee_w);
           h_Zee_METsig_2bjet->Fill(*(r->MET_significance), zee_w);
@@ -618,7 +618,7 @@ void ZbSelection::Process(Reader* r) {
       { h_Zmm_ZMass_bjet->Fill(Z.m_lvec.M(), zmm_w) ; }
       if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
       {
-        if (*(r->MET_pt) < 50.0) {
+        if (*(r->MET_pt) > 80.0) {
           h_Zmm_ZMass_2bjet->Fill(Z.m_lvec.M(), zmm_w);
           h_Zmm_MET_2bjet->Fill(*(r->MET_pt), zmm_w);
           h_Zmm_METsig_2bjet->Fill(*(r->MET_significance), zmm_w);
@@ -701,8 +701,7 @@ void ZbSelection::Process(Reader* r) {
   
   // We want to be able to have the background estimation for the Z->ee
   // case and we need to use the electron trigger.
-  //if (eleTrig)
-  //{
+  //if (eleTrig) {
     // make sure we have at least one of each lepton
     if (eles.size() >= 1 && muons.size() >= 1)
     {
@@ -714,7 +713,7 @@ void ZbSelection::Process(Reader* r) {
         ZObj Z(eles[0], muons[0]);
         if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
         {
-          if (*(r->MET_pt) < 50.0) {
+          if (*(r->MET_pt) > 80.0) {
           h_zem_2bjet_elec->Fill(Z, bjets[0], bjets[1], 1.);
           h_Zem_MET_2bjet_elec->Fill(*(r->MET_pt), 1.);
           h_Zem_METsig_2bjet_elec->Fill(*(r->MET_significance), 1.);
@@ -734,8 +733,7 @@ void ZbSelection::Process(Reader* r) {
 
   // We want to be able to have the background estimation for the Z->mm
   // case and we need to use the muon trigger.
-  //if (muonTrig)
-  //{
+  //if (muonTrig) {
     // make sure we have at least one of each lepton
     if (eles.size() >= 1 && muons.size() >= 1)
     {
@@ -747,7 +745,7 @@ void ZbSelection::Process(Reader* r) {
         ZObj Z(eles[0], muons[0]);
         if (bjets.size() >= 2)// && *(r->MET_pt) > 80.0)
         {
-          if (*(r->MET_pt) < 50.0) {
+          if (*(r->MET_pt) > 80.0) {
           h_zem_2bjet_muon->Fill(Z, bjets[0], bjets[1], 1.0);
           h_Zem_MET_2bjet_muon->Fill(*(r->MET_pt), 1.);
           h_Zem_METsig_2bjet_muon->Fill(*(r->MET_significance), 1.);
